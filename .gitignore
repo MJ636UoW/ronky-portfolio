@@ -1,0 +1,7 @@
+# Monorepo gitignore
+showcase/node_modules/
+showcase/dist/
+showcase/.env
+showcase/.env.*
+.DS_Store
+Thumbs.db

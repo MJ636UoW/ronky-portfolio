@@ -1,0 +1,614 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/assets/images/portfolio4.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>KAI • Gen-Z Luxury Portfolio & Creative Studio</title>
+    <!-- Google Fonts: Syne (Headings) & Plus Jakarta Sans (Body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <!-- Background Canvas Engine -->
+    <canvas id="bg-canvas"></canvas>
+    <div id="noise-overlay"></div>
+    <div id="grid-overlay"></div>
+
+    <!-- Magnetic Custom Cursor -->
+    <div id="custom-cursor-ring"></div>
+    <div id="custom-cursor-dot"></div>
+
+    <!-- Main Navigation Bar -->
+    <header class="main-header">
+      <div class="header-container">
+        <a href="#" class="logo magnetic" data-magnetic-strength="0.3">
+          KAI<span>•</span>STUDIO
+        </a>
+        <nav class="nav-links">
+          <a href="#about" class="nav-link magnetic" data-magnetic-strength="0.4">About</a>
+          <a href="#portfolio" class="nav-link magnetic" data-magnetic-strength="0.4">Works</a>
+          <a href="#services" class="nav-link magnetic" data-magnetic-strength="0.4">Services</a>
+          <a href="#testimonials" class="nav-link magnetic" data-magnetic-strength="0.4">Reviews</a>
+          <a href="#contact" class="nav-link magnetic" data-magnetic-strength="0.4">Book</a>
+        </nav>
+        <div class="header-action">
+          <a href="#contact" class="btn-primary magnetic" data-magnetic-strength="0.5">
+            <span>GET IN TOUCH</span>
+          </a>
+        </div>
+        <!-- Mobile Menu Trigger -->
+        <button class="mobile-menu-trigger" aria-label="Toggle Menu">
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Mobile Navigation Overlay -->
+    <div class="mobile-nav-overlay">
+      <nav class="mobile-nav-links">
+        <a href="#about" class="mobile-nav-link">About</a>
+        <a href="#portfolio" class="mobile-nav-link">Works</a>
+        <a href="#services" class="mobile-nav-link">Services</a>
+        <a href="#testimonials" class="mobile-nav-link">Reviews</a>
+        <a href="#contact" class="mobile-nav-link">Book Now</a>
+      </nav>
+    </div>
+
+    <!-- MAIN SCROLL CONTAINER -->
+    <main class="scroll-container">
+      
+      <!-- HERO SECTION -->
+      <section id="hero" class="hero-section">
+        <!-- Split Composition Layer -->
+        <div class="hero-split-left">
+          <div class="hero-content-wrapper hero-fade-in">
+            <h1 class="hero-title">
+              SHAPING<br>
+              <span class="accent-text text-glow">VISIONS</span><br>
+              INTO ART.
+            </h1>
+            <p class="hero-subtitle">
+              Premium fashion-editorial photographer & drone pilot defining the visual language of 2026.
+            </p>
+            <div class="hero-actions">
+              <a href="#portfolio" class="btn-primary magnetic" data-magnetic-strength="0.3">
+                <span>VIEW SHOWREEL</span>
+              </a>
+              <a href="#contact" class="btn-secondary magnetic" data-magnetic-strength="0.3">
+                <span>COLLABORATE</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-split-right">
+          <!-- Non-rectangular diagonal mask shape -->
+          <div class="diagonal-mask">
+            <div class="cinematic-bg-wrapper">
+              <!-- Using generated portfolio image as showcase bg -->
+              <img src="/assets/images/portfolio1.png" alt="Cinematic Editorial Portrait" class="cinematic-bg-img">
+              <div class="cinematic-overlay"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Anti-Gravity Floating elements -->
+        <div class="floating-tags-container" id="floating-tags-container">
+          <div class="floating-tag depth-1" data-speed="1.2" data-depth="0.08" data-dir="1">
+            <span>Photographer</span>
+          </div>
+          <div class="floating-tag depth-2" data-speed="1.8" data-depth="0.15" data-dir="-1">
+            <span>Videographer</span>
+          </div>
+          <div class="floating-tag depth-3" data-speed="0.8" data-depth="0.04" data-dir="1">
+            <span>Drone Pilot</span>
+          </div>
+          <div class="floating-tag depth-2" data-speed="2.2" data-depth="0.12" data-dir="-1">
+            <span>Storyteller</span>
+          </div>
+          <div class="floating-tag depth-1" data-speed="1.5" data-depth="0.06" data-dir="1">
+            <span>Creative Director</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- TICKER / MARQUEE SECTION -->
+      <section class="marquee-section">
+        <div class="marquee-container" id="ticker-1">
+          <div class="marquee-track">
+            <span>AVAILABLE WORLDWIDE</span>
+            <span class="dot">★</span>
+            <span>BOOKINGS OPEN</span>
+            <span class="dot">★</span>
+            <span>CREATIVE STORYTELLER</span>
+            <span class="dot">★</span>
+            <span>CINEMATIC VIBES</span>
+            <span class="dot">★</span>
+            <span>FASHION EDITORIAL</span>
+            <span class="dot">★</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ABOUT SECTION -->
+      <section id="about" class="about-section scroll-reveal" data-reveal="fade-up">
+        <div class="section-container">
+          <div class="about-grid">
+            
+            <div class="about-visual">
+              <div class="profile-card">
+                <img src="/assets/images/profile.png" alt="Kai Portrait" class="profile-img">
+                <div class="glass-card-overlay"></div>
+              </div>
+              
+              <!-- Rotating Circular Badge -->
+              <div class="rotating-badge-wrapper" id="rotating-badge-container">
+                <svg viewBox="0 0 100 100" class="rotating-badge-svg">
+                  <path id="circlePath" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" fill="none" />
+                  <text class="rotating-badge-text">
+                    <textPath href="#circlePath" startOffset="0%">
+                      CREATIVE VISION • BEYOND THE LENS • EST. 2024 •
+                    </textPath>
+                  </text>
+                </svg>
+                <div class="badge-dot"></div>
+              </div>
+            </div>
+
+            <div class="about-content">
+              <h2 class="section-title">
+                THE MIND<br>BEHIND <span class="accent-text">THE LENS</span>
+              </h2>
+              <p class="about-text">
+                I capture raw, electric moments sitting at the intersection of streetwear subculture, dynamic sports, and high-fashion editorial. By blending high-speed drone visuals with cinematic grain and glass refraction techniques, I create visual poetry that leaves a trace.
+              </p>
+              
+              <!-- Statistics Counter Grid -->
+              <div class="stats-grid">
+                <div class="stat-box glass-card" data-stat-target="150">
+                  <div class="stat-number"><span class="counter">0</span>+</div>
+                  <div class="stat-label">Projects Completed</div>
+                </div>
+                <div class="stat-box glass-card" data-stat-target="98">
+                  <div class="stat-number"><span class="counter">0</span>%</div>
+                  <div class="stat-label">Happy Clients</div>
+                </div>
+                <div class="stat-box glass-card" data-stat-target="12">
+                  <div class="stat-number"><span class="counter">0</span>+</div>
+                  <div class="stat-label">Countries Served</div>
+                </div>
+                <div class="stat-box glass-card" data-stat-target="5">
+                  <div class="stat-number"><span class="counter">0</span>+</div>
+                  <div class="stat-label">Years Experience</div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- PORTFOLIO SECTION -->
+      <section id="portfolio" class="portfolio-section scroll-reveal" data-reveal="fade-up">
+        <div class="section-container">
+          <div class="portfolio-header">
+            <h2 class="section-title">SELECTED <span class="accent-text">WORKS</span></h2>
+            
+            <!-- Category Filters -->
+            <div class="portfolio-filters">
+              <button class="filter-btn active" data-filter="all">All</button>
+              <button class="filter-btn" data-filter="fashion">Fashion</button>
+              <button class="filter-btn" data-filter="editorial">Editorial</button>
+              <button class="filter-btn" data-filter="drone">Drone</button>
+              <button class="filter-btn" data-filter="video">Video</button>
+            </div>
+          </div>
+
+          <!-- Masonry Grid -->
+          <div class="portfolio-grid" id="portfolio-grid">
+            
+            <!-- Item 1 (Fashion) -->
+            <div class="portfolio-item size-tall fashion scroll-reveal" data-reveal="fade-up" data-src="/assets/images/portfolio1.png" data-title="CYBER SUITS" data-category="Fashion Editorial">
+              <div class="portfolio-media-wrapper">
+                <img src="/assets/images/portfolio1.png" alt="Cyber Suits" class="portfolio-media">
+                <div class="portfolio-overlay">
+                  <div class="portfolio-info">
+                    <span class="portfolio-cat">FASHION</span>
+                    <h3 class="portfolio-title">CYBER SUITS</h3>
+                  </div>
+                  <span class="portfolio-arrow">↗</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Item 2 (Editorial) -->
+            <div class="portfolio-item size-wide editorial scroll-reveal" data-reveal="fade-up" data-src="/assets/images/portfolio2.png" data-title="REFRACTED LIGHT" data-category="Creative Portrait">
+              <div class="portfolio-media-wrapper">
+                <img src="/assets/images/portfolio2.png" alt="Refracted Light" class="portfolio-media">
+                <div class="portfolio-overlay">
+                  <div class="portfolio-info">
+                    <span class="portfolio-cat">EDITORIAL</span>
+                    <h3 class="portfolio-title">NEON RAIN</h3>
+                  </div>
+                  <span class="portfolio-arrow">↗</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Item 3 (Video) -->
+            <div class="portfolio-item size-medium video scroll-reveal" data-reveal="fade-up" data-video-src="https://assets.mixkit.co/videos/preview/mixkit-cinematic-shot-of-a-skater-performing-tricks-43306-large.mp4" data-title="SKATE CHRONICLES" data-category="Cinematic Video">
+              <div class="portfolio-media-wrapper">
+                <!-- Video thumbnail with video overlay hover -->
+                <video src="https://assets.mixkit.co/videos/preview/mixkit-cinematic-shot-of-a-skater-performing-tricks-43306-large.mp4" poster="/assets/images/portfolio3.png" muted loop playsinline class="portfolio-media video-preview"></video>
+                <div class="portfolio-overlay">
+                  <div class="portfolio-info">
+                    <span class="portfolio-cat">VIDEO</span>
+                    <h3 class="portfolio-title">SKATE MOTION</h3>
+                  </div>
+                  <span class="portfolio-play-icon">▶</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Item 4 (Drone) -->
+            <div class="portfolio-item size-wide drone scroll-reveal" data-reveal="fade-up" data-src="/assets/images/portfolio3.png" data-title="CONCRETE CURVES" data-category="Drone Architecture">
+              <div class="portfolio-media-wrapper">
+                <img src="/assets/images/portfolio3.png" alt="Concrete Curves" class="portfolio-media">
+                <div class="portfolio-overlay">
+                  <div class="portfolio-info">
+                    <span class="portfolio-cat">DRONE</span>
+                    <h3 class="portfolio-title">CONCRETE CURVES</h3>
+                  </div>
+                  <span class="portfolio-arrow">↗</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Item 5 (Fashion / Portrait) -->
+            <div class="portfolio-item size-tall fashion editorial scroll-reveal" data-reveal="fade-up" data-src="/assets/images/portfolio4.png" data-title="GLASS IDENTITY" data-category="Fashion Editorial">
+              <div class="portfolio-media-wrapper">
+                <img src="/assets/images/portfolio4.png" alt="Glass Identity" class="portfolio-media">
+                <div class="portfolio-overlay">
+                  <div class="portfolio-info">
+                    <span class="portfolio-cat">FASHION</span>
+                    <h3 class="portfolio-title">GLASS EYE</h3>
+                  </div>
+                  <span class="portfolio-arrow">↗</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Item 6 (Video - Drone) -->
+            <div class="portfolio-item size-medium drone video scroll-reveal" data-reveal="fade-up" data-video-src="https://assets.mixkit.co/videos/preview/mixkit-top-view-of-cars-on-a-highway-41852-large.mp4" data-title="METROPOLIS FLOW" data-category="Drone Cinematography">
+              <div class="portfolio-media-wrapper">
+                <video src="https://assets.mixkit.co/videos/preview/mixkit-top-view-of-cars-on-a-highway-41852-large.mp4" poster="/assets/images/portfolio2.png" muted loop playsinline class="portfolio-media video-preview"></video>
+                <div class="portfolio-overlay">
+                  <div class="portfolio-info">
+                    <span class="portfolio-cat">DRONE / VIDEO</span>
+                    <h3 class="portfolio-title">METROPOLIS</h3>
+                  </div>
+                  <span class="portfolio-play-icon">▶</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- SERVICES SECTION -->
+      <section id="services" class="services-section scroll-reveal" data-reveal="fade-up">
+        <div class="section-container">
+          <h2 class="section-title">OUR <span class="accent-text">SERVICES</span></h2>
+          
+          <div class="services-grid">
+            
+            <!-- Service 1 -->
+            <div class="service-card glass-card scroll-reveal" data-reveal="fade-up">
+              <div class="service-flood-bg"></div>
+              <div class="service-content">
+                <div class="service-header">
+                  <span class="service-num">01</span>
+                  <div class="service-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                      <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+                      <circle cx="12" cy="13" r="4"/>
+                    </svg>
+                  </div>
+                </div>
+                <h3 class="service-title">PHOTOGRAPHY</h3>
+                <p class="service-desc">High-fashion editorial, street culture portraits, and artist campaign photography with high-contrast cinematic styles.</p>
+                <span class="service-link">MORE DETAILS <span>→</span></span>
+              </div>
+            </div>
+
+            <!-- Service 2 -->
+            <div class="service-card glass-card scroll-reveal" data-reveal="fade-up">
+              <div class="service-flood-bg"></div>
+              <div class="service-content">
+                <div class="service-header">
+                  <span class="service-num">02</span>
+                  <div class="service-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                      <polygon points="23 7 16 12 23 17 23 7"/>
+                      <rect x="1" y="5" width="15" height="14" rx="2" ry="2"/>
+                    </svg>
+                  </div>
+                </div>
+                <h3 class="service-title">VIDEOGRAPHY</h3>
+                <p class="service-desc">Creative commercials, visual reels, and high-energy music videos containing rapid edits and camera-movement aesthetics.</p>
+                <span class="service-link">MORE DETAILS <span>→</span></span>
+              </div>
+            </div>
+
+            <!-- Service 3 -->
+            <div class="service-card glass-card scroll-reveal" data-reveal="fade-up">
+              <div class="service-flood-bg"></div>
+              <div class="service-content">
+                <div class="service-header">
+                  <span class="service-num">03</span>
+                  <div class="service-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                      <path d="M2 17h20M2 12h20M2 7h20"/>
+                      <path d="M6 3v18M18 3v18"/>
+                    </svg>
+                  </div>
+                </div>
+                <h3 class="service-title">DRONE SHOOTS</h3>
+                <p class="service-desc">FPV acrobatics and high-altitude architectural views to add gravity-defying depth and scale to cinematic sequences.</p>
+                <span class="service-link">MORE DETAILS <span>→</span></span>
+              </div>
+            </div>
+
+            <!-- Service 4 -->
+            <div class="service-card glass-card scroll-reveal" data-reveal="fade-up">
+              <div class="service-flood-bg"></div>
+              <div class="service-content">
+                <div class="service-header">
+                  <span class="service-num">04</span>
+                  <div class="service-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                      <path d="M12 20h9M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+                    </svg>
+                  </div>
+                </div>
+                <h3 class="service-title">EDITING & POST</h3>
+                <p class="service-desc">Distortion overlays, glitch textures, custom color correction, and dynamic transitions to fit modern branding requirements.</p>
+                <span class="service-link">MORE DETAILS <span>→</span></span>
+              </div>
+            </div>
+
+            <!-- Service 5 -->
+            <div class="service-card glass-card scroll-reveal" data-reveal="fade-up">
+              <div class="service-flood-bg"></div>
+              <div class="service-content">
+                <div class="service-header">
+                  <span class="service-num">05</span>
+                  <div class="service-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                      <rect x="2" y="2" width="20" height="20" rx="2" ry="2"/>
+                      <path d="M7 2v20M17 2v20M2 7h20M2 17h20"/>
+                    </svg>
+                  </div>
+                </div>
+                <h3 class="service-title">BRAND STYLING</h3>
+                <p class="service-desc">Complete visual direction to establish unique styling, layout pacing, and visual identities across platforms.</p>
+                <span class="service-link">MORE DETAILS <span>→</span></span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- TESTIMONIALS SECTION -->
+      <section id="testimonials" class="testimonials-section scroll-reveal" data-reveal="fade-up">
+        <div class="section-container">
+          <h2 class="section-title">CLIENT <span class="accent-text">FEEDBACK</span></h2>
+          
+          <div class="testimonials-slider-container">
+            <div class="testimonials-slider" id="testimonials-slider">
+              
+              <!-- Slide 1 -->
+              <div class="testimonial-slide glass-card">
+                <div class="testimonial-quote">"Kai completely redefined our streetwear brand's campaign. The floating drone shots combined with acid green color grading gave us a distinct edge on our website. Absolutely next level."</div>
+                <div class="testimonial-client">
+                  <div class="client-avatar">
+                    <img src="/assets/images/portfolio1.png" alt="Client 1">
+                  </div>
+                  <div class="client-info">
+                    <div class="client-name">Amara Vance</div>
+                    <div class="client-role">Founder, NEO-GRID Tokyo</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Slide 2 -->
+              <div class="testimonial-slide glass-card">
+                <div class="testimonial-quote">"Working with Kai was seamless. The edits match exactly what modern Gen-Z visual design looks like: punchy, authentic, and cinematic. The custom website integrations are incredible."</div>
+                <div class="testimonial-client">
+                  <div class="client-avatar">
+                    <img src="/assets/images/portfolio2.png" alt="Client 2">
+                  </div>
+                  <div class="client-info">
+                    <div class="client-name">Jaden Miller</div>
+                    <div class="client-role">Director, SATELLITE Records</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Slide 3 -->
+              <div class="testimonial-slide glass-card">
+                <div class="testimonial-quote">"Highly recommended for architectural and fashion-editorial work. The eye for detail and post-production coloring is amazing. We got an Awwwards nominee using this material."</div>
+                <div class="testimonial-client">
+                  <div class="client-avatar">
+                    <img src="/assets/images/portfolio3.png" alt="Client 3">
+                  </div>
+                  <div class="client-info">
+                    <div class="client-name">Sofia Laurent</div>
+                    <div class="client-role">Creative Lead, MAISON Agency</div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            
+            <!-- Slider Navigation -->
+            <div class="slider-nav">
+              <button class="slider-btn prev-btn magnetic" aria-label="Previous Slide">←</button>
+              <button class="slider-btn next-btn magnetic" aria-label="Next Slide">→</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- TICKER / MARQUEE SECTION 2 -->
+      <section class="marquee-section spacer-bottom">
+        <div class="marquee-container speed-reverse" id="ticker-2">
+          <div class="marquee-track">
+            <span>MODERN WEB TRENDS 2026</span>
+            <span class="dot">★</span>
+            <span>AWWWARDS QUALITY</span>
+            <span class="dot">★</span>
+            <span>APPLE × NIKE DESIGN</span>
+            <span class="dot">★</span>
+            <span>CREATIVE DIRECTION</span>
+            <span class="dot">★</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACT SECTION -->
+      <section id="contact" class="contact-section scroll-reveal" data-reveal="fade-up">
+        <div class="section-container">
+          <div class="contact-grid">
+            
+            <div class="contact-info-block">
+              <h2 class="section-title">
+                LET'S MAKE<br>SOMETHING<br><span class="accent-text text-glow">UNREAL.</span>
+              </h2>
+              <p class="contact-desc">
+                Book a shoot, propose an editorial collaboration, or just ask a question.
+              </p>
+              
+              <!-- Integration Links -->
+              <div class="contact-integrations">
+                <a href="#" class="integration-item magnetic" data-magnetic-strength="0.3">
+                  <span class="integration-icon">✉</span>
+                  <div class="integration-text">
+                    <div class="integration-label">EMAIL</div>
+                    <div class="integration-val">hello@kai.studio</div>
+                  </div>
+                </a>
+                <a href="#" class="integration-item magnetic" data-magnetic-strength="0.3">
+                  <span class="integration-icon">💬</span>
+                  <div class="integration-text">
+                    <div class="integration-label">WHATSAPP</div>
+                    <div class="integration-val">+1 (555) 019-2026</div>
+                  </div>
+                </a>
+                <a href="#" class="integration-item magnetic" data-magnetic-strength="0.3">
+                  <span class="integration-icon">📸</span>
+                  <div class="integration-text">
+                    <div class="integration-label">INSTAGRAM</div>
+                    <div class="integration-val">@kai.visions</div>
+                  </div>
+                </a>
+              </div>
+            </div>
+
+            <div class="contact-form-block glass-card">
+              <form id="portfolio-contact-form" class="modern-form">
+                
+                <div class="form-row-2">
+                  <div class="form-group">
+                    <input type="text" id="form-name" required placeholder=" " />
+                    <label for="form-name">Full Name</label>
+                    <span class="input-line"></span>
+                  </div>
+                  <div class="form-group">
+                    <input type="email" id="form-email" required placeholder=" " />
+                    <label for="form-email">Email Address</label>
+                    <span class="input-line"></span>
+                  </div>
+                </div>
+
+                <div class="form-row-2">
+                  <div class="form-group">
+                    <input type="tel" id="form-phone" placeholder=" " />
+                    <label for="form-phone">Phone (Optional)</label>
+                    <span class="input-line"></span>
+                  </div>
+                  <div class="form-group">
+                    <select id="form-service" required>
+                      <option value="" disabled selected hidden></option>
+                      <option value="photography">Photography Campaign</option>
+                      <option value="videography">Videography / Showreel</option>
+                      <option value="drone">FPV Drone Shoots</option>
+                      <option value="custom">Full Visual Direction</option>
+                    </select>
+                    <label for="form-service">Service Needed</label>
+                    <span class="input-line"></span>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <select id="form-budget" required>
+                    <option value="" disabled selected hidden></option>
+                    <option value="starter">$1,500 - $3,000</option>
+                    <option value="medium">$3,000 - $7,000</option>
+                    <option value="premium">$7,000 - $15,000</option>
+                    <option value="agency">$15,000+</option>
+                  </select>
+                  <label for="form-budget">Project Budget</label>
+                  <span class="input-line"></span>
+                </div>
+
+                <div class="form-group">
+                  <textarea id="form-message" required placeholder=" " rows="4"></textarea>
+                  <label for="form-message">Tell us about your project</label>
+                  <span class="input-line"></span>
+                </div>
+
+                <button type="submit" class="btn-primary form-submit-btn magnetic" data-magnetic-strength="0.3">
+                  <span>SEND TRANSMISSION</span>
+                </button>
+              </form>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- FOOTER -->
+      <footer class="main-footer">
+        <div class="section-container footer-content">
+          <p>© 2026 KAI STUDIO. ALL RIGHTS RESERVED.</p>
+        </div>
+      </footer>
+
+    </main>
+
+    <!-- FULLSCREEN PORTFOLIO LIGHTBOX -->
+    <div id="portfolio-lightbox" class="lightbox-overlay">
+      <button class="lightbox-close" aria-label="Close Lightbox">×</button>
+      <div class="lightbox-content">
+        <!-- Media will be inserted here dynamically -->
+      </div>
+      <div class="lightbox-details">
+        <span class="lightbox-category"></span>
+        <h4 class="lightbox-title"></h4>
+      </div>
+    </div>
+
+
+
+    <!-- Script loading -->
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
