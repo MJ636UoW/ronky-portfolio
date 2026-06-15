@@ -190,6 +190,57 @@
   };
   initParticles();
 
+  // Touch Particle Trail System
+  const touchParticles = [];
+  class TouchParticle {
+    constructor(x, y) {
+      this.x = x;
+      this.y = y;
+      this.size = Math.random() * 3.5 + 1.5;
+      const angle = Math.random() * Math.PI * 2;
+      const speed = Math.random() * 1.5 + 0.5;
+      this.vx = Math.cos(angle) * speed;
+      this.vy = Math.sin(angle) * speed - 0.3;
+      this.alpha = 1.0;
+      this.fade = Math.random() * 0.025 + 0.015;
+    }
+
+    update() {
+      this.x += this.vx;
+      this.y += this.vy;
+      this.alpha -= this.fade;
+    }
+
+    draw() {
+      ctx.fillStyle = `rgba(184, 255, 0, ${this.alpha})`;
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  }
+
+  const spawnTouchParticles = (x, y) => {
+    for (let i = 0; i < 2; i++) {
+      touchParticles.push(new TouchParticle(x, y));
+    }
+    if (touchParticles.length > 150) {
+      touchParticles.shift();
+    }
+  };
+
+  window.addEventListener('mousemove', (e) => {
+    if (state.background.particles) {
+      spawnTouchParticles(e.clientX, e.clientY);
+    }
+  });
+
+  window.addEventListener('touchmove', (e) => {
+    if (state.background.particles && e.touches.length > 0) {
+      const touch = e.touches[0];
+      spawnTouchParticles(touch.clientX, touch.clientY);
+    }
+  }, { passive: true });
+
   // Vector Blobs
   const blobs = [
     { x: width * 0.25, y: height * 0.3, radius: 180, baseRadius: 180, color: 'rgba(184, 255, 0, 0.04)', angle: 0 },
@@ -265,6 +316,17 @@
         p.update();
         p.draw();
       });
+
+      // Draw and prune touch trail particles
+      for (let i = touchParticles.length - 1; i >= 0; i--) {
+        const tp = touchParticles[i];
+        tp.update();
+        if (tp.alpha <= 0) {
+          touchParticles.splice(i, 1);
+        } else {
+          tp.draw();
+        }
+      }
     }
 
     requestAnimationFrame(loopBg);
@@ -810,27 +872,251 @@
   }
 
   // ---------------------------------------------------------
-  // MOBILE 3D PORTFOLIO CARD SCROLL REVEAL
+  // MOBILE-NATIVE INTERACTION ENGINE (SCROLL-SPOTLIGHT, 3D TOUCH TILT & HAPTICS)
   // ---------------------------------------------------------
-  if (window.innerWidth < 768) {
-    window.addEventListener('scroll', () => {
-      const portfolioItems = document.querySelectorAll('.portfolio-item');
+  const initMobileInteractions = () => {
+    const portfolioItems = document.querySelectorAll('.portfolio-item');
+    const serviceCards = document.querySelectorAll('.service-card');
+    const allCards = [...portfolioItems, ...serviceCards];
+
+    // If not mobile size, skip the unified LERP/Tilt touch controls to allow customizer settings
+    if (window.innerWidth >= 1024) return;
+
+    const cardStates = new Map();
+
+    allCards.forEach(card => {
+      card.classList.add('js-tilt');
+      cardStates.set(card, {
+        currentX: 0, currentY: 0, currentScale: 1,
+        targetX: 0, targetY: 0, targetScale: 1,
+        isTouchActive: false
+      });
+
+      // Bind Touch Events for 3D Tilt on Drag
+      card.addEventListener('touchstart', (e) => {
+        const state = cardStates.get(card);
+        state.isTouchActive = true;
+        state.targetScale = 1.04;
+        updateTilt(e, card, state);
+      }, { passive: true });
+
+      card.addEventListener('touchmove', (e) => {
+        const state = cardStates.get(card);
+        if (!state.isTouchActive) return;
+        updateTilt(e, card, state);
+      }, { passive: true });
+
+      const resetTilt = () => {
+        const state = cardStates.get(card);
+        state.isTouchActive = false;
+        state.targetX = 0;
+        state.targetY = 0;
+        state.targetScale = card.classList.contains('in-focus') ? 1.02 : 1;
+      };
+
+      card.addEventListener('touchend', resetTilt, { passive: true });
+      card.addEventListener('touchcancel', resetTilt, { passive: true });
+    });
+
+    function updateTilt(e, card, state) {
+      if (e.touches.length === 0) return;
+      const touch = e.touches[0];
+      const rect = card.getBoundingClientRect();
+      const cardWidth = rect.width;
+      const cardHeight = rect.height;
+
+      // Finger location offset relative to center of the card
+      const touchX = touch.clientX - rect.left;
+      const touchY = touch.clientY - rect.top;
+
+      const percentX = (touchX / cardWidth) - 0.5; // range: -0.5 to 0.5
+      const percentY = (touchY / cardHeight) - 0.5; // range: -0.5 to 0.5
+
+      const maxTilt = 12; // Max degrees of tilt
+      state.targetX = -percentY * maxTilt; // Rotate around X axis based on Y movement
+      state.targetY = percentX * maxTilt;  // Rotate around Y axis based on X movement
+    }
+
+    // Scroll-Spotlight: Highlight center-most items & trigger haptics
+    let lastVibratedItem = null;
+
+    const updateScrollSpotlight = () => {
       const viewportHeight = window.innerHeight;
+      const viewportCenter = viewportHeight / 2;
+
+      let closestPortfolioItem = null;
+      let minPortfolioDist = Infinity;
+
+      let closestServiceCard = null;
+      let minServiceDist = Infinity;
 
       portfolioItems.forEach(item => {
         const rect = item.getBoundingClientRect();
-        const itemCenter = rect.top + rect.height / 2;
-        const distanceFromCenter = itemCenter - viewportHeight / 2;
-        
-        // Calculate dynamic rotation based on distance from viewport center
-        const maxRotation = 10; // degrees
-        const rotation = (distanceFromCenter / (viewportHeight / 2)) * maxRotation;
-        const clampedRotation = Math.min(Math.max(rotation, -maxRotation), maxRotation);
-        
         if (rect.top < viewportHeight && rect.bottom > 0) {
-          // Adjust 3D rotate properties
-          item.style.transform = `translate3d(0, 0, 0) rotateX(${clampedRotation}deg)`;
+          const itemCenter = rect.top + rect.height / 2;
+          const dist = Math.abs(itemCenter - viewportCenter);
+          if (dist < minPortfolioDist) {
+            minPortfolioDist = dist;
+            closestPortfolioItem = item;
+          }
         }
       });
+
+      serviceCards.forEach(card => {
+        const rect = card.getBoundingClientRect();
+        if (rect.top < viewportHeight && rect.bottom > 0) {
+          const cardCenter = rect.top + rect.height / 2;
+          const dist = Math.abs(cardCenter - viewportCenter);
+          if (dist < minServiceDist) {
+            minServiceDist = dist;
+            closestServiceCard = card;
+          }
+        }
+      });
+
+      // Update Portfolio Spotlight
+      portfolioItems.forEach(item => {
+        const state = cardStates.get(item);
+        if (!state) return;
+        const isFocused = item === closestPortfolioItem;
+
+        if (isFocused) {
+          if (!item.classList.contains('in-focus')) {
+            item.classList.add('in-focus');
+            const video = item.querySelector('.video-preview');
+            if (video && video.paused) {
+              video.play().catch(() => {});
+            }
+            if (lastVibratedItem !== item) {
+              if (navigator.vibrate) navigator.vibrate(8);
+              lastVibratedItem = item;
+            }
+          }
+          if (!state.isTouchActive) state.targetScale = 1.02;
+        } else {
+          if (item.classList.contains('in-focus')) {
+            item.classList.remove('in-focus');
+            const video = item.querySelector('.video-preview');
+            if (video && !video.paused) {
+              video.pause();
+            }
+          }
+          if (!state.isTouchActive) state.targetScale = 1;
+        }
+      });
+
+      // Update Service Spotlight
+      serviceCards.forEach(card => {
+        const state = cardStates.get(card);
+        if (!state) return;
+        const isFocused = card === closestServiceCard;
+
+        if (isFocused) {
+          if (!card.classList.contains('in-focus')) {
+            card.classList.add('in-focus');
+            if (lastVibratedItem !== card) {
+              if (navigator.vibrate) navigator.vibrate(8);
+              lastVibratedItem = card;
+            }
+          }
+          if (!state.isTouchActive) state.targetScale = 1.02;
+        } else {
+          if (card.classList.contains('in-focus')) {
+            card.classList.remove('in-focus');
+          }
+          if (!state.isTouchActive) state.targetScale = 1;
+        }
+      });
+    };
+
+    window.addEventListener('scroll', updateScrollSpotlight, { passive: true });
+    updateScrollSpotlight();
+
+    // Unified Animation loop for rendering smooth translations
+    const renderLoop = () => {
+      const viewportHeight = window.innerHeight;
+      const viewportCenter = viewportHeight / 2;
+
+      allCards.forEach(card => {
+        const state = cardStates.get(card);
+        if (!state) return;
+        const rect = card.getBoundingClientRect();
+
+        // Scroll drives vertical tilt rotation when finger is not touching the screen
+        if (!state.isTouchActive && rect.top < viewportHeight && rect.bottom > 0) {
+          const itemCenter = rect.top + rect.height / 2;
+          const distanceFromCenter = itemCenter - viewportCenter;
+          const maxScrollTilt = 10;
+          state.targetX = (distanceFromCenter / (viewportHeight / 2)) * maxScrollTilt;
+          state.targetX = Math.min(Math.max(state.targetX, -maxScrollTilt), maxScrollTilt);
+          state.targetY = 0;
+        }
+
+        // Interpolate transformations
+        state.currentX += (state.targetX - state.currentX) * 0.15;
+        state.currentY += (state.targetY - state.currentY) * 0.15;
+        state.currentScale += (state.targetScale - state.currentScale) * 0.15;
+
+        card.style.transform = `translate3d(0, 0, 0) rotateX(${state.currentX}deg) rotateY(${state.currentY}deg) scale(${state.currentScale})`;
+      });
+
+      requestAnimationFrame(renderLoop);
+    };
+
+    renderLoop();
+  };
+
+  initMobileInteractions();
+
+  // ---------------------------------------------------------
+  // HERO DIAGONAL WIPE-REVEAL
+  // ---------------------------------------------------------
+  const initHeroWipeReveal = () => {
+    const heroSection = document.getElementById('hero');
+    const diagonalMask = document.querySelector('.diagonal-mask');
+
+    if (!heroSection || !diagonalMask) return;
+
+    const handleWipe = (clientX, clientY) => {
+      const rect = heroSection.getBoundingClientRect();
+      const isMobile = window.innerWidth < 1024;
+
+      if (isMobile) {
+        // Vertical wipe on mobile
+        const yPosition = clientY - rect.top;
+        const pct = (yPosition / rect.height) * 100;
+        const clampedPct = Math.min(Math.max(pct, 5), 50);
+        diagonalMask.style.setProperty('--wipe-val', `${clampedPct}%`);
+      } else {
+        // Horizontal wipe on desktop
+        const xPosition = clientX - rect.left;
+        const pct = (xPosition / rect.width) * 100;
+        const clampedPct = Math.min(Math.max(pct, 5), 45);
+        diagonalMask.style.setProperty('--wipe-val', `${clampedPct}%`);
+      }
+    };
+
+    heroSection.addEventListener('mousemove', (e) => {
+      handleWipe(e.clientX, e.clientY);
+    });
+
+    heroSection.addEventListener('touchmove', (e) => {
+      if (e.touches.length > 0) {
+        handleWipe(e.touches[0].clientX, e.touches[0].clientY);
+      }
     }, { passive: true });
-  }
+
+    // Smooth return to default polygon coordinates on pointer out
+    const resetWipe = () => {
+      diagonalMask.style.transition = 'clip-path 0.5s ease, -webkit-clip-path 0.5s ease';
+      diagonalMask.style.removeProperty('--wipe-val');
+      setTimeout(() => {
+        diagonalMask.style.transition = '';
+      }, 500);
+    };
+
+    heroSection.addEventListener('mouseleave', resetWipe);
+    heroSection.addEventListener('touchend', resetWipe, { passive: true });
+  };
+
+  initHeroWipeReveal();

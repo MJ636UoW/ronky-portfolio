@@ -141,8 +141,8 @@ body.wp-cursor-hover #wp-custom-cursor-ring {
   position: absolute;
   top: 0;
   left: -20%;
-  clip-path: polygon(15% 0, 100% 0, 100% 100%, 0% 100%);
-  -webkit-clip-path: polygon(15% 0, 100% 0, 100% 100%, 0% 100%);
+  clip-path: polygon(var(--wipe-val, 15%) 0, 100% 0, 100% 100%, 0% 100%);
+  -webkit-clip-path: polygon(var(--wipe-val, 15%) 0, 100% 0, 100% 100%, 0% 100%);
   overflow: hidden;
 }
 
@@ -225,7 +225,7 @@ body.wp-cursor-hover #wp-custom-cursor-ring {
   .wp-hero-section { flex-direction: column; }
   .wp-hero-split-left { width: 100%; min-height: 60vh; padding: 100px 40px 40px; }
   .wp-hero-split-right { width: 100%; height: 40vh; }
-  .wp-diagonal-mask { width: 100%; left: 0; clip-path: polygon(0 15%, 100% 0, 100% 100%, 0% 100%); }
+  .wp-diagonal-mask { width: 100%; left: 0; clip-path: polygon(0 var(--wipe-val, 15%), 100% 0, 100% 100%, 0% 100%); -webkit-clip-path: polygon(0 var(--wipe-val, 15%), 100% 0, 100% 100%, 0% 100%); }
   .wp-floating-tags-container { display: none; }
 }
 
@@ -395,12 +395,14 @@ body.wp-cursor-hover #wp-custom-cursor-ring {
   z-index: 2;
 }
 
-.wp-portfolio-item:hover .wp-portfolio-media {
+.wp-portfolio-item:hover .wp-portfolio-media,
+.wp-portfolio-item.in-focus .wp-portfolio-media {
   transform: scale(1.08);
   filter: blur(2px) brightness(0.8);
 }
 
-.wp-portfolio-item:hover .wp-portfolio-overlay {
+.wp-portfolio-item:hover .wp-portfolio-overlay,
+.wp-portfolio-item.in-focus .wp-portfolio-overlay {
   opacity: 1;
 }
 
@@ -441,7 +443,10 @@ body.wp-cursor-hover #wp-custom-cursor-ring {
   padding: 40px 30px;
   background: var(--glass-bg);
   border: 1px solid var(--glass-border);
-  transition: transform 0.4s, border-color 0.4s, box-shadow 0.4s;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  transform: translate3d(0, 0, 0) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s, box-shadow 0.4s, background-color 0.4s;
 }
 
 .wp-service-flood-bg {
@@ -466,23 +471,30 @@ body.wp-cursor-hover #wp-custom-cursor-ring {
   justify-content: space-between;
 }
 
-.wp-service-card:hover .wp-service-flood-bg {
+.wp-service-card:hover .wp-service-flood-bg,
+.wp-service-card.in-focus .wp-service-flood-bg {
   transform: scaleY(1) scaleX(1);
 }
 
-.wp-service-card:hover {
-  transform: translateY(-8px) scale(1.02);
+.wp-service-card:hover,
+.wp-service-card.in-focus {
+  transform: translateY(-8px) scale(1.02) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
   border-color: var(--accent);
 }
 
 .wp-service-card:hover .wp-service-num,
+.wp-service-card.in-focus .wp-service-num,
 .wp-service-card:hover .wp-service-title,
+.wp-service-card.in-focus .wp-service-title,
 .wp-service-card:hover .wp-service-desc,
-.wp-service-card:hover .wp-service-link {
+.wp-service-card.in-focus .wp-service-desc,
+.wp-service-card:hover .wp-service-link,
+.wp-service-card.in-focus .wp-service-link {
   color: #000000;
 }
 
-.wp-service-card:hover .wp-service-icon svg {
+.wp-service-card:hover .wp-service-icon svg,
+.wp-service-card.in-focus .wp-service-icon svg {
   color: #000000;
 }
 
@@ -614,4 +626,12 @@ body.wp-cursor-hover #wp-custom-cursor-ring {
   background-image: 
     linear-gradient(to right, rgba(255, 255, 255, 0.015) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+}
+
+.wp-portfolio-item.js-tilt {
+  transition: opacity 0.5s !important;
+}
+
+.wp-service-card.js-tilt {
+  transition: border-color 0.4s, box-shadow 0.4s, background-color 0.4s !important;
 }

@@ -498,8 +498,8 @@ body.cursor-dark-hover #custom-cursor-ring {
   position: absolute;
   top: 0;
   left: -20%;
-  clip-path: polygon(15% 0, 100% 0, 100% 100%, 0% 100%);
-  -webkit-clip-path: polygon(15% 0, 100% 0, 100% 100%, 0% 100%);
+  clip-path: polygon(var(--wipe-val, 15%) 0, 100% 0, 100% 100%, 0% 100%);
+  -webkit-clip-path: polygon(var(--wipe-val, 15%) 0, 100% 0, 100% 100%, 0% 100%);
   overflow: hidden;
 }
 
@@ -998,18 +998,23 @@ body.cursor-dark-hover #custom-cursor-ring {
 }
 
 /* Hover Reveals Triggered individually */
-.portfolio-item:hover .portfolio-media {
+.portfolio-item:hover .portfolio-media,
+.portfolio-item.in-focus .portfolio-media {
   transform: scale(1.08);
   filter: blur(2px) brightness(0.75);
 }
 
-.portfolio-item:hover .portfolio-overlay {
+.portfolio-item:hover .portfolio-overlay,
+.portfolio-item.in-focus .portfolio-overlay {
   opacity: 1;
 }
 
 .portfolio-item:hover .portfolio-info,
+.portfolio-item.in-focus .portfolio-info,
 .portfolio-item:hover .portfolio-arrow,
-.portfolio-item:hover .portfolio-play-icon {
+.portfolio-item.in-focus .portfolio-arrow,
+.portfolio-item:hover .portfolio-play-icon,
+.portfolio-item.in-focus .portfolio-play-icon {
   transform: translateY(0);
 }
 
@@ -1132,6 +1137,10 @@ body.cursor-dark-hover #custom-cursor-ring {
   border-radius: 12px;
   cursor: pointer;
   padding: 40px 30px;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  transform: translate3d(0, 0, 0) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s, box-shadow 0.3s, background-color 0.3s;
 }
 
 /* Underlay fill vector */
@@ -1215,30 +1224,38 @@ body.cursor-dark-hover #custom-cursor-ring {
   transition: transform 0.3s;
 }
 
-/* Service Card Hover States */
-.service-card:hover .service-flood-bg {
+/* Service Card Hover States & Focus States */
+.service-card:hover .service-flood-bg,
+.service-card.in-focus .service-flood-bg {
   transform: scaleY(1) scaleX(1); /* Combined to work with both scales */
 }
 
-.service-card:hover {
-  transform: translateY(-8px) scale(1.02);
+.service-card:hover,
+.service-card.in-focus {
+  transform: translateY(-8px) scale(1.02) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
   border-color: var(--accent);
   box-shadow: 0 15px 40px rgba(184,255,0,0.12);
 }
 
 .service-card:hover .service-num,
+.service-card.in-focus .service-num,
 .service-card:hover .service-title,
+.service-card.in-focus .service-title,
 .service-card:hover .service-desc,
-.service-card:hover .service-link {
+.service-card.in-focus .service-desc,
+.service-card:hover .service-link,
+.service-card.in-focus .service-link {
   color: #000000;
 }
 
-.service-card:hover .service-icon svg {
+.service-card:hover .service-icon svg,
+.service-card.in-focus .service-icon svg {
   color: #000000;
   transform: scale(1.1) rotate(5deg);
 }
 
-.service-card:hover .service-link span {
+.service-card:hover .service-link span,
+.service-card.in-focus .service-link span {
   transform: translateX(5px);
 }
 
@@ -1634,7 +1651,8 @@ body.cursor-dark-hover #custom-cursor-ring {
   .diagonal-mask {
     width: 100%;
     left: 0;
-    clip-path: polygon(0 15%, 100% 0, 100% 100%, 0% 100%);
+    clip-path: polygon(0 var(--wipe-val, 15%), 100% 0, 100% 100%, 0% 100%);
+    -webkit-clip-path: polygon(0 var(--wipe-val, 15%), 100% 0, 100% 100%, 0% 100%);
   }
   .floating-tags-container {
     display: none; /* Disable complex mouse hover on mobile screen sizes */
@@ -1771,6 +1789,14 @@ body.cursor-dark-hover #custom-cursor-ring {
   .portfolio-item.revealed {
     opacity: 1;
     transform: translate3d(0, 0, 0) rotateX(0deg);
+  }
+
+  .portfolio-item.js-tilt {
+    transition: opacity 0.8s !important;
+  }
+
+  .service-card.js-tilt {
+    transition: border-color 0.3s, box-shadow 0.3s, background-color 0.3s !important;
   }
 }
 

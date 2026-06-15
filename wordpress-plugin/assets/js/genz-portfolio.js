@@ -473,6 +473,53 @@
       }
     }
 
+    // Touch particles trail
+    const touchParticles = [];
+    class TouchParticle {
+      constructor(x, y) {
+        this.x = x;
+        this.y = y;
+        this.size = Math.random() * 3.5 + 1.5;
+        const angle = Math.random() * Math.PI * 2;
+        const speed = Math.random() * 1.5 + 0.5;
+        this.vx = Math.cos(angle) * speed;
+        this.vy = Math.sin(angle) * speed - 0.3;
+        this.alpha = 1.0;
+        this.fade = Math.random() * 0.025 + 0.015;
+      }
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+        this.alpha -= this.fade;
+      }
+      draw() {
+        ctx.fillStyle = `rgba(${rgb}, ${this.alpha})`;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    const spawnTouch = (x, y) => {
+      const rect = canvas.getBoundingClientRect();
+      const localX = x - rect.left;
+      const localY = y - rect.top;
+      for (let i = 0; i < 2; i++) {
+        touchParticles.push(new TouchParticle(localX, localY));
+      }
+      if (touchParticles.length > 150) touchParticles.shift();
+    };
+
+    $(window).on('mousemove', (e) => {
+      if (enableParticles) spawnTouch(e.clientX, e.clientY);
+    });
+
+    $(window).on('touchmove', (e) => {
+      if (enableParticles && e.originalEvent.touches.length > 0) {
+        spawnTouch(e.originalEvent.touches[0].clientX, e.originalEvent.touches[0].clientY);
+      }
+    });
+
     // Convert hex accent to RGB
     const hexToRgb = (hex) => {
       const r = parseInt(hex.slice(1, 3), 16);
@@ -552,6 +599,17 @@
           ctx.fillStyle = `rgba(${rgb}, ${p.alpha})`;
           ctx.fill();
         });
+
+        // Draw and prune touch trail particles
+        for (let i = touchParticles.length - 1; i >= 0; i--) {
+          const tp = touchParticles[i];
+          tp.update();
+          if (tp.alpha <= 0) {
+            touchParticles.splice(i, 1);
+          } else {
+            tp.draw();
+          }
+        }
       }
 
       requestAnimationFrame(drawLoop);
@@ -572,6 +630,246 @@
     elementorFrontend.hooks.addAction('frontend/element_ready/genz-testimonials-widget.default', GenzTestimonialsHandler);
     elementorFrontend.hooks.addAction('frontend/element_ready/genz-marquee-widget.default', GenzMarqueeHandler);
     elementorFrontend.hooks.addAction('frontend/element_ready/genz-background-effects.default', GenzBackgroundHandler);
+  });
+
+  // ---------------------------------------------------------
+  // UNIFIED MOBILE FRONTEND ENGINE (SCROLL-SPOTLIGHT & 3D TILT)
+  // ---------------------------------------------------------
+  const initWPMobileInteractions = () => {
+    if (window.innerWidth >= 1024) return;
+
+    const portfolioItems = document.querySelectorAll('.wp-portfolio-item');
+    const serviceCards = document.querySelectorAll('.wp-service-card');
+    const allCards = [...portfolioItems, ...serviceCards];
+
+    const cardStates = new Map();
+
+    allCards.forEach(card => {
+      card.classList.add('js-tilt');
+      cardStates.set(card, {
+        currentX: 0, currentY: 0, currentScale: 1,
+        targetX: 0, targetY: 0, targetScale: 1,
+        isTouchActive: false
+      });
+
+      card.addEventListener('touchstart', (e) => {
+        const state = cardStates.get(card);
+        state.isTouchActive = true;
+        state.targetScale = 1.04;
+        updateWPTilt(e, card, state);
+      }, { passive: true });
+
+      card.addEventListener('touchmove', (e) => {
+        const state = cardStates.get(card);
+        if (!state.isTouchActive) return;
+        updateWPTilt(e, card, state);
+      }, { passive: true });
+
+      const resetWPTilt = () => {
+        const state = cardStates.get(card);
+        state.isTouchActive = false;
+        state.targetX = 0;
+        state.targetY = 0;
+        state.targetScale = card.classList.contains('in-focus') ? 1.02 : 1;
+      };
+
+      card.addEventListener('touchend', resetWPTilt, { passive: true });
+      card.addEventListener('touchcancel', resetWPTilt, { passive: true });
+    });
+
+    function updateWPTilt(e, card, state) {
+      if (e.touches.length === 0) return;
+      const touch = e.touches[0];
+      const rect = card.getBoundingClientRect();
+      const cardWidth = rect.width;
+      const cardHeight = rect.height;
+
+      const touchX = touch.clientX - rect.left;
+      const touchY = touch.clientY - rect.top;
+
+      const percentX = (touchX / cardWidth) - 0.5;
+      const percentY = (touchY / cardHeight) - 0.5;
+
+      const maxTilt = 12;
+      state.targetX = -percentY * maxTilt;
+      state.targetY = percentX * maxTilt;
+    }
+
+    let lastVibratedItem = null;
+
+    const updateWPScrollSpotlight = () => {
+      const viewportHeight = window.innerHeight;
+      const viewportCenter = viewportHeight / 2;
+
+      let closestPortfolioItem = null;
+      let minPortfolioDist = Infinity;
+
+      let closestServiceCard = null;
+      let minServiceDist = Infinity;
+
+      portfolioItems.forEach(item => {
+        const rect = item.getBoundingClientRect();
+        if (rect.top < viewportHeight && rect.bottom > 0) {
+          const itemCenter = rect.top + rect.height / 2;
+          const dist = Math.abs(itemCenter - viewportCenter);
+          if (dist < minPortfolioDist) {
+            minPortfolioDist = dist;
+            closestPortfolioItem = item;
+          }
+        }
+      });
+
+      serviceCards.forEach(card => {
+        const rect = card.getBoundingClientRect();
+        if (rect.top < viewportHeight && rect.bottom > 0) {
+          const cardCenter = rect.top + rect.height / 2;
+          const dist = Math.abs(cardCenter - viewportCenter);
+          if (dist < minServiceDist) {
+            minServiceDist = dist;
+            closestServiceCard = card;
+          }
+        }
+      });
+
+      portfolioItems.forEach(item => {
+        const state = cardStates.get(item);
+        if (!state) return;
+        const isFocused = item === closestPortfolioItem;
+
+        if (isFocused) {
+          if (!item.classList.contains('in-focus')) {
+            item.classList.add('in-focus');
+            const video = item.querySelector('video');
+            if (video && video.paused) {
+              video.play().catch(() => {});
+            }
+            if (lastVibratedItem !== item) {
+              if (navigator.vibrate) navigator.vibrate(8);
+              lastVibratedItem = item;
+            }
+          }
+          if (!state.isTouchActive) state.targetScale = 1.02;
+        } else {
+          if (item.classList.contains('in-focus')) {
+            item.classList.remove('in-focus');
+            const video = item.querySelector('video');
+            if (video && !video.paused) {
+              video.pause();
+            }
+          }
+          if (!state.isTouchActive) state.targetScale = 1;
+        }
+      });
+
+      serviceCards.forEach(card => {
+        const state = cardStates.get(card);
+        if (!state) return;
+        const isFocused = card === closestServiceCard;
+
+        if (isFocused) {
+          if (!card.classList.contains('in-focus')) {
+            card.classList.add('in-focus');
+            if (lastVibratedItem !== card) {
+              if (navigator.vibrate) navigator.vibrate(8);
+              lastVibratedItem = card;
+            }
+          }
+          if (!state.isTouchActive) state.targetScale = 1.02;
+        } else {
+          if (card.classList.contains('in-focus')) {
+            card.classList.remove('in-focus');
+          }
+          if (!state.isTouchActive) state.targetScale = 1;
+        }
+      });
+    };
+
+    window.addEventListener('scroll', updateWPScrollSpotlight, { passive: true });
+    updateWPScrollSpotlight();
+
+    const renderWPLoop = () => {
+      const viewportHeight = window.innerHeight;
+      const viewportCenter = viewportHeight / 2;
+
+      allCards.forEach(card => {
+        const state = cardStates.get(card);
+        if (!state) return;
+        const rect = card.getBoundingClientRect();
+
+        if (!state.isTouchActive && rect.top < viewportHeight && rect.bottom > 0) {
+          const itemCenter = rect.top + rect.height / 2;
+          const distanceFromCenter = itemCenter - viewportCenter;
+          const maxScrollTilt = 10;
+          state.targetX = (distanceFromCenter / (viewportHeight / 2)) * maxScrollTilt;
+          state.targetX = Math.min(Math.max(state.targetX, -maxScrollTilt), maxScrollTilt);
+          state.targetY = 0;
+        }
+
+        state.currentX += (state.targetX - state.currentX) * 0.15;
+        state.currentY += (state.targetY - state.currentY) * 0.15;
+        state.currentScale += (state.targetScale - state.currentScale) * 0.15;
+
+        card.style.transform = `translate3d(0, 0, 0) rotateX(${state.currentX}deg) rotateY(${state.currentY}deg) scale(${state.currentScale})`;
+      });
+
+      requestAnimationFrame(renderWPLoop);
+    };
+
+    renderWPLoop();
+  };
+
+  // ---------------------------------------------------------
+  // HERO DIAGONAL WIPE-REVEAL FOR WORDPRESS
+  // ---------------------------------------------------------
+  const initWPHeroWipeReveal = () => {
+    const heroSection = document.querySelector('.wp-hero-section');
+    const diagonalMask = document.querySelector('.wp-diagonal-mask');
+
+    if (!heroSection || !diagonalMask) return;
+
+    const handleWipe = (clientX, clientY) => {
+      const rect = heroSection.getBoundingClientRect();
+      const isMobile = window.innerWidth < 1024;
+
+      if (isMobile) {
+        const yPosition = clientY - rect.top;
+        const pct = (yPosition / rect.height) * 100;
+        const clampedPct = Math.min(Math.max(pct, 5), 50);
+        diagonalMask.style.setProperty('--wipe-val', `${clampedPct}%`);
+      } else {
+        const xPosition = clientX - rect.left;
+        const pct = (xPosition / rect.width) * 100;
+        const clampedPct = Math.min(Math.max(pct, 5), 45);
+        diagonalMask.style.setProperty('--wipe-val', `${clampedPct}%`);
+      }
+    };
+
+    heroSection.addEventListener('mousemove', (e) => {
+      handleWipe(e.clientX, e.clientY);
+    });
+
+    heroSection.addEventListener('touchmove', (e) => {
+      if (e.touches.length > 0) {
+        handleWipe(e.touches[0].clientX, e.touches[0].clientY);
+      }
+    }, { passive: true });
+
+    const resetWipe = () => {
+      diagonalMask.style.transition = 'clip-path 0.5s ease, -webkit-clip-path 0.5s ease';
+      diagonalMask.style.removeProperty('--wipe-val');
+      setTimeout(() => {
+        diagonalMask.style.transition = '';
+      }, 500);
+    };
+
+    heroSection.addEventListener('mouseleave', resetWipe);
+    heroSection.addEventListener('touchend', resetWipe, { passive: true });
+  };
+
+  // Initialize on window load to ensure all dynamic elements exist
+  $(window).on('load', () => {
+    initWPMobileInteractions();
+    initWPHeroWipeReveal();
   });
 
 })(jQuery);
