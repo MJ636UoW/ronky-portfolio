@@ -211,8 +211,13 @@
       for (let i = 0; i < 8; i++) {
         const currAngle = (i / 8) * Math.PI * 2;
         const offset = Math.sin(t * 0.001 + i) * 15;
-        const xPos = blob.x + Math.cos(currAngle) * (r + offset);
-        const yPos = blob.y + Math.sin(currAngle) * (r + offset);
+        let shiftX = 0, shiftY = 0;
+        if (window.innerWidth < 1024 && hasDeviceOrientation) {
+          shiftX = devTiltX * 45;
+          shiftY = devTiltY * 45;
+        }
+        const xPos = blob.x + shiftX + Math.cos(currAngle) * (r + offset);
+        const yPos = blob.y + shiftY + Math.sin(currAngle) * (r + offset);
         
         if (i === 0) {
           ctx.moveTo(xPos, yPos);
@@ -272,6 +277,22 @@
   const floatingTags = document.querySelectorAll('.floating-tag');
   let floatTime = 0;
 
+  // Device orientation variables
+  let devTiltX = 0;
+  let devTiltY = 0;
+  let hasDeviceOrientation = false;
+
+  if (window.DeviceOrientationEvent) {
+    window.addEventListener('deviceorientation', (e) => {
+      if (e.gamma !== null && e.beta !== null) {
+        hasDeviceOrientation = true;
+        // Normalize tilt values (-1.5 to 1.5)
+        devTiltX = Math.min(Math.max(e.gamma / 25, -1.5), 1.5);
+        devTiltY = Math.min(Math.max((e.beta - 45) / 25, -1.5), 1.5);
+      }
+    }, true);
+  }
+
   const updateFloatingTags = () => {
     if (!state.floating.enabled) {
       floatingTags.forEach(tag => tag.style.transform = 'translate(0px, 0px)');
@@ -281,6 +302,9 @@
     floatTime += 0.005 * state.floating.speed;
 
     floatingTags.forEach((tag, idx) => {
+      // Skip updates if user is currently dragging the tag
+      if (tag.classList.contains('is-dragging')) return;
+
       const speed = parseFloat(tag.getAttribute('data-speed'));
       const depth = parseFloat(tag.getAttribute('data-depth'));
       const dir = parseInt(tag.getAttribute('data-dir'));
@@ -290,9 +314,15 @@
       const xOrbit = Math.cos(floatTime * speed) * dist * dir;
       const yOrbit = Math.sin(floatTime * speed * 1.2) * dist * dir;
 
-      // Mouse parallax follow vector
-      const dx = (mouse.targetX - width / 2) * depth * state.floating.parallax;
-      const dy = (mouse.targetY - height / 2) * depth * state.floating.parallax;
+      // Mouse parallax follow vector or device orientation on mobile
+      let dx = 0, dy = 0;
+      if (window.innerWidth < 1024 && hasDeviceOrientation) {
+        dx = devTiltX * 80 * depth * state.floating.parallax;
+        dy = devTiltY * 80 * depth * state.floating.parallax;
+      } else {
+        dx = (mouse.targetX - width / 2) * depth * state.floating.parallax;
+        dy = (mouse.targetY - height / 2) * depth * state.floating.parallax;
+      }
 
       tag.style.transform = `translate(${xOrbit + dx}px, ${yOrbit + dy}px)`;
     });
@@ -301,6 +331,49 @@
   };
 
   updateFloatingTags();
+
+  // Mobile Touch Drag-and-Throw physics for Floating Tags
+  floatingTags.forEach(tag => {
+    let isDraggingTag = false;
+    let tagStartX = 0, tagStartY = 0;
+
+    tag.addEventListener('touchstart', (e) => {
+      isDraggingTag = true;
+      tag.classList.add('is-dragging');
+      const touch = e.touches[0];
+      const rect = tag.getBoundingClientRect();
+      const heroRect = document.getElementById('hero').getBoundingClientRect();
+      // Calculate offset inside the tag
+      tagStartX = touch.clientX - rect.left;
+      tagStartY = touch.clientY - rect.top;
+      tag.style.transition = 'none';
+    }, { passive: true });
+
+    tag.addEventListener('touchmove', (e) => {
+      if (!isDraggingTag) return;
+      const touch = e.touches[0];
+      const containerRect = document.getElementById('hero').getBoundingClientRect();
+      
+      const x = touch.clientX - containerRect.left - tagStartX;
+      const y = touch.clientY - containerRect.top - tagStartY;
+      
+      // Directly position tag
+      tag.style.position = 'absolute';
+      tag.style.left = `${x}px`;
+      tag.style.top = `${y}px`;
+      tag.style.transform = 'none';
+    }, { passive: true });
+
+    tag.addEventListener('touchend', () => {
+      if (!isDraggingTag) return;
+      isDraggingTag = false;
+      tag.classList.remove('is-dragging');
+      tag.style.transition = 'all 1.2s cubic-bezier(0.16, 1, 0.3, 1)';
+      // Reset left/top positions to return to original CSS slots, transforming back to orbit
+      tag.style.left = '';
+      tag.style.top = '';
+    });
+  });
 
   // ---------------------------------------------------------
   // 5. ABOUT SECTION & STATS ANIMATIONS
@@ -707,3 +780,57 @@
   // Initial settings execution
   applySettings();
   document.body.classList.add('custom-cursor-enabled');
+
+  // ---------------------------------------------------------
+  // MOBILE QUICK ACTIONS SHEET DRAW
+  // ---------------------------------------------------------
+  const actionSheet = document.getElementById('mobile-action-sheet');
+  const sheetHandle = document.querySelector('.sheet-handle-area');
+
+  if (actionSheet && sheetHandle) {
+    sheetHandle.addEventListener('click', () => {
+      actionSheet.classList.toggle('active');
+    });
+
+    // Handle touch swipe to close/open
+    let touchStartY = 0;
+    sheetHandle.addEventListener('touchstart', (e) => {
+      touchStartY = e.touches[0].clientY;
+    }, { passive: true });
+
+    sheetHandle.addEventListener('touchend', (e) => {
+      const touchEndY = e.changedTouches[0].clientY;
+      const diffY = touchEndY - touchStartY;
+      if (diffY > 40 && actionSheet.classList.contains('active')) {
+        actionSheet.classList.remove('active');
+      } else if (diffY < -40 && !actionSheet.classList.contains('active')) {
+        actionSheet.classList.add('active');
+      }
+    }, { passive: true });
+  }
+
+  // ---------------------------------------------------------
+  // MOBILE 3D PORTFOLIO CARD SCROLL REVEAL
+  // ---------------------------------------------------------
+  if (window.innerWidth < 768) {
+    window.addEventListener('scroll', () => {
+      const portfolioItems = document.querySelectorAll('.portfolio-item');
+      const viewportHeight = window.innerHeight;
+
+      portfolioItems.forEach(item => {
+        const rect = item.getBoundingClientRect();
+        const itemCenter = rect.top + rect.height / 2;
+        const distanceFromCenter = itemCenter - viewportHeight / 2;
+        
+        // Calculate dynamic rotation based on distance from viewport center
+        const maxRotation = 10; // degrees
+        const rotation = (distanceFromCenter / (viewportHeight / 2)) * maxRotation;
+        const clampedRotation = Math.min(Math.max(rotation, -maxRotation), maxRotation);
+        
+        if (rect.top < viewportHeight && rect.bottom > 0) {
+          // Adjust 3D rotate properties
+          item.style.transform = `translate3d(0, 0, 0) rotateX(${clampedRotation}deg)`;
+        }
+      });
+    }, { passive: true });
+  }
