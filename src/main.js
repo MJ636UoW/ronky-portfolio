@@ -442,9 +442,8 @@
         const text = tagText.toLowerCase();
         if (text.includes('photo')) return 0;
         if (text.includes('video')) return 1;
-        if (text.includes('drone')) return 2;
-        if (text.includes('story') || text.includes('edit')) return 3;
-        if (text.includes('creative') || text.includes('director') || text.includes('brand')) return 4;
+        if (text.includes('story') || text.includes('edit')) return 2;
+        if (text.includes('creative') || text.includes('director') || text.includes('brand')) return 3;
         return -1;
       };
       const serviceCards = document.querySelectorAll('.service-card');
@@ -1107,16 +1106,16 @@
       const isMobile = window.innerWidth < 1024;
 
       if (isMobile) {
-        // Vertical wipe on mobile
+        // Vertical wipe on mobile (subtle effect)
         const yPosition = clientY - rect.top;
         const pct = (yPosition / rect.height) * 100;
-        const clampedPct = Math.min(Math.max(pct, 5), 50);
+        const clampedPct = 15 + (pct - 50) * 0.1; // Smoothly ranges between 10% and 20%
         diagonalMask.style.setProperty('--wipe-val', `${clampedPct}%`);
       } else {
-        // Horizontal wipe on desktop
+        // Horizontal wipe on desktop (subtle effect)
         const xPosition = clientX - rect.left;
         const pct = (xPosition / rect.width) * 100;
-        const clampedPct = Math.min(Math.max(pct, 5), 45);
+        const clampedPct = 15 + (pct - 50) * 0.1; // Smoothly ranges between 10% and 20%
         diagonalMask.style.setProperty('--wipe-val', `${clampedPct}%`);
       }
     };
