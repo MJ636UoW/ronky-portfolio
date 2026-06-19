@@ -268,6 +268,25 @@ function genz_portfolio_customize_register( $wp_customize ) {
     // Fluent Form ID
     $wp_customize->add_setting( 'genz_fluent_form_id', array( 'default' => '1', 'sanitize_callback' => 'sanitize_text_field' ) );
     $wp_customize->add_control( 'genz_fluent_form_id', array( 'label' => 'Fluent Form ID (for Contact Form integration)', 'section' => 'genz_contact_section', 'type' => 'text' ) );
+
+    // ==========================================
+    // PORTFOLIO SECTION CUSTOMIZER
+    // ==========================================
+    $wp_customize->add_section( 'genz_portfolio_section', array(
+        'title'      => esc_html__( 'Portfolio Grid Settings', 'genz-portfolio-theme' ),
+        'priority'   => 42,
+    ) );
+
+    // Always Show Explore More Button
+    $wp_customize->add_setting( 'genz_always_show_explore_more', array(
+        'default'           => true,
+        'sanitize_callback' => 'wp_validate_boolean',
+    ) );
+    $wp_customize->add_control( 'genz_always_show_explore_more', array(
+        'label'    => esc_html__( 'Always Show "Explore More" Button (even if posts <= 6)', 'genz-portfolio-theme' ),
+        'section'  => 'genz_portfolio_section',
+        'type'     => 'checkbox',
+    ) );
 }
 add_action( 'customize_register', 'genz_portfolio_customize_register' );
 

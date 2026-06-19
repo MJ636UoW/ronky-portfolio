@@ -274,7 +274,8 @@ if ( class_exists( '\Elementor\Plugin' ) ) {
                     'post_status'    => 'publish',
                 );
                 $portfolio_query = new WP_Query( $args );
-                $show_explore_button = ( $portfolio_query->found_posts > $homepage_limit );
+                $always_show_btn = get_theme_mod( 'genz_always_show_explore_more', true );
+                $show_explore_button = ( $portfolio_query->found_posts > $homepage_limit ) || $always_show_btn;
                 if ( $portfolio_query->have_posts() ) :
                     while ( $portfolio_query->have_posts() ) : $portfolio_query->the_post();
                         $categories = get_the_category();
