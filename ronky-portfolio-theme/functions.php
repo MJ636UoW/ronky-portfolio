@@ -57,13 +57,21 @@ function genz_portfolio_theme_scripts() {
         null 
     );
 
-    // Main stylesheet
     wp_enqueue_style( 
         'genz-portfolio-style', 
         get_template_directory_uri() . '/assets/css/theme-style.css', 
         array(), 
         file_exists( get_template_directory() . '/assets/css/theme-style.css' ) ? filemtime( get_template_directory() . '/assets/css/theme-style.css' ) : time()
     );
+
+    // Dynamic Customizer CSS overrides
+    $float_speed = get_theme_mod( 'genz_hero_float_speed', '1.0' );
+    $custom_css = "
+        :root {
+            --float-speed-multiplier: " . esc_attr( $float_speed ) . ";
+        }
+    ";
+    wp_add_inline_style( 'genz-portfolio-style', $custom_css );
 
     // Main JS script
     wp_enqueue_script( 
@@ -128,6 +136,34 @@ function genz_portfolio_customize_register( $wp_customize ) {
         'section'  => 'genz_hero_section',
         'settings' => 'genz_hero_image',
     ) ) );
+
+    // Hero Floating Tag 1 Text
+    $wp_customize->add_setting( 'genz_hero_tag1', array( 'default' => 'Photographer', 'sanitize_callback' => 'sanitize_text_field' ) );
+    $wp_customize->add_control( 'genz_hero_tag1', array( 'label' => 'Floating Tag 1 Text', 'section' => 'genz_hero_section', 'type' => 'text' ) );
+
+    // Hero Floating Tag 2 Text
+    $wp_customize->add_setting( 'genz_hero_tag2', array( 'default' => 'Videographer', 'sanitize_callback' => 'sanitize_text_field' ) );
+    $wp_customize->add_control( 'genz_hero_tag2', array( 'label' => 'Floating Tag 2 Text', 'section' => 'genz_hero_section', 'type' => 'text' ) );
+
+    // Hero Floating Tag 3 Text
+    $wp_customize->add_setting( 'genz_hero_tag3', array( 'default' => 'Director', 'sanitize_callback' => 'sanitize_text_field' ) );
+    $wp_customize->add_control( 'genz_hero_tag3', array( 'label' => 'Floating Tag 3 Text', 'section' => 'genz_hero_section', 'type' => 'text' ) );
+
+    // Hero Floating Tag 4 Text
+    $wp_customize->add_setting( 'genz_hero_tag4', array( 'default' => 'Storyteller', 'sanitize_callback' => 'sanitize_text_field' ) );
+    $wp_customize->add_control( 'genz_hero_tag4', array( 'label' => 'Floating Tag 4 Text', 'section' => 'genz_hero_section', 'type' => 'text' ) );
+
+    // Hero Floating Tag 5 Text
+    $wp_customize->add_setting( 'genz_hero_tag5', array( 'default' => 'Creative Director', 'sanitize_callback' => 'sanitize_text_field' ) );
+    $wp_customize->add_control( 'genz_hero_tag5', array( 'label' => 'Floating Tag 5 Text', 'section' => 'genz_hero_section', 'type' => 'text' ) );
+
+    // Hero Floating Speed Multiplier
+    $wp_customize->add_setting( 'genz_hero_float_speed', array( 'default' => '1.0', 'sanitize_callback' => 'sanitize_text_field' ) );
+    $wp_customize->add_control( 'genz_hero_float_speed', array(
+        'label'    => 'Floating Elements Speed Multiplier (e.g. 1.0, 1.5, 2.0, 0.5)',
+        'section'  => 'genz_hero_section',
+        'type'     => 'text',
+    ) );
 
     // ==========================================
     // ABOUT SECTION CUSTOMIZER

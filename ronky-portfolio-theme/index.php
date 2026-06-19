@@ -184,19 +184,19 @@ if ( class_exists( '\Elementor\Plugin' ) ) {
             <!-- Anti-Gravity Floating elements -->
             <div class="floating-tags-container" id="floating-tags-container">
               <div class="floating-tag depth-1" data-speed="1.2" data-depth="0.08" data-dir="1">
-                <span><?php esc_html_e( 'Photographer', 'genz-portfolio-theme' ); ?></span>
+                <span><?php echo esc_html( get_theme_mod( 'genz_hero_tag1', 'Photographer' ) ); ?></span>
               </div>
               <div class="floating-tag depth-2" data-speed="1.8" data-depth="0.15" data-dir="-1">
-                <span><?php esc_html_e( 'Videographer', 'genz-portfolio-theme' ); ?></span>
+                <span><?php echo esc_html( get_theme_mod( 'genz_hero_tag2', 'Videographer' ) ); ?></span>
               </div>
               <div class="floating-tag depth-3" data-speed="0.8" data-depth="0.04" data-dir="1">
-                <span><?php esc_html_e( 'Director', 'genz-portfolio-theme' ); ?></span>
+                <span><?php echo esc_html( get_theme_mod( 'genz_hero_tag3', 'Director' ) ); ?></span>
               </div>
               <div class="floating-tag depth-2" data-speed="2.2" data-depth="0.12" data-dir="-1">
-                <span><?php esc_html_e( 'Storyteller', 'genz-portfolio-theme' ); ?></span>
+                <span><?php echo esc_html( get_theme_mod( 'genz_hero_tag4', 'Storyteller' ) ); ?></span>
               </div>
               <div class="floating-tag depth-1" data-speed="1.5" data-depth="0.06" data-dir="1">
-                <span><?php esc_html_e( 'Creative Director', 'genz-portfolio-theme' ); ?></span>
+                <span><?php echo esc_html( get_theme_mod( 'genz_hero_tag5', 'Creative Director' ) ); ?></span>
               </div>
             </div>
           </section>
