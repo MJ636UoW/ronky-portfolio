@@ -14,6 +14,20 @@ function genz_portfolio_theme_setup() {
 }
 add_action( 'after_setup_theme', 'genz_portfolio_theme_setup' );
 
+// Auto-create default portfolio categories if they do not exist
+function ronky_create_portfolio_categories() {
+    if ( ! term_exists( 'Fashion', 'category' ) ) {
+        wp_insert_term( 'Fashion', 'category', array( 'slug' => 'fashion' ) );
+    }
+    if ( ! term_exists( 'Editorial', 'category' ) ) {
+        wp_insert_term( 'Editorial', 'category', array( 'slug' => 'editorial' ) );
+    }
+    if ( ! term_exists( 'Video', 'category' ) ) {
+        wp_insert_term( 'Video', 'category', array( 'slug' => 'video' ) );
+    }
+}
+add_action( 'init', 'ronky_create_portfolio_categories' );
+
 // 2. Enqueue Scripts and Styles
 function genz_portfolio_theme_scripts() {
     // Google Fonts
