@@ -58,15 +58,36 @@ if ( class_exists( '\Elementor\Plugin' ) ) {
     <header class="main-header">
       <div class="header-container">
         <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="logo magnetic" data-magnetic-strength="0.3">
-          RONKY<span>•</span>EDITS
+          <?php 
+          $site_name = get_bloginfo( 'name' );
+          if ( empty( $site_name ) || 'WordPress' === $site_name ) {
+              echo 'RONKY<span>•</span>EDITS';
+          } else {
+              echo str_replace( array(' ', '•'), '<span>•</span>', esc_html( $site_name ) );
+          }
+          ?>
         </a>
-        <nav class="nav-links">
-          <a href="<?php echo esc_url( home_url( '/#about' ) ); ?>" class="nav-link magnetic" data-magnetic-strength="0.4"><?php esc_html_e( 'About', 'genz-portfolio-theme' ); ?></a>
-          <a href="<?php echo esc_url( home_url( '/#portfolio' ) ); ?>" class="nav-link magnetic" data-magnetic-strength="0.4"><?php esc_html_e( 'Works', 'genz-portfolio-theme' ); ?></a>
-          <a href="<?php echo esc_url( home_url( '/#services' ) ); ?>" class="nav-link magnetic" data-magnetic-strength="0.4"><?php esc_html_e( 'Services', 'genz-portfolio-theme' ); ?></a>
-          <a href="<?php echo esc_url( home_url( '/#testimonials' ) ); ?>" class="nav-link magnetic" data-magnetic-strength="0.4"><?php esc_html_e( 'Reviews', 'genz-portfolio-theme' ); ?></a>
-          <a href="<?php echo esc_url( home_url( '/#contact' ) ); ?>" class="nav-link magnetic" data-magnetic-strength="0.4"><?php esc_html_e( 'Book', 'genz-portfolio-theme' ); ?></a>
-        </nav>
+        <?php
+        if ( has_nav_menu( 'primary' ) ) {
+            wp_nav_menu( array(
+                'theme_location' => 'primary',
+                'container'      => false,
+                'menu_class'     => 'nav-links',
+                'items_wrap'     => '<ul id="%1$s" class="%2$s">%3$s</ul>',
+                'fallback_cb'    => false,
+            ) );
+        } else {
+            ?>
+            <nav class="nav-links">
+              <a href="<?php echo esc_url( home_url( '/#about' ) ); ?>" class="nav-link magnetic" data-magnetic-strength="0.4"><?php esc_html_e( 'About', 'genz-portfolio-theme' ); ?></a>
+              <a href="<?php echo esc_url( home_url( '/#portfolio' ) ); ?>" class="nav-link magnetic" data-magnetic-strength="0.4"><?php esc_html_e( 'Works', 'genz-portfolio-theme' ); ?></a>
+              <a href="<?php echo esc_url( home_url( '/#services' ) ); ?>" class="nav-link magnetic" data-magnetic-strength="0.4"><?php esc_html_e( 'Services', 'genz-portfolio-theme' ); ?></a>
+              <a href="<?php echo esc_url( home_url( '/#testimonials' ) ); ?>" class="nav-link magnetic" data-magnetic-strength="0.4"><?php esc_html_e( 'Reviews', 'genz-portfolio-theme' ); ?></a>
+              <a href="<?php echo esc_url( home_url( '/#contact' ) ); ?>" class="nav-link magnetic" data-magnetic-strength="0.4"><?php esc_html_e( 'Book', 'genz-portfolio-theme' ); ?></a>
+            </nav>
+            <?php
+        }
+        ?>
         <div class="header-action">
           <a href="<?php echo esc_url( home_url( '/#contact' ) ); ?>" class="btn-primary magnetic" data-magnetic-strength="0.5">
             <span><?php esc_html_e( 'GET IN TOUCH', 'genz-portfolio-theme' ); ?></span>
@@ -82,13 +103,27 @@ if ( class_exists( '\Elementor\Plugin' ) ) {
 
     <!-- Mobile Navigation Overlay -->
     <div class="mobile-nav-overlay">
-      <nav class="mobile-nav-links">
-        <a href="<?php echo esc_url( home_url( '/#about' ) ); ?>" class="mobile-nav-link"><?php esc_html_e( 'About', 'genz-portfolio-theme' ); ?></a>
-        <a href="<?php echo esc_url( home_url( '/#portfolio' ) ); ?>" class="mobile-nav-link"><?php esc_html_e( 'Works', 'genz-portfolio-theme' ); ?></a>
-        <a href="<?php echo esc_url( home_url( '/#services' ) ); ?>" class="mobile-nav-link"><?php esc_html_e( 'Services', 'genz-portfolio-theme' ); ?></a>
-        <a href="<?php echo esc_url( home_url( '/#testimonials' ) ); ?>" class="mobile-nav-link"><?php esc_html_e( 'Reviews', 'genz-portfolio-theme' ); ?></a>
-        <a href="<?php echo esc_url( home_url( '/#contact' ) ); ?>" class="mobile-nav-link"><?php esc_html_e( 'Book Now', 'genz-portfolio-theme' ); ?></a>
-      </nav>
+      <?php
+      if ( has_nav_menu( 'primary' ) ) {
+          wp_nav_menu( array(
+              'theme_location' => 'primary',
+              'container'      => false,
+              'menu_class'     => 'mobile-nav-links',
+              'items_wrap'     => '<ul id="%1$s" class="%2$s">%3$s</ul>',
+              'fallback_cb'    => false,
+          ) );
+      } else {
+          ?>
+          <nav class="mobile-nav-links">
+            <a href="<?php echo esc_url( home_url( '/#about' ) ); ?>" class="mobile-nav-link"><?php esc_html_e( 'About', 'genz-portfolio-theme' ); ?></a>
+            <a href="<?php echo esc_url( home_url( '/#portfolio' ) ); ?>" class="mobile-nav-link"><?php esc_html_e( 'Works', 'genz-portfolio-theme' ); ?></a>
+            <a href="<?php echo esc_url( home_url( '/#services' ) ); ?>" class="mobile-nav-link"><?php esc_html_e( 'Services', 'genz-portfolio-theme' ); ?></a>
+            <a href="<?php echo esc_url( home_url( '/#testimonials' ) ); ?>" class="mobile-nav-link"><?php esc_html_e( 'Reviews', 'genz-portfolio-theme' ); ?></a>
+            <a href="<?php echo esc_url( home_url( '/#contact' ) ); ?>" class="mobile-nav-link"><?php esc_html_e( 'Book Now', 'genz-portfolio-theme' ); ?></a>
+          </nav>
+          <?php
+      }
+      ?>
     </div>
 
     <!-- MAIN SCROLL CONTAINER -->

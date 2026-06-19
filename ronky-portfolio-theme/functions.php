@@ -11,8 +11,27 @@ if ( ! defined( 'ABSPATH' ) ) {
 function genz_portfolio_theme_setup() {
     // Add support for post thumbnails (featured images)
     add_theme_support( 'post-thumbnails' );
+
+    // Register dynamic menu support
+    register_nav_menus( array(
+        'primary' => esc_html__( 'Primary Menu', 'genz-portfolio-theme' ),
+    ) );
 }
 add_action( 'after_setup_theme', 'genz_portfolio_theme_setup' );
+
+// Automatically inject custom styles/attributes to dynamic menu items
+function ronky_add_menu_link_class( $atts, $item, $args ) {
+    if ( property_exists( $args, 'theme_location' ) && 'primary' === $args->theme_location ) {
+        if ( isset( $args->menu_class ) && strpos( $args->menu_class, 'mobile-nav-links' ) !== false ) {
+            $atts['class'] = 'mobile-nav-link';
+        } else {
+            $atts['class'] = 'nav-link magnetic';
+            $atts['data-magnetic-strength'] = '0.4';
+        }
+    }
+    return $atts;
+}
+add_filter( 'nav_menu_link_attributes', 'ronky_add_menu_link_class', 10, 3 );
 
 // Auto-create default portfolio categories if they do not exist
 function ronky_create_portfolio_categories() {

@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>RONKY EDITS • Master User Guide & Technical Documentation</title>
+    <title>Master User Guide • Portfolio Customization & Editing</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
@@ -241,12 +241,12 @@
     <!-- COVER PAGE -->
     <div style="min-height: 90vh; display: flex; flex-direction: column; justify-content: center;">
       <h1 style="font-size: 48px; border-bottom: none; padding-bottom: 0; margin-bottom: 10px;">RONKY EDITS</h1>
-      <div class="subtitle">Master User Guide & Technical Documentation</div>
+      <div class="subtitle">Complete User Guide & Technical Manual</div>
       <p style="font-size: 16px; max-width: 600px; color: #888888; margin-top: 20px;">
-        A comprehensive, step-by-step guide explaining how to edit, style, customize, and migrate every single element of the Ronky Edits website. Covers the WordPress dashboard, custom colors (CSS), Elementor templates, Fluent Forms, and migration to live hosting.
+        A comprehensive guide explaining how to edit, configure, and customize every single element on the Ronky Edits website. Learn to use the WordPress Customizer, customize stylesheets, edit page sections with Elementor, manage Fluent Forms, and migrate the site to live hosting.
       </p>
       <div style="margin-top: 80px; font-size: 13px; color: #555555; text-transform: uppercase; letter-spacing: 2px;">
-        Version 3.0 • June 2026
+        Technical Manual • Version 3.1
       </div>
     </div>
 
@@ -255,325 +255,322 @@
     <!-- TABLE OF CONTENTS -->
     <h2>Table of Contents</h2>
     <ul class="toc-list">
-      <li><strong>1.</strong> <a href="#architecture">Ecosystem Architecture & File Synchronization</a></li>
-      <li><strong>2.</strong> <a href="#customizer">Editing Elements via WordPress Customizer</a></li>
-      <li><strong>3.</strong> <a href="#css-styling">Changing Themes, Colors, and Typography (Custom CSS)</a></li>
-      <li><strong>4.</strong> <a href="#portfolio-cpt">Managing Portfolio Works and Taxonomies (Categories)</a></li>
-      <li><strong>5.</strong> <a href="#testimonials-cpt">Adding Dynamic Testimonials</a></li>
-      <li><strong>6.</strong> <a href="#fluent-forms">Customizing and Connecting Fluent Forms</a></li>
-      <li><strong>7.</strong> <a href="#elementor">Working with Elementor Page Builder</a></li>
+      <li><strong>1.</strong> <a href="#customizer">Editing Elements via WordPress Customizer</a></li>
+      <li><strong>2.</strong> <a href="#navbar">Editing the Header Logo & Navigation Menu</a></li>
+      <li><strong>3.</strong> <a href="#elementor">Editing & Customizing Elements via Elementor</a></li>
+      <li><strong>4.</strong> <a href="#css-styling">Changing Brand Colors, CSS Themes, & Typography</a></li>
+      <li><strong>5.</strong> <a href="#portfolio-cpt">Adding and Categorizing Portfolio Works</a></li>
+      <li><strong>6.</strong> <a href="#testimonials-cpt">Adding Dynamic Testimonials</a></li>
+      <li><strong>7.</strong> <a href="#fluent-forms">Customizing and Connecting Fluent Forms</a></li>
       <li><strong>8.</strong> <a href="#hosting-migration">Step-by-Step Live Hosting & Migration Guide</a></li>
     </ul>
 
     <div class="page-break"></div>
 
-    <!-- SECTION 1: ARCHITECTURE -->
-    <h2 id="architecture">1. Ecosystem Architecture & File Synchronization</h2>
+    <!-- SECTION 1: CUSTOMIZER -->
+    <h2 id="customizer">1. Editing Elements via WordPress Customizer</h2>
     <p>
-      The Ronky Edits website is built as a hybrid project to facilitate both fast public browsing (via Vercel) and dynamic administration (via local WordPress on XAMPP).
-    </p>
-
-    <table>
-      <thead>
-        <tr>
-          <th>Environment</th>
-          <th>Location / Link</th>
-          <th>Technology</th>
-          <th>Content Source</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><strong>WordPress Admin</strong></td>
-          <td><code>http://localhost/wordpress/wp-admin/</code></td>
-          <td>PHP & MySQL (Local XAMPP database)</td>
-          <td>Customizer settings & database posts</td>
-        </tr>
-        <tr>
-          <td><strong>Vercel (Live Web)</strong></td>
-          <td><code>https://ronky-portfolio.vercel.app/</code></td>
-          <td>Static HTML5, CSS3, & Vanilla JS</td>
-          <td>Built files pushed to GitHub remote</td>
-        </tr>
-      </tbody>
-    </table>
-
-    <div class="alert">
-      <div class="alert-title">⚠️ The Sync Boundary</div>
-      <p>
-        Because Vercel is a static web host, <strong>making changes in your local WordPress dashboard does not automatically update the Vercel site</strong>. To apply updates to Vercel, you must build the static files (`npm run build`) and push them to GitHub. 
-        Once you perform the final migration to a live WordPress host (like Hostinger), your live site will be fully dynamic and automatically update whenever you save changes in your WordPress dashboard.
-      </p>
-    </div>
-
-    <div class="page-break"></div>
-
-    <!-- SECTION 2: CUSTOMIZER -->
-    <h2 id="customizer">2. Editing Elements via WordPress Customizer</h2>
-    <p>
-      The majority of the content, texts, contact details, and images on the website are editable without touching a single line of code by using the WordPress Customizer.
+      The primary method for updating text fields, section images, and links across the theme is the built-in WordPress Customizer.
     </p>
 
     <div class="step-card">
       <div class="step-num">1</div>
       <div class="step-title">Access the Customizer Panel</div>
       <div class="step-body">
-        <p>Go to your WordPress Admin dashboard and navigate to <strong>Appearance > Customize</strong>.</p>
+        <p>Log in to your WordPress dashboard, and navigate to <strong>Appearance > Customize</strong> on the left-hand sidebar menu.</p>
       </div>
     </div>
 
     <div class="step-card">
       <div class="step-num">2</div>
-      <div class="step-title">Hero Section Settings</div>
+      <div class="step-title">Change Hero Section Elements</div>
       <div class="step-body">
-        <p>Under <strong>Hero Section Settings</strong>, you can change:</p>
+        <p>Go to the <strong>Hero Section Settings</strong> panel:</p>
         <ul>
-          <li><strong>Hero Title</strong>: The primary slogan. You can use HTML tags like <code>&lt;br&gt;</code> and <code>&lt;span class="accent-text text-glow"&gt;</code> to create styled glowing text.</li>
-          <li><strong>Hero Subtitle</strong>: The descriptive paragraph text.</li>
-          <li><strong>Hero Image</strong>: Upload the large showcase editorial image.</li>
+          <li><strong>Hero Title</strong>: The main page title. You can include HTML tags like <code>&lt;br&gt;</code> to create line breaks, or <code>&lt;span class="accent-text text-glow"&gt;WORD&lt;/span&gt;</code> to apply the neon glow.</li>
+          <li><strong>Hero Subtitle</strong>: Enter the paragraph description displayed underneath the title.</li>
+          <li><strong>Hero Showcase Image</strong>: Upload the large editorial background image displayed on the right.</li>
         </ul>
       </div>
     </div>
 
     <div class="step-card">
       <div class="step-num">3</div>
-      <div class="step-title">About Section Settings</div>
+      <div class="step-title">Change About Section Elements</div>
       <div class="step-body">
-        <p>Under <strong>About Section Settings</strong>, you can modify:</p>
+        <p>Go to the <strong>About Section Settings</strong> panel:</p>
         <ul>
-          <li><strong>About Title & Text</strong>: The copy explaining your creative story.</li>
-          <li><strong>Profile Image</strong>: The photo displayed inside the glass profile card.</li>
-          <li><strong>Stats Counters</strong>: Edit the target numbers for <em>Projects Completed</em>, <em>Happy Clients %</em>, <em>Countries Served</em>, and <em>Years Experience</em>. The counters automatically animate when scrolled into view.</li>
+          <li><strong>About Title & Text</strong>: Edit your primary bio/description.</li>
+          <li><strong>Profile Image</strong>: Upload the photo displayed inside the glass container.</li>
+          <li><strong>Stats Counters</strong>: Edit the numerical targets for your achievements (e.g. <em>150</em> projects, <em>98%</em> satisfaction, etc.). The numbers automatically animate when visitors scroll to this section.</li>
         </ul>
       </div>
     </div>
 
     <div class="step-card">
       <div class="step-num">4</div>
-      <div class="step-title">Services Settings</div>
+      <div class="step-title">Change Services & Contact Settings</div>
       <div class="step-body">
-        <p>Under <strong>Services Settings</strong>, you can customize the 4 services cards:</p>
+        <p>Go to <strong>Services Settings</strong> or <strong>Contact Settings</strong>:</p>
         <ul>
-          <li><strong>Service Title & Description</strong>: Edit titles (e.g. photography, videography) and descriptions.</li>
-          <li><strong>Gallery Media</strong>: Enter a comma-separated list of image URLs (or video URLs) that will display inside the immersive lightboxes when visitors click "More Details".</li>
+          <li><strong>Services (1-4)</strong>: Change title names, descriptions, and the comma-separated URLs of the media displaying inside the immersive slide-out lightboxes.</li>
+          <li><strong>Contact Details</strong>: Enter your target Email Address, WhatsApp phone link, and Instagram handle to dynamically update all action cards.</li>
+          <li><strong>Fluent Form ID</strong>: Connect your customized Fluent Form database submission table.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <!-- SECTION 2: NAVBAR -->
+    <h2 id="navbar">2. Editing the Header Logo & Navigation Menu</h2>
+    <p>
+      Both the header brand logo and the navigation links are fully dynamic and can be configured through standard WordPress settings.
+    </p>
+
+    <h3>A. Editing the Brand Logo Text</h3>
+    <div class="step-card">
+      <div class="step-num">1</div>
+      <div class="step-title">Go to Site Identity</div>
+      <div class="step-body">
+        <p>Open the Customizer (<strong>Appearance > Customize</strong>) and select the <strong>Site Identity</strong> panel.</p>
+      </div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">2</div>
+      <div class="step-title">Edit Site Title</div>
+      <div class="step-body">
+        <p>Update the <strong>Site Title</strong> text (e.g., change it to <code>RONKY EDITS</code>, <code>SANDY WEB</code>, or <code>MY BRAND</code>). The theme's code will automatically detect the name, split the words, and insert the styled neon separator dot (<code>•</code>) in place of spaces!</p>
+      </div>
+    </div>
+
+    <h3>B. Customizing Navigation Links</h3>
+    <div class="step-card">
+      <div class="step-num">1</div>
+      <div class="step-title">Create your Custom Menu</div>
+      <div class="step-body">
+        <p>In your WordPress dashboard, navigate to <strong>Appearance > Menus</strong>. Click **create a new menu**, add your target pages or custom anchor links (e.g., <code>#about</code>, <code>#portfolio</code>, <code>#services</code>, <code>#contact</code>), and save it.</p>
+      </div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">2</div>
+      <div class="step-title">Assign to Primary Menu Location</div>
+      <div class="step-body">
+        <p>Under <strong>Menu Settings</strong> (at the bottom of the menu editor) or under the <strong>Manage Locations</strong> tab, check the box to assign this menu to the <strong>Primary Menu</strong> location.</p>
+        <p><em>Note: If no custom menu is assigned, the theme automatically displays the default layout links (About, Works, Services, Reviews, Book) as a fallback.</em></p>
+      </div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <!-- SECTION 3: ELEMENTOR -->
+    <h2 id="elementor">3. Editing & Customizing Elements via Elementor</h2>
+    <p>
+      For pages built with Elementor, you can edit visual styles, change layout spacings, and modify texts directly inside the Elementor drag-and-drop editor.
+    </p>
+
+    <div class="step-card">
+      <div class="step-num">1</div>
+      <div class="step-title">Open the Elementor Editor</div>
+      <div class="step-body">
+        <p>Go to <strong>Pages</strong> in your WordPress dashboard. Hover over the page you wish to modify and click <strong>Edit with Elementor</strong>.</p>
+      </div>
+    </div>
+
+    <div class="step-card">
+      <div class="step-num">2</div>
+      <div class="step-title">Editing Hero Split & Title Blocks</div>
+      <div class="step-body">
+        <p>Hover over the hero content columns, click on the **Edit Genz Premium Hero Split** widget (blue pencil icon). In the left sidebar:</p>
+        <ul>
+          <li><strong>Hero Title & Subtitle</strong>: Edit text lines inside the text fields. You can adjust font styles or sizes under the <strong>Style</strong> tab.</li>
+          <li><strong>Hero Image</strong>: Go to the <strong>Style</strong> tab in the left sidebar, click on the image box, and select a new image from your Media Library.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="step-card">
+      <div class="step-num">3</div>
+      <div class="step-title">Customizing Floating Tags (Floating Badges)</div>
+      <div class="step-body">
+        <p>Click on any of the floating tag elements (e.g., <em>Photographer</em>, <em>Videographer</em>). In the left sidebar panel, you can edit the text tag and configure custom depth/speed settings to change the anti-gravity float speed.</p>
+      </div>
+    </div>
+
+    <div class="step-card">
+      <div class="step-num">4</div>
+      <div class="step-title">Modifying Portfolio Grid & Masonry Layouts</div>
+      <div class="step-body">
+        <p>Click on the **Selected Works** grid section. In the left panel, you can adjust:</p>
+        <ul>
+          <li><strong>Limit</strong>: Change how many posts display on the page before pagination.</li>
+          <li><strong>Filters</strong>: Select which categories (e.g. Fashion, Editorial) are active for the buttons.</li>
+          <li><strong>Spacings & Columns</strong>: Adjust card padding values under the Style tab.</li>
         </ul>
       </div>
     </div>
 
     <div class="step-card">
       <div class="step-num">5</div>
-      <div class="step-title">Contact & Social Settings</div>
+      <div class="step-title">Editing Client Review Slides</div>
       <div class="step-body">
-        <p>Under <strong>Contact Settings</strong>, you can change:</p>
-        <ul>
-          <li><strong>Email Address</strong>: Updates the mailto link on the email card.</li>
-          <li><strong>WhatsApp Number</strong>: Updates the click-to-chat API redirection link.</li>
-          <li><strong>Instagram Handle</strong>: Updates the link to your profile.</li>
-          <li><strong>Fluent Form ID</strong>: Connects your custom form shortcode.</li>
-        </ul>
+        <p>Click on the Testimonial Slider element to modify display options (e.g., autoplay speeds, navigation arrow sizes) or edit the layout columns.</p>
       </div>
     </div>
 
     <div class="page-break"></div>
 
-    <!-- SECTION 3: CSS STYLING -->
-    <h2 id="css-styling">3. Changing Themes, Colors, and Typography (Custom CSS)</h2>
+    <!-- SECTION 4: CSS STYLING -->
+    <h2 id="css-styling">4. Changing Brand Colors, CSS Themes, & Typography</h2>
     <p>
-      The site's visual theme uses modern styling design tokens. To change the overall color scheme, typography, background grid, or hover glow effects, you edit the CSS variables.
+      You can change the brand color scheme (e.g., change the signature neon green to red, gold, or purple) and customize overall typography by editing global CSS variables.
     </p>
 
-    <h3>A. Key Theme Files</h3>
+    <h3>A. Locate Theme Stylesheets</h3>
     <ul>
-      <li><strong>WordPress Theme CSS</strong>: <code>ronky-portfolio-theme/assets/css/theme-style.css</code> (junctioned to XAMPP).</li>
-      <li><strong>Static Site CSS</strong>: <code>src/style.css</code> (used for compiling Vercel build).</li>
+      <li><strong>WordPress Theme CSS</strong>: <code>[theme-root-folder]/assets/css/theme-style.css</code></li>
+      <li><strong>Static Site CSS</strong>: <code>src/style.css</code> (used to compile build for static hosting like Vercel)</li>
     </ul>
 
-    <h3>B. Changing the Accent Color (e.g. Acid Green to Red or Gold)</h3>
+    <h3>B. Changing Color Variables</h3>
     <p>
-      Locate the <code>:root</code> selector at the top of the CSS file. You can change the primary color scheme by editing these color hex values:
+      Open the stylesheet and locate the <code>:root</code> selector at the top. Modify these hex color codes to change the website colors:
     </p>
     <div class="step-card">
       <div class="step-body" style="margin-left: 0;">
         <p><code>:root {</code></p>
         <p style="margin-left: 20px;"><code>--bg-primary: #0A0A0A; /* Page background color */</code></p>
-        <p style="margin-left: 20px;"><code>--bg-secondary: #121212; /* Cards/modals background */</code></p>
+        <p style="margin-left: 20px;"><code>--bg-secondary: #121212; /* Containers background color */</code></p>
         <p style="margin-left: 20px;"><code>--accent: #B8FF00; /* Main brand neon green color */</code></p>
-        <p style="margin-left: 20px;"><code>--accent-glow: rgba(184, 255, 0, 0.4); /* Glow border effect */</code></p>
-        <p style="margin-left: 20px;"><code>--text-primary: #FFFFFF;</code></p>
+        <p style="margin-left: 20px;"><code>--accent-glow: rgba(184, 255, 0, 0.35); /* Neon glow effect color */</code></p>
         <p><code>}</code></p>
       </div>
     </div>
     <p>
-      To change the theme to a premium Hot Gold, change <code>--accent</code> to <code>#FFDF00</code> and <code>--accent-glow</code> to <code>rgba(255, 223, 0, 0.4)</code>.
+      To change to a Hot Neon Pink theme, update <code>--accent</code> to <code>#FF007F</code> and <code>--accent-glow</code> to <code>rgba(255, 0, 127, 0.35)</code>.
     </p>
 
-    <h3>C. Changing Typography</h3>
+    <h3>C. Changing Typography Fonts</h3>
     <p>
-      By default, titles use <strong>Syne</strong> and body texts use <strong>Plus Jakarta Sans</strong>. To change them:
+      Change the font-family properties under the <code>:root</code> configuration:
     </p>
-    <ol>
-      <li>Change the Google Font embed links in your HTML/PHP headers (line 8 in <code>guide.html</code> or <code>functions.php</code>).</li>
-      <li>Update the font-family properties in the CSS file:
-        <ul>
-          <li>Headers: <code>font-family: 'YourNewFont', sans-serif;</code></li>
-          <li>Body Text: <code>font-family: 'YourNewFont2', sans-serif;</code></li>
-        </ul>
-      </li>
-    </ol>
+    <ul>
+      <li><strong>Body Fonts</strong>: Edit <code>--font-sans</code> (default is <em>'Plus Jakarta Sans'</em>).</li>
+      <li><strong>Header Display Fonts</strong>: Edit <code>--font-display</code> (default is <em>'Syne'</em>).</li>
+    </ul>
 
     <div class="page-break"></div>
 
-    <!-- SECTION 4: PORTFOLIO CPT -->
-    <h2 id="portfolio-cpt">4. Managing Portfolio Works and Taxonomies (Categories)</h2>
+    <!-- SECTION 5: PORTFOLIO CPT -->
+    <h2 id="portfolio-cpt">5. Adding and Categorizing Portfolio Works</h2>
     <p>
-      Your portfolio works are managed dynamically using standard WordPress <strong>Posts</strong>.
+      Portfolio items display dynamically on your site using standard WordPress <strong>Posts</strong>.
     </p>
 
     <div class="step-card">
       <div class="step-num">1</div>
-      <div class="step-title">Create a Portfolio Work</div>
+      <div class="step-title">Add a New Work</div>
       <div class="step-body">
-        <p>Navigate to <strong>Posts > Add New</strong>. Enter your work title (e.g. <code>SKATE MOTION</code>).</p>
+        <p>Go to your WordPress Admin panel and navigate to <strong>Posts > Add New</strong>. Enter your work title.</p>
       </div>
     </div>
 
     <div class="step-card">
       <div class="step-num">2</div>
-      <div class="step-title">Assign Categories (Taxonomies)</div>
+      <div class="step-title">Select the Category</div>
       <div class="step-body">
-        <p>On the right-hand panel, select the category that represents this work. The categories are automatically created by the theme on load:</p>
+        <p>Under the **Categories** panel on the right sidebar, assign one or more categories:</p>
         <ul>
-          <li><strong>Fashion</strong>: Displays under the FASHION filter on the homepage.</li>
-          <li><strong>Editorial</strong>: Displays under the EDITORIAL filter on the homepage.</li>
-          <li><strong>Video</strong>: Triggers a video-preview playback rather than an image lightbox.</li>
+          <li><strong>Fashion</strong>: Displays under the FASHION filter tab.</li>
+          <li><strong>Editorial</strong>: Displays under the EDITORIAL filter tab.</li>
+          <li><strong>Video</strong>: Displays under the VIDEO filter tab and automatically configures video playback.</li>
         </ul>
-        <p><em>Note: You can check multiple categories. Do not check/create an "ALL" category.</em></p>
       </div>
     </div>
 
     <div class="step-card">
       <div class="step-num">3</div>
-      <div class="step-title">Set the Featured Image (Thumbnail)</div>
+      <div class="step-title">Set Featured Image (Thumbnail)</div>
       <div class="step-body">
-        <p>In the right sidebar, click <strong>Set featured image</strong> and upload your thumbnail. If you leave this empty, the theme will automatically cycle through the 4 default mockup images to keep the layout looking complete.</p>
+        <p>Under the **Featured Image** panel on the right, click **Set featured image** and upload the showcase thumbnail for this work. If left empty, the card will automatically cycle through standard layout placeholders.</p>
       </div>
     </div>
 
     <div class="step-card">
       <div class="step-num">4</div>
-      <div class="step-title">Add Video Playback (Optional)</div>
+      <div class="step-title">Configure Hover Video Playback (Optional)</div>
       <div class="step-body">
-        <p>For video works, scroll to the bottom of the editor page to find the Custom Fields box. Add a custom field named <code>video_url</code> and paste your direct MP4 video link (e.g., from your Media Library). The grid card will then play the video automatically on hover.</p>
+        <p>For video posts, scroll down to the **Custom Fields** panel. Click **Add Custom Field**, name the key exactly <code>video_url</code>, and paste the URL of your MP4 file. The card will then play the video preview on hover.</p>
       </div>
     </div>
 
     <div class="page-break"></div>
 
-    <!-- SECTION 5: TESTIMONIALS CPT -->
-    <h2 id="testimonials-cpt">5. Adding Dynamic Testimonials</h2>
+    <!-- SECTION 6: TESTIMONIALS CPT -->
+    <h2 id="testimonials-cpt">6. Adding Dynamic Testimonials</h2>
     <p>
-      Instead of using static text boxes, clients' reviews are managed dynamically using the custom <strong>Testimonials</strong> sidebar menu.
+      Reviews are managed dynamically via the dedicated <strong>Testimonials</strong> custom post type.
     </p>
 
     <div class="step-card">
       <div class="step-num">1</div>
-      <div class="step-title">Go to the Testimonials Panel</div>
+      <div class="step-title">Access the Testimonials Menu</div>
       <div class="step-body">
-        <p>Click on the <strong>Testimonials</strong> menu item (speech bubble icon) in your WordPress left sidebar.</p>
+        <p>Click on the **Testimonials** menu item (speech bubble icon) in your WordPress left sidebar.</p>
       </div>
     </div>
 
     <div class="step-card">
       <div class="step-num">2</div>
-      <div class="step-title">Create a New Review</div>
+      <div class="step-title">Create a Review Card</div>
       <div class="step-body">
-        <p>Click <strong>Add New Testimonial</strong> and configure these fields:</p>
+        <p>Click **Add New Testimonial** and enter:</p>
         <ul>
-          <li><strong>Post Title</strong>: Enter the client's name (e.g. <code>Amara Vance</code>).</li>
-          <li><strong>Main Editor Content Box</strong>: Type the client's review text.</li>
-          <li><strong>Featured Image</strong>: Upload the client's profile picture or logo avatar.</li>
-          <li><strong>Client Details Box (Meta Box)</strong>: Enter their job description or brand (e.g. <code>Founder, NEO-GRID Tokyo</code>).</li>
+          <li><strong>Title Box</strong>: The client's name (e.g. <code>Sofia Laurent</code>).</li>
+          <li><strong>Editor Content Box</strong>: Write the client's review quotation.</li>
+          <li><strong>Featured Image</strong>: Upload the client's profile photo or logo avatar.</li>
+          <li><strong>Client Details</strong>: Enter their job title or company in the bottom custom meta box (e.g. <code>Creative Lead, MAISON Agency</code>).</li>
         </ul>
       </div>
     </div>
 
     <div class="step-card">
       <div class="step-num">3</div>
-      <div class="step-title">Publish and Auto-Scale</div>
+      <div class="step-title">Publish</div>
       <div class="step-body">
-        <p>Click <strong>Publish</strong>. The reviews slider on the homepage will immediately extend itself. If you delete all testimonials, the site gracefully falls back to displaying the customizer-configured testimonials.</p>
+        <p>Click **Publish**. The home page reviews slider will automatically update and loop your new testimonial.</p>
       </div>
     </div>
 
     <div class="page-break"></div>
 
-    <!-- SECTION 6: FLUENT FORMS -->
-    <h2 id="fluent-forms">6. Customizing and Connecting Fluent Forms</h2>
+    <!-- SECTION 7: FLUENT FORMS -->
+    <h2 id="fluent-forms">7. Customizing and Connecting Fluent Forms</h2>
     <p>
-      The contact form is built on <strong>Fluent Forms</strong>, integrated with custom AJAX scripts to maintain a sleek design.
+      The contact form is built on <strong>Fluent Forms</strong>, integrated with custom AJAX submission handlers.
     </p>
 
     <div class="step-card">
       <div class="step-num">1</div>
-      <div class="step-title">Locate and Customize the Form fields</div>
+      <div class="step-title">Modify Form Fields</div>
       <div class="step-body">
-        <p>In your WordPress left sidebar, click on <strong>Fluent Forms</strong>. You will see a form pre-created by the theme named <strong>Ronky Edits Portfolio Form</strong>. Click <strong>Edit</strong>.</p>
-        <p>You can add, edit, or rename fields. Ensure that the field name attributes match the form labels.</p>
+        <p>In your WordPress sidebar, go to <strong>Fluent Forms</strong>. Click **Edit** next to the form titled <strong>Ronky Edits Portfolio Form</strong>. You can drag and drop fields to add, edit, or remove entries.</p>
       </div>
     </div>
 
     <div class="step-card">
       <div class="step-num">2</div>
-      <div class="step-title">Check the Form ID</div>
+      <div class="step-title">Find the Form ID</div>
       <div class="step-body">
-        <p>Note down the ID of the form from the list (e.g., <code>[fluentform id="1"]</code> means your ID is <code>1</code>).</p>
+        <p>Note down the ID of the form from the Fluent Forms list (e.g. if the shortcode is <code>[fluentform id="1"]</code>, the ID is <code>1</code>).</p>
       </div>
     </div>
 
     <div class="step-card">
       <div class="step-num">3</div>
-      <div class="step-title">Connect the Form ID in WordPress Customizer</div>
+      <div class="step-title">Sync Form ID with Theme Customizer</div>
       <div class="step-body">
-        <p>Go to **Appearance > Customize > Contact Settings**. Under the **Fluent Form ID** text field, input your form ID (e.g., <code>1</code>) and click **Publish**. This connects the homepage form fields directly to your Fluent Forms database entries.</p>
-      </div>
-    </div>
-
-    <div class="alert">
-      <div class="alert-title">🔒 Submission Self-Healing Engine</div>
-      <p>
-        The theme features a built-in self-healing algorithm inside `functions.php`. If you configure a custom Fluent Form that has different field keys, the theme automatically runs name matching to capture the submission and map it correctly without returning validation errors to the visitors.
-      </p>
-    </div>
-
-    <div class="page-break"></div>
-
-    <!-- SECTION 7: ELEMENTOR -->
-    <h2 id="elementor">7. Working with Elementor Page Builder</h2>
-    <p>
-      You can add Elementor templates or edit your custom layout structures.
-    </p>
-
-    <div class="step-card">
-      <div class="step-num">1</div>
-      <div class="step-title">Enable Elementor Support</div>
-      <div class="step-body">
-        <p>Go to **Pages > Add New**, name your page, and click **Edit with Elementor**.</p>
-      </div>
-    </div>
-
-    <div class="step-card">
-      <div class="step-num">2</div>
-      <div class="step-title">The Auto-Populating Template</div>
-      <div class="step-body">
-        <p>The theme has an auto-population hook. When you create a new empty page in Elementor, it automatically loads our custom structured JSON layout template (`ronky-homepage-template.json`) containing our custom widgets. This lets you construct new custom layouts in seconds.</p>
-      </div>
-    </div>
-
-    <div class="step-card">
-      <div class="step-num">3</div>
-      <div class="step-title">Managing Page Templates</div>
-      <div class="step-body">
-        <p>If you build a page with Elementor and want it to display standard Elementor widgets, ensure the page template is set to **Elementor Full Width** in the page attributes sidebar.</p>
+        <p>Go to **Appearance > Customize > Contact Settings**. Under the **Fluent Form ID** field, type your form ID and click **Publish** to connect your form to the theme submission handler.</p>
       </div>
     </div>
 
@@ -582,57 +579,47 @@
     <!-- SECTION 8: HOSTING & MIGRATION -->
     <h2 id="hosting-migration">8. Step-by-Step Live Hosting & Migration Guide</h2>
     <p>
-      When you are ready to migrate the site from your local XAMPP machine to a live host (such as Hostinger, Bluehost, or GoDaddy), follow these steps:
+      To migrate the website from your local development environment to a live web hosting server (like Hostinger, Bluehost, or SiteGround), follow these steps:
     </p>
 
-    <h3>Part A: Migrating your WordPress Site (to Live PHP/MySQL Hosting)</h3>
+    <h3>Part A: Migrating the WordPress Website</h3>
     
     <div class="step-card">
       <div class="step-num">1</div>
-      <div class="step-title">Install Migration Plugin Locally</div>
+      <div class="step-title">Export Local Site Data</div>
       <div class="step-body">
-        <p>On your local site (<code>http://localhost/wordpress/wp-admin/</code>), go to <strong>Plugins > Add New</strong>. Search for <strong>All-in-One WP Migration</strong>. Install and activate it.</p>
+        <p>Log in to your local WordPress dashboard. Go to <strong>Plugins > Add New</strong>, search for <strong>All-in-One WP Migration</strong>, install and activate it. Navigate to **All-in-One WP Migration > Export**, select **Export To > File**, and download the compiled backup file (<code>.wpress</code>) to your computer.</p>
       </div>
     </div>
 
     <div class="step-card">
       <div class="step-num">2</div>
-      <div class="step-title">Export the Local Database and Files</div>
+      <div class="step-title">Install WordPress on Live Server</div>
       <div class="step-body">
-        <p>Navigate to <strong>All-in-One WP Migration > Export</strong>. Select <strong>Export To > File</strong>. Wait for the plugin to pack your database, themes, plugins, and media. Download the resulting <code>.wpress</code> file to your computer.</p>
+        <p>Log in to your live hosting panel (e.g., Hostinger hPanel). Use the Autoinstaller to set up a fresh WordPress instance on your target domain name.</p>
       </div>
     </div>
 
     <div class="step-card">
       <div class="step-num">3</div>
-      <div class="step-title">Set Up WordPress on Live Hosting</div>
+      <div class="step-title">Import Site Data Live</div>
       <div class="step-body">
-        <p>Log in to your hosting panel (e.g. Hostinger hPanel). Use the **Auto Installer** to install a fresh copy of WordPress on your domain (e.g. <code>yourdomain.com</code>).</p>
+        <p>Log in to your live domain's WordPress admin dashboard (e.g., <code>yourdomain.com/wp-admin/</code>). Go to Plugins, install and activate <strong>All-in-One WP Migration</strong>. Go to <strong>Import > Import From > File</strong>, select your local <code>.wpress</code> backup file, and run the import. Once complete, your database, posts, customizer settings, forms, and themes will be fully active on your live server!</p>
       </div>
     </div>
 
-    <div class="step-card">
-      <div class="step-num">4</div>
-      <div class="step-title">Import your Local Site Live</div>
-      <div class="step-body">
-        <p>Log in to your new live site (<code>yourdomain.com/wp-admin/</code>). Go to Plugins, install and activate <strong>All-in-One WP Migration</strong>. Go to <strong>Import > Import From > File</strong>, select the downloaded <code>.wpress</code> file, and click upload. Once completed, your live site will have all your portfolio works, customizer layouts, form configurations, and active themes restored!</p>
-      </div>
-    </div>
-
-    <h3>Part B: Deploying your Static Web Site to Vercel (For static representation)</h3>
-    <p>If you want to update your static showcase on Vercel:</p>
+    <h3>Part B: Deploying Static Files to Vercel</h3>
     <ol>
-      <li>Make your changes to the static code files under the <code>sandy/</code> folder.</li>
-      <li>Open your terminal in the project root: <code>C:\Users\manda\.gemini\antigravity\scratch\sandy\</code></li>
-      <li>Compile the build: <code>npm.cmd run build</code></li>
-      <li>Commit the changes:
+      <li>Edit files inside your local project folder.</li>
+      <li>Open your terminal and build static files: <code>npm run build</code>.</li>
+      <li>Commit the changes to your Git repository:
         <ul>
           <li><code>git add .</code></li>
-          <li><code>git commit -m "Updated theme designs"</code></li>
+          <li><code>git commit -m "Site updates"</code></li>
         </ul>
       </li>
-      <li>Push to GitHub: <code>git push origin main</code></li>
-      <li>Vercel detects the push and deploys the new static site automatically.</li>
+      <li>Push the commit to GitHub: <code>git push origin main</code>.</li>
+      <li>Vercel automatically rebuilds and deploys the new updates.</li>
     </ol>
   </body>
 </html>
