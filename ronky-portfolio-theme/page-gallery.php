@@ -118,17 +118,22 @@ if ( ! defined( 'ABSPATH' ) ) {
                     $cat_class_str = implode( ' ', $cat_classes );
                     $cat_display = ! empty( $cat_names ) ? implode( ' / ', $cat_names ) : 'PORTFOLIO';
 
+                    $post_index = $portfolio_query->current_post;
                     $img_src = '';
                     if ( has_post_thumbnail() ) {
                         $img_src = get_the_post_thumbnail_url( get_the_ID(), 'full' );
                     } else {
-                        $img_src = get_template_directory_uri() . '/assets/images/portfolio1.png';
+                        $fallback_imgs = array(
+                            '/assets/images/portfolio1.png',
+                            '/assets/images/portfolio2.png',
+                            '/assets/images/portfolio3.png',
+                            '/assets/images/portfolio4.png'
+                        );
+                        $img_src = get_template_directory_uri() . $fallback_imgs[$post_index % count($fallback_imgs)];
                     }
 
                     $video_src = get_post_meta( get_the_ID(), 'video_url', true );
                     $is_video = ! empty( $video_src ) || in_array( 'video', $cat_classes );
-
-                    $post_index = $portfolio_query->current_post;
                     // Vary layouts dynamically
                     $grid_size = 'size-medium';
                     if ( $post_index % 3 == 0 ) {
