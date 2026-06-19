@@ -693,21 +693,25 @@
   let autoPlayTimer;
 
   const updateSliderPosition = () => {
+    if (!slider || !slides || slides.length === 0) return;
     const slideWidth = slides[0].getBoundingClientRect().width;
     slider.style.transform = `translateX(-${currentSlide * (slideWidth + 30)}px)`;
   };
 
   const nextSlide = () => {
+    if (slideCount === 0) return;
     currentSlide = (currentSlide + 1) % slideCount;
     updateSliderPosition();
   };
 
   const prevSlide = () => {
+    if (slideCount === 0) return;
     currentSlide = (currentSlide - 1 + slideCount) % slideCount;
     updateSliderPosition();
   };
 
   const startAutoPlay = () => {
+    if (slideCount === 0) return;
     stopAutoPlay();
     autoPlayTimer = setInterval(nextSlide, 5000);
   };

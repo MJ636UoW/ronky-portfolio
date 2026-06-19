@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/assets/images/portfolio4.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PORTFOLIO GALLERY • RONKY EDITS</title>
+    <!-- Google Fonts: Syne (Headings) & Plus Jakarta Sans (Body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body class="gallery-page">
+    <!-- Background Canvas Engine -->
+    <canvas id="bg-canvas"></canvas>
+    <div id="noise-overlay"></div>
+    <div id="grid-overlay"></div>
+
+    <!-- Magnetic Custom Cursor -->
+    <div id="custom-cursor-ring"></div>
+    <div id="custom-cursor-dot"></div>
+
+    <!-- Main Navigation Bar -->
+    <header class="main-header">
+      <div class="header-container">
+        <a href="/index.html" class="logo magnetic" data-magnetic-strength="0.3">
+          RONKY<span>•</span>EDITS
+        </a>
+        <nav class="nav-links">
+          <a href="/index.html#about" class="nav-link magnetic" data-magnetic-strength="0.4">About</a>
+          <a href="/index.html#portfolio" class="nav-link magnetic" data-magnetic-strength="0.4">Works</a>
+          <a href="/index.html#services" class="nav-link magnetic" data-magnetic-strength="0.4">Services</a>
+          <a href="/index.html#testimonials" class="nav-link magnetic" data-magnetic-strength="0.4">Reviews</a>
+          <a href="/index.html#contact" class="nav-link magnetic" data-magnetic-strength="0.4">Book</a>
+        </nav>
+        <div class="header-action">
+          <a href="/index.html" class="btn-primary magnetic" data-magnetic-strength="0.5">
+            <span>BACK TO HOME</span>
+          </a>
+        </div>
+        <!-- Mobile Menu Trigger -->
+        <button class="mobile-menu-trigger" aria-label="Toggle Menu">
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Mobile Navigation Overlay -->
+    <div class="mobile-nav-overlay">
+      <nav class="mobile-nav-links">
+        <a href="/index.html#about" class="mobile-nav-link">About</a>
+        <a href="/index.html#portfolio" class="mobile-nav-link">Works</a>
+        <a href="/index.html#services" class="mobile-nav-link">Services</a>
+        <a href="/index.html#testimonials" class="mobile-nav-link">Reviews</a>
+        <a href="/index.html#contact" class="mobile-nav-link">Book Now</a>
+      </nav>
+    </div>
+
+    <!-- MAIN SCROLL CONTAINER -->
+    <main class="scroll-container">
+      
+      <!-- GALLERY HERO SECTION -->
+      <section class="gallery-hero-section">
+        <div class="section-container">
+          <div class="gallery-hero-content">
+            <h1 class="gallery-title scroll-reveal" data-reveal="fade-up">
+              PORTFOLIO <span class="accent-text text-glow">GALLERY</span>
+            </h1>
+            <p class="gallery-subtitle scroll-reveal" data-reveal="fade-up" data-delay="0.1">
+              Explore the complete visual anthology of streetwear campaigns, high-fashion editorials, and cinematic motion films.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- PORTFOLIO SECTION -->
+      <section id="portfolio" class="portfolio-section spacer-bottom">
+        <div class="section-container">
+          <div class="portfolio-header">
+            <div class="portfolio-filters">
+              <button class="filter-btn active" data-filter="all">All Works</button>
+              <button class="filter-btn" data-filter="fashion">Fashion</button>
+              <button class="filter-btn" data-filter="editorial">Editorial</button>
+              <button class="filter-btn" data-filter="video">Video</button>
+            </div>
+          </div>
+
+          <!-- Masonry Grid -->
+          <div class="portfolio-grid" id="portfolio-grid">
+            
+            <!-- Item 1 (Fashion) -->
+            <div class="portfolio-item size-tall fashion scroll-reveal" data-reveal="fade-up" data-src="/assets/images/portfolio1.png" data-title="CYBER SUITS" data-category="Fashion Editorial">
+              <div class="portfolio-media-wrapper">
+                <img src="/assets/images/portfolio1.png" alt="Cyber Suits" class="portfolio-media">
+                <div class="portfolio-overlay">
+                  <div class="portfolio-info">
+                    <span class="portfolio-cat">FASHION</span>
+                    <h3 class="portfolio-title">CYBER SUITS</h3>
+                  </div>
+                  <span class="portfolio-arrow">↗</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Item 2 (Editorial) -->
+            <div class="portfolio-item size-wide editorial scroll-reveal" data-reveal="fade-up" data-src="/assets/images/portfolio2.png" data-title="REFRACTED LIGHT" data-category="Creative Portrait">
+              <div class="portfolio-media-wrapper">
+                <img src="/assets/images/portfolio2.png" alt="Refracted Light" class="portfolio-media">
+                <div class="portfolio-overlay">
+                  <div class="portfolio-info">
+                    <span class="portfolio-cat">EDITORIAL</span>
+                    <h3 class="portfolio-title">NEON RAIN</h3>
+                  </div>
+                  <span class="portfolio-arrow">↗</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Item 3 (Video) -->
+            <div class="portfolio-item size-medium video scroll-reveal" data-reveal="fade-up" data-video-src="https://assets.mixkit.co/videos/preview/mixkit-cinematic-shot-of-a-skater-performing-tricks-43306-large.mp4" data-title="SKATE CHRONICLES" data-category="Cinematic Video">
+              <div class="portfolio-media-wrapper">
+                <video src="https://assets.mixkit.co/videos/preview/mixkit-cinematic-shot-of-a-skater-performing-tricks-43306-large.mp4" poster="/assets/images/portfolio3.png" muted loop playsinline class="portfolio-media video-preview"></video>
+                <div class="portfolio-overlay">
+                  <div class="portfolio-info">
+                    <span class="portfolio-cat">VIDEO</span>
+                    <h3 class="portfolio-title">SKATE MOTION</h3>
+                  </div>
+                  <span class="portfolio-play-icon">▶</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Item 4 (Editorial) -->
+            <div class="portfolio-item size-wide editorial scroll-reveal" data-reveal="fade-up" data-src="/assets/images/portfolio3.png" data-title="CONCRETE CURVES" data-category="Architectural Space">
+              <div class="portfolio-media-wrapper">
+                <img src="/assets/images/portfolio3.png" alt="Concrete Curves" class="portfolio-media">
+                <div class="portfolio-overlay">
+                  <div class="portfolio-info">
+                    <span class="portfolio-cat">EDITORIAL</span>
+                    <h3 class="portfolio-title">CONCRETE CURVES</h3>
+                  </div>
+                  <span class="portfolio-arrow">↗</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Item 5 (Fashion / Portrait) -->
+            <div class="portfolio-item size-tall fashion editorial scroll-reveal" data-reveal="fade-up" data-src="/assets/images/portfolio4.png" data-title="GLASS IDENTITY" data-category="Fashion Editorial">
+              <div class="portfolio-media-wrapper">
+                <img src="/assets/images/portfolio4.png" alt="Glass Identity" class="portfolio-media">
+                <div class="portfolio-overlay">
+                  <div class="portfolio-info">
+                    <span class="portfolio-cat">FASHION</span>
+                    <h3 class="portfolio-title">GLASS EYE</h3>
+                  </div>
+                  <span class="portfolio-arrow">↗</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Item 6 (Video - Cinematic) -->
+            <div class="portfolio-item size-medium video scroll-reveal" data-reveal="fade-up" data-video-src="https://assets.mixkit.co/videos/preview/mixkit-top-view-of-cars-on-a-highway-41852-large.mp4" data-title="METROPOLIS FLOW" data-category="Urban Cinematography">
+              <div class="portfolio-media-wrapper">
+                <video src="https://assets.mixkit.co/videos/preview/mixkit-top-view-of-cars-on-a-highway-41852-large.mp4" poster="/assets/images/portfolio2.png" muted loop playsinline class="portfolio-media video-preview"></video>
+                <div class="portfolio-overlay">
+                  <div class="portfolio-info">
+                    <span class="portfolio-cat">CINEMATIC VIDEO</span>
+                    <h3 class="portfolio-title">METROPOLIS</h3>
+                  </div>
+                  <span class="portfolio-play-icon">▶</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Extra items for showcase in the gallery page -->
+            <div class="portfolio-item size-medium fashion scroll-reveal" data-reveal="fade-up" data-src="/assets/images/profile.png" data-title="STREET SUITS II" data-category="Street Fashion">
+              <div class="portfolio-media-wrapper">
+                <img src="/assets/images/profile.png" alt="Street Suits II" class="portfolio-media">
+                <div class="portfolio-overlay">
+                  <div class="portfolio-info">
+                    <span class="portfolio-cat">FASHION</span>
+                    <h3 class="portfolio-title">STREET STYLE</h3>
+                  </div>
+                  <span class="portfolio-arrow">↗</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="portfolio-item size-tall editorial scroll-reveal" data-reveal="fade-up" data-src="/assets/images/portfolio1.png" data-title="CYBER SHADOWS" data-category="Cyberpunk Editorial">
+              <div class="portfolio-media-wrapper">
+                <img src="/assets/images/portfolio1.png" alt="Cyber Shadows" class="portfolio-media">
+                <div class="portfolio-overlay">
+                  <div class="portfolio-info">
+                    <span class="portfolio-cat">EDITORIAL</span>
+                    <h3 class="portfolio-title">CYBER SHADOWS</h3>
+                  </div>
+                  <span class="portfolio-arrow">↗</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="portfolio-item size-wide video scroll-reveal" data-reveal="fade-up" data-video-src="https://assets.mixkit.co/videos/preview/mixkit-cinematic-shot-of-a-skater-performing-tricks-43306-large.mp4" data-title="STREETS IN MOTION" data-category="Cinematic Showreel">
+              <div class="portfolio-media-wrapper">
+                <video src="https://assets.mixkit.co/videos/preview/mixkit-cinematic-shot-of-a-skater-performing-tricks-43306-large.mp4" poster="/assets/images/portfolio4.png" muted loop playsinline class="portfolio-media video-preview"></video>
+                <div class="portfolio-overlay">
+                  <div class="portfolio-info">
+                    <span class="portfolio-cat">VIDEO</span>
+                    <h3 class="portfolio-title">STREET DANCE</h3>
+                  </div>
+                  <span class="portfolio-play-icon">▶</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- FOOTER -->
+      <footer class="main-footer">
+        <div class="section-container footer-content">
+          <p>© 2026 RONKY EDITS. ALL RIGHTS RESERVED.</p>
+        </div>
+      </footer>
+
+    </main>
+
+    <!-- FULLSCREEN PORTFOLIO LIGHTBOX -->
+    <div id="portfolio-lightbox" class="lightbox-overlay">
+      <button class="lightbox-close" aria-label="Close Lightbox">×</button>
+      <button class="lightbox-prev" aria-label="Previous Slide">←</button>
+      <button class="lightbox-next" aria-label="Next Slide">→</button>
+      <div class="lightbox-content">
+        <!-- Media will be inserted here dynamically -->
+      </div>
+      <div class="lightbox-details">
+        <span class="lightbox-category"></span>
+        <h4 class="lightbox-title"></h4>
+      </div>
+    </div>
+
+    <!-- Script loading -->
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

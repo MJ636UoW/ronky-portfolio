@@ -826,4 +826,129 @@ function ronky_create_default_fluent_form() {
 }
 add_action( 'init', 'ronky_create_default_fluent_form', 20 );
 
+// ==========================================
+// TESTIMONIAL CUSTOM POST TYPE & META BOX
+// ==========================================
 
+// Register Testimonial Custom Post Type
+function ronky_register_testimonial_cpt() {
+    $labels = array(
+        'name'               => _x( 'Testimonials', 'post type general name', 'genz-portfolio-theme' ),
+        'singular_name'      => _x( 'Testimonial', 'post type singular name', 'genz-portfolio-theme' ),
+        'menu_name'          => _x( 'Testimonials', 'admin menu', 'genz-portfolio-theme' ),
+        'name_admin_bar'     => _x( 'Testimonial', 'add new on admin bar', 'genz-portfolio-theme' ),
+        'add_new'            => _x( 'Add New', 'testimonial', 'genz-portfolio-theme' ),
+        'add_new_item'       => __( 'Add New Testimonial', 'genz-portfolio-theme' ),
+        'new_item'           => __( 'New Testimonial', 'genz-portfolio-theme' ),
+        'edit_item'          => __( 'Edit Testimonial', 'genz-portfolio-theme' ),
+        'view_item'          => __( 'View Testimonial', 'genz-portfolio-theme' ),
+        'all_items'          => __( 'All Testimonials', 'genz-portfolio-theme' ),
+        'search_items'       => __( 'Search Testimonials', 'genz-portfolio-theme' ),
+        'parent_item_colon'  => __( 'Parent Testimonials:', 'genz-portfolio-theme' ),
+        'not_found'          => __( 'No testimonials found.', 'genz-portfolio-theme' ),
+        'not_found_in_trash' => __( 'No testimonials found in Trash.', 'genz-portfolio-theme' )
+    );
+
+    $args = array(
+        'labels'             => $labels,
+        'public'             => false,
+        'show_ui'            => true,
+        'show_in_menu'       => true,
+        'query_var'          => true,
+        'rewrite'            => array( 'slug' => 'testimonial' ),
+        'capability_type'    => 'post',
+        'has_archive'        => false,
+        'hierarchical'       => false,
+        'menu_position'      => 25,
+        'menu_icon'          => 'dashicons-editor-quote',
+        'supports'           => array( 'title', 'editor', 'thumbnail' ), // title = Name, editor = Quote, thumbnail = Avatar
+        'show_in_rest'       => true, // Enable Gutenberg block editor support
+    );
+
+    register_post_type( 'testimonial', $args );
+}
+add_action( 'init', 'ronky_register_testimonial_cpt' );
+
+// Add Meta Box for Testimonial Role
+function ronky_testimonial_add_meta_box() {
+    add_meta_box(
+        'ronky_testimonial_role_box',
+        __( 'Client Details', 'genz-portfolio-theme' ),
+        'ronky_testimonial_role_box_callback',
+        'testimonial',
+        'normal',
+        'high'
+    );
+}
+add_action( 'add_meta_boxes', 'ronky_testimonial_add_meta_box' );
+
+function ronky_testimonial_role_box_callback( $post ) {
+    // Add nonce for security
+    wp_nonce_field( 'ronky_testimonial_save_meta', 'ronky_testimonial_meta_nonce' );
+
+    // Retrieve existing value
+    $value = get_post_meta( $post->ID, '_client_role', true );
+
+    echo '<p><label for="ronky_client_role">' . esc_html__( 'Client Role / Designation (e.g., Founder, NEO-GRID Tokyo):', 'genz-portfolio-theme' ) . '</label></p>';
+    echo '<input type="text" id="ronky_client_role" name="ronky_client_role" value="' . esc_attr( $value ) . '" size="50" style="width:100%; max-width:500px; padding: 8px;" placeholder="Founder, NEO-GRID Tokyo" />';
+}
+
+function ronky_testimonial_save_meta( $post_id ) {
+    // Check nonce
+    if ( ! isset( $_POST['ronky_testimonial_meta_nonce'] ) || ! wp_verify_nonce( $_POST['ronky_testimonial_meta_nonce'], 'ronky_testimonial_save_meta' ) ) {
+        return;
+    }
+
+    // Check autosave
+    if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+        return;
+    }
+
+    // Check permissions
+    if ( isset( $_POST['post_type'] ) && 'testimonial' === $_POST['post_type'] ) {
+        if ( ! current_user_can( 'edit_post', $post_id ) ) {
+            return;
+        }
+    }
+
+    // Save/update field
+    if ( isset( $_POST['ronky_client_role'] ) ) {
+        update_post_meta( $post_id, '_client_role', sanitize_text_field( $_POST['ronky_client_role'] ) );
+    }
+}
+add_action( 'save_post', 'ronky_testimonial_save_meta' );
+
+// ==========================================
+// GALLERY PAGE AUTO-CREATOR
+// ==========================================
+
+// Auto-create Gallery Page if it doesn't exist
+function ronky_auto_create_gallery_page() {
+    if ( get_option( 'ronky_gallery_page_created' ) ) {
+        return;
+    }
+
+    // Check if a page with slug 'gallery' already exists
+    $page = get_page_by_path( 'gallery' );
+    if ( $page ) {
+        update_option( 'ronky_gallery_page_created', $page->ID );
+        update_post_meta( $page->ID, '_wp_page_template', 'page-gallery.php' );
+        return;
+    }
+
+    // Create the page
+    $page_data = array(
+        'post_title'    => 'Portfolio Gallery',
+        'post_name'     => 'gallery',
+        'post_status'   => 'publish',
+        'post_type'     => 'page',
+        'post_content'  => '', // Rendered by page-gallery.php
+    );
+
+    $page_id = wp_insert_post( $page_data );
+    if ( $page_id && ! is_wp_error( $page_id ) ) {
+        update_option( 'ronky_gallery_page_created', $page_id );
+        update_post_meta( $page_id, '_wp_page_template', 'page-gallery.php' );
+    }
+}
+add_action( 'init', 'ronky_auto_create_gallery_page', 30 );

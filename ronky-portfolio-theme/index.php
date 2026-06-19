@@ -57,18 +57,18 @@ if ( class_exists( '\Elementor\Plugin' ) ) {
     <!-- Main Navigation Bar -->
     <header class="main-header">
       <div class="header-container">
-        <a href="#" class="logo magnetic" data-magnetic-strength="0.3">
+        <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="logo magnetic" data-magnetic-strength="0.3">
           <?php bloginfo( 'name' ); ?><span>•</span>STUDIO
         </a>
         <nav class="nav-links">
-          <a href="#about" class="nav-link magnetic" data-magnetic-strength="0.4"><?php esc_html_e( 'About', 'genz-portfolio-theme' ); ?></a>
-          <a href="#portfolio" class="nav-link magnetic" data-magnetic-strength="0.4"><?php esc_html_e( 'Works', 'genz-portfolio-theme' ); ?></a>
-          <a href="#services" class="nav-link magnetic" data-magnetic-strength="0.4"><?php esc_html_e( 'Services', 'genz-portfolio-theme' ); ?></a>
-          <a href="#testimonials" class="nav-link magnetic" data-magnetic-strength="0.4"><?php esc_html_e( 'Reviews', 'genz-portfolio-theme' ); ?></a>
-          <a href="#contact" class="nav-link magnetic" data-magnetic-strength="0.4"><?php esc_html_e( 'Book', 'genz-portfolio-theme' ); ?></a>
+          <a href="<?php echo esc_url( home_url( '/#about' ) ); ?>" class="nav-link magnetic" data-magnetic-strength="0.4"><?php esc_html_e( 'About', 'genz-portfolio-theme' ); ?></a>
+          <a href="<?php echo esc_url( home_url( '/#portfolio' ) ); ?>" class="nav-link magnetic" data-magnetic-strength="0.4"><?php esc_html_e( 'Works', 'genz-portfolio-theme' ); ?></a>
+          <a href="<?php echo esc_url( home_url( '/#services' ) ); ?>" class="nav-link magnetic" data-magnetic-strength="0.4"><?php esc_html_e( 'Services', 'genz-portfolio-theme' ); ?></a>
+          <a href="<?php echo esc_url( home_url( '/#testimonials' ) ); ?>" class="nav-link magnetic" data-magnetic-strength="0.4"><?php esc_html_e( 'Reviews', 'genz-portfolio-theme' ); ?></a>
+          <a href="<?php echo esc_url( home_url( '/#contact' ) ); ?>" class="nav-link magnetic" data-magnetic-strength="0.4"><?php esc_html_e( 'Book', 'genz-portfolio-theme' ); ?></a>
         </nav>
         <div class="header-action">
-          <a href="#contact" class="btn-primary magnetic" data-magnetic-strength="0.5">
+          <a href="<?php echo esc_url( home_url( '/#contact' ) ); ?>" class="btn-primary magnetic" data-magnetic-strength="0.5">
             <span><?php esc_html_e( 'GET IN TOUCH', 'genz-portfolio-theme' ); ?></span>
           </a>
         </div>
@@ -83,11 +83,11 @@ if ( class_exists( '\Elementor\Plugin' ) ) {
     <!-- Mobile Navigation Overlay -->
     <div class="mobile-nav-overlay">
       <nav class="mobile-nav-links">
-        <a href="#about" class="mobile-nav-link"><?php esc_html_e( 'About', 'genz-portfolio-theme' ); ?></a>
-        <a href="#portfolio" class="mobile-nav-link"><?php esc_html_e( 'Works', 'genz-portfolio-theme' ); ?></a>
-        <a href="#services" class="mobile-nav-link"><?php esc_html_e( 'Services', 'genz-portfolio-theme' ); ?></a>
-        <a href="#testimonials" class="mobile-nav-link"><?php esc_html_e( 'Reviews', 'genz-portfolio-theme' ); ?></a>
-        <a href="#contact" class="mobile-nav-link"><?php esc_html_e( 'Book Now', 'genz-portfolio-theme' ); ?></a>
+        <a href="<?php echo esc_url( home_url( '/#about' ) ); ?>" class="mobile-nav-link"><?php esc_html_e( 'About', 'genz-portfolio-theme' ); ?></a>
+        <a href="<?php echo esc_url( home_url( '/#portfolio' ) ); ?>" class="mobile-nav-link"><?php esc_html_e( 'Works', 'genz-portfolio-theme' ); ?></a>
+        <a href="<?php echo esc_url( home_url( '/#services' ) ); ?>" class="mobile-nav-link"><?php esc_html_e( 'Services', 'genz-portfolio-theme' ); ?></a>
+        <a href="<?php echo esc_url( home_url( '/#testimonials' ) ); ?>" class="mobile-nav-link"><?php esc_html_e( 'Reviews', 'genz-portfolio-theme' ); ?></a>
+        <a href="<?php echo esc_url( home_url( '/#contact' ) ); ?>" class="mobile-nav-link"><?php esc_html_e( 'Book Now', 'genz-portfolio-theme' ); ?></a>
       </nav>
     </div>
 
@@ -424,6 +424,14 @@ if ( class_exists( '\Elementor\Plugin' ) ) {
                 ?>
 
               </div>
+
+              <!-- Explore More Button -->
+              <div class="portfolio-explore-more scroll-reveal" data-reveal="fade-up" style="text-align: center; margin-top: 50px;">
+                <a href="<?php echo esc_url( home_url( '/gallery/' ) ); ?>" class="btn-primary magnetic" data-magnetic-strength="0.3">
+                  <span><?php esc_html_e( 'EXPLORE MORE', 'genz-portfolio-theme' ); ?></span>
+                </a>
+              </div>
+
             </div>
           </section>
 
@@ -533,65 +541,106 @@ if ( class_exists( '\Elementor\Plugin' ) ) {
               <div class="testimonials-slider-container">
                 <div class="testimonials-slider" id="testimonials-slider">
                   
-                  <!-- Slide 1 -->
-                  <div class="testimonial-slide glass-card">
-                    <div class="testimonial-quote">"<?php echo esc_html( get_theme_mod( 'genz_testimonial1_quote', 'Ronky Edits completely redefined our streetwear brand\'s campaign. The dynamic camera movements combined with acid green color grading gave us a distinct edge on our website. Absolutely next level.' ) ); ?>"</div>
-                    <div class="testimonial-client">
-                      <div class="client-avatar">
-                        <?php 
-                        $t1_avatar = get_theme_mod( 'genz_testimonial1_avatar' );
-                        if ( ! $t1_avatar ) {
-                            $t1_avatar = get_template_directory_uri() . '/assets/images/portfolio1.png';
-                        }
-                        ?>
-                        <img src="<?php echo esc_url( $t1_avatar ); ?>" alt="<?php echo esc_attr( get_theme_mod( 'genz_testimonial1_name', 'Amara Vance' ) ); ?>">
+                  <?php
+                  $t_args = array(
+                      'post_type'      => 'testimonial',
+                      'posts_per_page' => -1,
+                      'post_status'    => 'publish',
+                  );
+                  $testimonial_query = new WP_Query( $t_args );
+                  if ( $testimonial_query->have_posts() ) :
+                      while ( $testimonial_query->have_posts() ) : $testimonial_query->the_post();
+                          $quote = get_the_content();
+                          $client_name = get_the_title();
+                          $client_role = get_post_meta( get_the_ID(), '_client_role', true );
+                          
+                          $avatar_url = '';
+                          if ( has_post_thumbnail() ) {
+                              $avatar_url = get_the_post_thumbnail_url( get_the_ID(), 'thumbnail' );
+                          } else {
+                              $avatar_url = get_template_directory_uri() . '/assets/images/portfolio1.png';
+                          }
+                          ?>
+                          <div class="testimonial-slide glass-card">
+                            <div class="testimonial-quote">"<?php echo esc_html( $quote ); ?>"</div>
+                            <div class="testimonial-client">
+                              <div class="client-avatar">
+                                <img src="<?php echo esc_url( $avatar_url ); ?>" alt="<?php echo esc_attr( $client_name ); ?>">
+                              </div>
+                              <div class="client-info">
+                                <div class="client-name"><?php echo esc_html( $client_name ); ?></div>
+                                <div class="client-role"><?php echo esc_html( $client_role ); ?></div>
+                              </div>
+                            </div>
+                          </div>
+                          <?php
+                      endwhile;
+                      wp_reset_postdata();
+                  else :
+                      // FALLBACK STATIC/CUSTOMIZER TESTIMONIALS
+                      ?>
+                      <!-- Slide 1 -->
+                      <div class="testimonial-slide glass-card">
+                        <div class="testimonial-quote">"<?php echo esc_html( get_theme_mod( 'genz_testimonial1_quote', 'Ronky Edits completely redefined our streetwear brand\'s campaign. The dynamic camera movements combined with acid green color grading gave us a distinct edge on our website. Absolutely next level.' ) ); ?>"</div>
+                        <div class="testimonial-client">
+                          <div class="client-avatar">
+                            <?php 
+                            $t1_avatar = get_theme_mod( 'genz_testimonial1_avatar' );
+                            if ( ! $t1_avatar ) {
+                                $t1_avatar = get_template_directory_uri() . '/assets/images/portfolio1.png';
+                            }
+                            ?>
+                            <img src="<?php echo esc_url( $t1_avatar ); ?>" alt="<?php echo esc_attr( get_theme_mod( 'genz_testimonial1_name', 'Amara Vance' ) ); ?>">
+                          </div>
+                          <div class="client-info">
+                            <div class="client-name"><?php echo esc_html( get_theme_mod( 'genz_testimonial1_name', 'Amara Vance' ) ); ?></div>
+                            <div class="client-role"><?php echo esc_html( get_theme_mod( 'genz_testimonial1_role', 'Founder, NEO-GRID Tokyo' ) ); ?></div>
+                          </div>
+                        </div>
                       </div>
-                      <div class="client-info">
-                        <div class="client-name"><?php echo esc_html( get_theme_mod( 'genz_testimonial1_name', 'Amara Vance' ) ); ?></div>
-                        <div class="client-role"><?php echo esc_html( get_theme_mod( 'genz_testimonial1_role', 'Founder, NEO-GRID Tokyo' ) ); ?></div>
-                      </div>
-                    </div>
-                  </div>
 
-                  <!-- Slide 2 -->
-                  <div class="testimonial-slide glass-card">
-                    <div class="testimonial-quote">"<?php echo esc_html( get_theme_mod( 'genz_testimonial2_quote', 'Working with Ronky Edits was seamless. The edits match exactly what modern Gen-Z visual design looks like: punchy, authentic, and cinematic. The custom website integrations are incredible.' ) ); ?>"</div>
-                    <div class="testimonial-client">
-                      <div class="client-avatar">
-                        <?php 
-                        $t2_avatar = get_theme_mod( 'genz_testimonial2_avatar' );
-                        if ( ! $t2_avatar ) {
-                            $t2_avatar = get_template_directory_uri() . '/assets/images/portfolio2.png';
-                        }
-                        ?>
-                        <img src="<?php echo esc_url( $t2_avatar ); ?>" alt="<?php echo esc_attr( get_theme_mod( 'genz_testimonial2_name', 'Jaden Miller' ) ); ?>">
+                      <!-- Slide 2 -->
+                      <div class="testimonial-slide glass-card">
+                        <div class="testimonial-quote">"<?php echo esc_html( get_theme_mod( 'genz_testimonial2_quote', 'Working with Ronky Edits was seamless. The edits match exactly what modern Gen-Z visual design looks like: punchy, authentic, and cinematic. The custom website integrations are incredible.' ) ); ?>"</div>
+                        <div class="testimonial-client">
+                          <div class="client-avatar">
+                            <?php 
+                            $t2_avatar = get_theme_mod( 'genz_testimonial2_avatar' );
+                            if ( ! $t2_avatar ) {
+                                $t2_avatar = get_template_directory_uri() . '/assets/images/portfolio2.png';
+                            }
+                            ?>
+                            <img src="<?php echo esc_url( $t2_avatar ); ?>" alt="<?php echo esc_attr( get_theme_mod( 'genz_testimonial2_name', 'Jaden Miller' ) ); ?>">
+                          </div>
+                          <div class="client-info">
+                            <div class="client-name"><?php echo esc_html( get_theme_mod( 'genz_testimonial2_name', 'Jaden Miller' ) ); ?></div>
+                            <div class="client-role"><?php echo esc_html( get_theme_mod( 'genz_testimonial2_role', 'Director, SATELLITE Records' ) ); ?></div>
+                          </div>
+                        </div>
                       </div>
-                      <div class="client-info">
-                        <div class="client-name"><?php echo esc_html( get_theme_mod( 'genz_testimonial2_name', 'Jaden Miller' ) ); ?></div>
-                        <div class="client-role"><?php echo esc_html( get_theme_mod( 'genz_testimonial2_role', 'Director, SATELLITE Records' ) ); ?></div>
-                      </div>
-                    </div>
-                  </div>
 
-                  <!-- Slide 3 -->
-                  <div class="testimonial-slide glass-card">
-                    <div class="testimonial-quote">"<?php echo esc_html( get_theme_mod( 'genz_testimonial3_quote', 'Highly recommended for architectural and fashion-editorial work. The eye for detail and post-production coloring is amazing. We got an Awwwards nominee using this material.' ) ); ?>"</div>
-                    <div class="testimonial-client">
-                      <div class="client-avatar">
-                        <?php 
-                        $t3_avatar = get_theme_mod( 'genz_testimonial3_avatar' );
-                        if ( ! $t3_avatar ) {
-                            $t3_avatar = get_template_directory_uri() . '/assets/images/portfolio3.png';
-                        }
-                        ?>
-                        <img src="<?php echo esc_url( $t3_avatar ); ?>" alt="<?php echo esc_attr( get_theme_mod( 'genz_testimonial3_name', 'Sofia Laurent' ) ); ?>">
+                      <!-- Slide 3 -->
+                      <div class="testimonial-slide glass-card">
+                        <div class="testimonial-quote">"<?php echo esc_html( get_theme_mod( 'genz_testimonial3_quote', 'Highly recommended for architectural and fashion-editorial work. The eye for detail and post-production coloring is amazing. We got an Awwwards nominee using this material.' ) ); ?>"</div>
+                        <div class="testimonial-client">
+                          <div class="client-avatar">
+                            <?php 
+                            $t3_avatar = get_theme_mod( 'genz_testimonial3_avatar' );
+                            if ( ! $t3_avatar ) {
+                                $t3_avatar = get_template_directory_uri() . '/assets/images/portfolio3.png';
+                            }
+                            ?>
+                            <img src="<?php echo esc_url( $t3_avatar ); ?>" alt="<?php echo esc_attr( get_theme_mod( 'genz_testimonial3_name', 'Sofia Laurent' ) ); ?>">
+                          </div>
+                          <div class="client-info">
+                            <div class="client-name"><?php echo esc_html( get_theme_mod( 'genz_testimonial3_name', 'Sofia Laurent' ) ); ?></div>
+                            <div class="client-role"><?php echo esc_html( get_theme_mod( 'genz_testimonial3_role', 'Creative Lead, MAISON Agency' ) ); ?></div>
+                          </div>
+                        </div>
                       </div>
-                      <div class="client-info">
-                        <div class="client-name"><?php echo esc_html( get_theme_mod( 'genz_testimonial3_name', 'Sofia Laurent' ) ); ?></div>
-                        <div class="client-role"><?php echo esc_html( get_theme_mod( 'genz_testimonial3_role', 'Creative Lead, MAISON Agency' ) ); ?></div>
-                      </div>
-                    </div>
-                  </div>
+                      <?php
+                  endif;
+                  ?>
 
                 </div>
                 
