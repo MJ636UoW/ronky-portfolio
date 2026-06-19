@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>RONKY EDITS • User Guide & Technical Documentation</title>
+    <title>RONKY EDITS • Master User Guide & Technical Documentation</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
@@ -31,8 +31,7 @@
         max-width: 900px;
         margin: 0 auto;
       }
-
-      /* Print specific layouts */
+      
       @media print {
         body {
           padding: 30px;
@@ -61,14 +60,14 @@
           color: #000000 !important;
         }
       }
-
+      
       h1, h2, h3, h4 {
         font-family: 'Syne', sans-serif;
         font-weight: 800;
         text-transform: uppercase;
         color: var(--text-primary);
       }
-
+      
       h1 {
         font-size: 38px;
         letter-spacing: -1px;
@@ -77,7 +76,7 @@
         border-bottom: 2px solid var(--accent);
         padding-bottom: 20px;
       }
-
+      
       .subtitle {
         font-size: 16px;
         color: var(--accent);
@@ -86,7 +85,7 @@
         text-transform: uppercase;
         margin-bottom: 40px;
       }
-
+      
       h2 {
         font-size: 22px;
         margin-top: 40px;
@@ -97,40 +96,40 @@
         border-bottom: 1px solid var(--border-color);
         padding-bottom: 10px;
       }
-
+      
       h3 {
         font-size: 16px;
         margin-top: 25px;
         margin-bottom: 12px;
         color: var(--accent);
       }
-
+      
       p {
         margin-bottom: 18px;
         font-size: 15px;
         color: #CCCCCC;
       }
-
+      
       ol, ul {
         margin-left: 24px;
         margin-bottom: 20px;
       }
-
+      
       li {
         margin-bottom: 8px;
         font-size: 14.5px;
         color: #CCCCCC;
       }
-
+      
       strong {
         color: #FFFFFF;
       }
-
+      
       a {
         color: var(--accent);
         text-decoration: none;
       }
-
+      
       .alert {
         background-color: var(--bg-secondary);
         border-left: 4px solid var(--accent);
@@ -138,7 +137,7 @@
         border-radius: 4px;
         margin: 25px 0;
       }
-
+      
       .alert-title {
         font-weight: 700;
         font-size: 14px;
@@ -147,13 +146,13 @@
         margin-bottom: 6px;
         color: var(--text-primary);
       }
-
+      
       .alert p {
         margin-bottom: 0;
         font-size: 14px;
         color: #AAAAAA;
       }
-
+      
       .step-card {
         background-color: var(--bg-secondary);
         border: 1px solid var(--border-color);
@@ -161,7 +160,7 @@
         padding: 24px;
         margin-bottom: 20px;
       }
-
+      
       .step-num {
         background-color: var(--accent);
         color: #000000;
@@ -175,31 +174,31 @@
         font-size: 13px;
         margin-right: 10px;
       }
-
+      
       .step-title {
         font-size: 16px;
         font-weight: 700;
         display: inline-block;
         vertical-align: middle;
       }
-
+      
       .step-body {
         margin-top: 15px;
         margin-left: 38px;
       }
-
+      
       table {
         width: 100%;
         border-collapse: collapse;
         margin: 25px 0;
       }
-
+      
       th, td {
         padding: 12px 15px;
         text-align: left;
         border-bottom: 1px solid var(--border-color);
       }
-
+      
       th {
         font-family: 'Syne', sans-serif;
         font-size: 13px;
@@ -208,12 +207,12 @@
         color: var(--accent);
         background-color: rgba(255, 255, 255, 0.02);
       }
-
+      
       td {
         font-size: 14px;
         color: #CCCCCC;
       }
-
+      
       code {
         font-family: monospace;
         background-color: rgba(255, 255, 255, 0.05);
@@ -222,173 +221,418 @@
         font-size: 13px;
         color: var(--accent);
       }
+      
+      .toc-list {
+        list-style-type: none;
+        margin-left: 0;
+      }
+      
+      .toc-list li {
+        margin-bottom: 12px;
+      }
+      
+      .toc-list a {
+        font-size: 16px;
+        font-weight: 500;
+      }
     </style>
   </head>
   <body>
     <!-- COVER PAGE -->
     <div style="min-height: 90vh; display: flex; flex-direction: column; justify-content: center;">
       <h1 style="font-size: 48px; border-bottom: none; padding-bottom: 0; margin-bottom: 10px;">RONKY EDITS</h1>
-      <div class="subtitle">Complete User Guide & Technical Documentation</div>
+      <div class="subtitle">Master User Guide & Technical Documentation</div>
       <p style="font-size: 16px; max-width: 600px; color: #888888; margin-top: 20px;">
-        A comprehensive guide on managing, editing, and extending the Ronky Edits Gen-Z Portfolio Website. Learn how to configure dynamic testimonials, manage the auto-creating gallery archive, and deploy updates to both local environments (XAMPP) and live servers (Vercel).
+        A comprehensive, step-by-step guide explaining how to edit, style, customize, and migrate every single element of the Ronky Edits website. Covers the WordPress dashboard, custom colors (CSS), Elementor templates, Fluent Forms, and migration to live hosting.
       </p>
       <div style="margin-top: 80px; font-size: 13px; color: #555555; text-transform: uppercase; letter-spacing: 2px;">
-        Version 2.0 • June 2026
+        Version 3.0 • June 2026
       </div>
     </div>
 
     <div class="page-break"></div>
 
+    <!-- TABLE OF CONTENTS -->
+    <h2>Table of Contents</h2>
+    <ul class="toc-list">
+      <li><strong>1.</strong> <a href="#architecture">Ecosystem Architecture & File Synchronization</a></li>
+      <li><strong>2.</strong> <a href="#customizer">Editing Elements via WordPress Customizer</a></li>
+      <li><strong>3.</strong> <a href="#css-styling">Changing Themes, Colors, and Typography (Custom CSS)</a></li>
+      <li><strong>4.</strong> <a href="#portfolio-cpt">Managing Portfolio Works and Taxonomies (Categories)</a></li>
+      <li><strong>5.</strong> <a href="#testimonials-cpt">Adding Dynamic Testimonials</a></li>
+      <li><strong>6.</strong> <a href="#fluent-forms">Customizing and Connecting Fluent Forms</a></li>
+      <li><strong>7.</strong> <a href="#elementor">Working with Elementor Page Builder</a></li>
+      <li><strong>8.</strong> <a href="#hosting-migration">Step-by-Step Live Hosting & Migration Guide</a></li>
+    </ul>
+
+    <div class="page-break"></div>
+
     <!-- SECTION 1: ARCHITECTURE -->
-    <h2>1. Understanding the Architecture</h2>
+    <h2 id="architecture">1. Ecosystem Architecture & File Synchronization</h2>
     <p>
-      The Ronky Edits ecosystem consists of two separate structures to facilitate both dynamic backend management and fast static web serving:
+      The Ronky Edits website is built as a hybrid project to facilitate both fast public browsing (via Vercel) and dynamic administration (via local WordPress on XAMPP).
     </p>
 
     <table>
       <thead>
         <tr>
-          <th>Feature</th>
-          <th>Local WordPress (XAMPP)</th>
-          <th>Live Site (Vercel)</th>
+          <th>Environment</th>
+          <th>Location / Link</th>
+          <th>Technology</th>
+          <th>Content Source</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td><strong>Purpose</strong></td>
-          <td>Dynamic database administration & local testing.</td>
-          <td>Fast, globally distributed public showcase.</td>
+          <td><strong>WordPress Admin</strong></td>
+          <td><code>http://localhost/wordpress/wp-admin/</code></td>
+          <td>PHP & MySQL (Local XAMPP database)</td>
+          <td>Customizer settings & database posts</td>
         </tr>
         <tr>
-          <td><strong>Technology</strong></td>
-          <td>PHP & MySQL (Local Database).</td>
-          <td>Static HTML5, Vanilla CSS, and JavaScript.</td>
-        </tr>
-        <tr>
-          <td><strong>Link / URL</strong></td>
-          <td><code>http://localhost/wordpress/</code></td>
+          <td><strong>Vercel (Live Web)</strong></td>
           <td><code>https://ronky-portfolio.vercel.app/</code></td>
-        </tr>
-        <tr>
-          <td><strong>How Data Updates</strong></td>
-          <td>Saved inside your local database via Dashboard.</td>
-          <td>Code changes pushed to GitHub remote.</td>
+          <td>Static HTML5, CSS3, & Vanilla JS</td>
+          <td>Built files pushed to GitHub remote</td>
         </tr>
       </tbody>
     </table>
 
     <div class="alert">
-      <div class="alert-title">⚠️ Important Sync Rule</div>
+      <div class="alert-title">⚠️ The Sync Boundary</div>
       <p>
-        Modifications made inside the local WordPress Customizer or Dashboard update your local machine's MySQL database. Because Vercel is a static host and has no database connection, <strong>local WordPress changes will not automatically push to Vercel</strong>. To update Vercel, you must edit the code files directly and push to GitHub, or migrate the theme to a dynamic WordPress host (like Hostinger).
+        Because Vercel is a static web host, <strong>making changes in your local WordPress dashboard does not automatically update the Vercel site</strong>. To apply updates to Vercel, you must build the static files (`npm run build`) and push them to GitHub. 
+        Once you perform the final migration to a live WordPress host (like Hostinger), your live site will be fully dynamic and automatically update whenever you save changes in your WordPress dashboard.
       </p>
     </div>
 
     <div class="page-break"></div>
 
-    <!-- SECTION 2: TESTIMONIALS -->
-    <h2>2. Dynamic Testimonials CPT</h2>
+    <!-- SECTION 2: CUSTOMIZER -->
+    <h2 id="customizer">2. Editing Elements via WordPress Customizer</h2>
     <p>
-      Testimonials are fully dynamic. You can add, edit, or delete an unlimited number of testimonials directly from your WordPress sidebar, replacing the old 3-slot Customizer limit.
+      The majority of the content, texts, contact details, and images on the website are editable without touching a single line of code by using the WordPress Customizer.
     </p>
 
     <div class="step-card">
       <div class="step-num">1</div>
-      <div class="step-title">Access the Testimonials Menu</div>
+      <div class="step-title">Access the Customizer Panel</div>
       <div class="step-body">
-        <p>Log in to your WordPress dashboard (<code>http://localhost/wordpress/wp-admin/</code>). In the left sidebar, click on the new <strong>Testimonials</strong> menu item (distinguished by a speech bubble icon).</p>
+        <p>Go to your WordPress Admin dashboard and navigate to <strong>Appearance > Customize</strong>.</p>
       </div>
     </div>
 
     <div class="step-card">
       <div class="step-num">2</div>
-      <div class="step-title">Add a New Review</div>
+      <div class="step-title">Hero Section Settings</div>
       <div class="step-body">
-        <p>Click on <strong>Add New Testimonial</strong>. Fill in the following fields:</p>
+        <p>Under <strong>Hero Section Settings</strong>, you can change:</p>
         <ul>
-          <li><strong>Title</strong>: Enter the client's name (e.g. <code>Sofia Laurent</code>).</li>
-          <li><strong>Content Box</strong>: Enter their review text/quote.</li>
-          <li><strong>Featured Image</strong> (right panel): Upload the client's avatar image.</li>
-          <li><strong>Client Details</strong> (bottom box): Enter their role/designation (e.g. <code>Creative Lead, MAISON Agency</code>).</li>
+          <li><strong>Hero Title</strong>: The primary slogan. You can use HTML tags like <code>&lt;br&gt;</code> and <code>&lt;span class="accent-text text-glow"&gt;</code> to create styled glowing text.</li>
+          <li><strong>Hero Subtitle</strong>: The descriptive paragraph text.</li>
+          <li><strong>Hero Image</strong>: Upload the large showcase editorial image.</li>
         </ul>
       </div>
     </div>
 
     <div class="step-card">
       <div class="step-num">3</div>
-      <div class="step-title">Publish and Render</div>
+      <div class="step-title">About Section Settings</div>
       <div class="step-body">
-        <p>Click **Publish**. The review slider on the homepage will automatically expand and query your new testimonial. If no testimonial posts are created yet, the site gracefully falls back to displaying the three customizer-configured reviews.</p>
-      </div>
-    </div>
-
-    <div class="page-break"></div>
-
-    <!-- SECTION 3: GALLERY & DYNAMIC BUTTONS -->
-    <h2>3. Gallery Page & Conditional "Explore More" Button</h2>
-    <p>
-      The Gallery Page operates dynamically to display your full archive, while the homepage adapts based on how many works are added.
-    </p>
-
-    <h3>A. The Gallery Page</h3>
-    <ul>
-      <li><strong>Automatic Page Creation</strong>: When you load the site, a page named "Portfolio Gallery" is automatically created in the database under the slug <code>/gallery/</code>.</li>
-      <li><strong>Template Assignment</strong>: The theme automatically maps the custom <code>page-gallery.php</code> template to it. This template renders a full-page grid of all works, category filters, lightboxes, and a "Back to Home" button.</li>
-      <li><strong>Customizer Logo Sync</strong>: The gallery header logo dynamically adapts to the brand name configured in the WordPress settings.</li>
-    </ul>
-
-    <h3>B. Conditional "Explore More" Button</h3>
-    <p>
-      The homepage limits the portfolio works to a maximum of <strong>6 items</strong> to maintain visual balance and layout spacing.
-    </p>
-    <ul>
-      <li><strong>Fewer than 6 items</strong>: If you have 6 or fewer published posts, all items will display on the homepage, and no CTA button will appear.</li>
-      <li><strong>More than 6 items</strong>: If you publish a 7th post, the theme will automatically slice the display to show the latest 6, and **instantly auto-create the "Explore More" button** underneath the grid.</li>
-      <li><strong>Connection</strong>: The button links dynamically to the Gallery Page (<code>http://localhost/wordpress/gallery/</code>), allowing visitors to browse the full archive.</li>
-    </ul>
-
-    <div class="page-break"></div>
-
-    <!-- SECTION 4: UPDATING & DEPLOYING -->
-    <h2>4. How to Update the Live Vercel Site</h2>
-    <p>
-      To synchronize updates with Vercel, use Git.
-    </p>
-
-    <div class="step-card">
-      <div class="step-num">1</div>
-      <div class="step-title">Open Terminal / PowerShell</div>
-      <div class="step-body">
-        <p>Navigate to the project root directory: <code>C:\Users\manda\.gemini\antigravity\scratch\sandy\</code></p>
-      </div>
-    </div>
-
-    <div class="step-card">
-      <div class="step-num">2</div>
-      <div class="step-title">Build Static Assets</div>
-      <div class="step-body">
-        <p>Compile the code to prepare multi-page bundle paths (index.html and gallery.html):</p>
-        <p><code>npm.cmd run build</code></p>
-      </div>
-    </div>
-
-    <div class="step-card">
-      <div class="step-num">3</div>
-      <div class="step-title">Stage and Commit Files</div>
-      <div class="step-body">
-        <p>Stage the changes and commit them to Git:</p>
-        <p><code>git add .</code></p>
-        <p><code>git commit -m "Your description of updates"</code></p>
+        <p>Under <strong>About Section Settings</strong>, you can modify:</p>
+        <ul>
+          <li><strong>About Title & Text</strong>: The copy explaining your creative story.</li>
+          <li><strong>Profile Image</strong>: The photo displayed inside the glass profile card.</li>
+          <li><strong>Stats Counters</strong>: Edit the target numbers for <em>Projects Completed</em>, <em>Happy Clients %</em>, <em>Countries Served</em>, and <em>Years Experience</em>. The counters automatically animate when scrolled into view.</li>
+        </ul>
       </div>
     </div>
 
     <div class="step-card">
       <div class="step-num">4</div>
-      <div class="step-title">Push to GitHub</div>
+      <div class="step-title">Services Settings</div>
       <div class="step-body">
-        <p>Pushing to GitHub automatically triggers a clean rebuild on Vercel:</p>
-        <p><code>git push origin main</code></p>
+        <p>Under <strong>Services Settings</strong>, you can customize the 4 services cards:</p>
+        <ul>
+          <li><strong>Service Title & Description</strong>: Edit titles (e.g. photography, videography) and descriptions.</li>
+          <li><strong>Gallery Media</strong>: Enter a comma-separated list of image URLs (or video URLs) that will display inside the immersive lightboxes when visitors click "More Details".</li>
+        </ul>
       </div>
     </div>
+
+    <div class="step-card">
+      <div class="step-num">5</div>
+      <div class="step-title">Contact & Social Settings</div>
+      <div class="step-body">
+        <p>Under <strong>Contact Settings</strong>, you can change:</p>
+        <ul>
+          <li><strong>Email Address</strong>: Updates the mailto link on the email card.</li>
+          <li><strong>WhatsApp Number</strong>: Updates the click-to-chat API redirection link.</li>
+          <li><strong>Instagram Handle</strong>: Updates the link to your profile.</li>
+          <li><strong>Fluent Form ID</strong>: Connects your custom form shortcode.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <!-- SECTION 3: CSS STYLING -->
+    <h2 id="css-styling">3. Changing Themes, Colors, and Typography (Custom CSS)</h2>
+    <p>
+      The site's visual theme uses modern styling design tokens. To change the overall color scheme, typography, background grid, or hover glow effects, you edit the CSS variables.
+    </p>
+
+    <h3>A. Key Theme Files</h3>
+    <ul>
+      <li><strong>WordPress Theme CSS</strong>: <code>ronky-portfolio-theme/assets/css/theme-style.css</code> (junctioned to XAMPP).</li>
+      <li><strong>Static Site CSS</strong>: <code>src/style.css</code> (used for compiling Vercel build).</li>
+    </ul>
+
+    <h3>B. Changing the Accent Color (e.g. Acid Green to Red or Gold)</h3>
+    <p>
+      Locate the <code>:root</code> selector at the top of the CSS file. You can change the primary color scheme by editing these color hex values:
+    </p>
+    <div class="step-card">
+      <div class="step-body" style="margin-left: 0;">
+        <p><code>:root {</code></p>
+        <p style="margin-left: 20px;"><code>--bg-primary: #0A0A0A; /* Page background color */</code></p>
+        <p style="margin-left: 20px;"><code>--bg-secondary: #121212; /* Cards/modals background */</code></p>
+        <p style="margin-left: 20px;"><code>--accent: #B8FF00; /* Main brand neon green color */</code></p>
+        <p style="margin-left: 20px;"><code>--accent-glow: rgba(184, 255, 0, 0.4); /* Glow border effect */</code></p>
+        <p style="margin-left: 20px;"><code>--text-primary: #FFFFFF;</code></p>
+        <p><code>}</code></p>
+      </div>
+    </div>
+    <p>
+      To change the theme to a premium Hot Gold, change <code>--accent</code> to <code>#FFDF00</code> and <code>--accent-glow</code> to <code>rgba(255, 223, 0, 0.4)</code>.
+    </p>
+
+    <h3>C. Changing Typography</h3>
+    <p>
+      By default, titles use <strong>Syne</strong> and body texts use <strong>Plus Jakarta Sans</strong>. To change them:
+    </p>
+    <ol>
+      <li>Change the Google Font embed links in your HTML/PHP headers (line 8 in <code>guide.html</code> or <code>functions.php</code>).</li>
+      <li>Update the font-family properties in the CSS file:
+        <ul>
+          <li>Headers: <code>font-family: 'YourNewFont', sans-serif;</code></li>
+          <li>Body Text: <code>font-family: 'YourNewFont2', sans-serif;</code></li>
+        </ul>
+      </li>
+    </ol>
+
+    <div class="page-break"></div>
+
+    <!-- SECTION 4: PORTFOLIO CPT -->
+    <h2 id="portfolio-cpt">4. Managing Portfolio Works and Taxonomies (Categories)</h2>
+    <p>
+      Your portfolio works are managed dynamically using standard WordPress <strong>Posts</strong>.
+    </p>
+
+    <div class="step-card">
+      <div class="step-num">1</div>
+      <div class="step-title">Create a Portfolio Work</div>
+      <div class="step-body">
+        <p>Navigate to <strong>Posts > Add New</strong>. Enter your work title (e.g. <code>SKATE MOTION</code>).</p>
+      </div>
+    </div>
+
+    <div class="step-card">
+      <div class="step-num">2</div>
+      <div class="step-title">Assign Categories (Taxonomies)</div>
+      <div class="step-body">
+        <p>On the right-hand panel, select the category that represents this work. The categories are automatically created by the theme on load:</p>
+        <ul>
+          <li><strong>Fashion</strong>: Displays under the FASHION filter on the homepage.</li>
+          <li><strong>Editorial</strong>: Displays under the EDITORIAL filter on the homepage.</li>
+          <li><strong>Video</strong>: Triggers a video-preview playback rather than an image lightbox.</li>
+        </ul>
+        <p><em>Note: You can check multiple categories. Do not check/create an "ALL" category.</em></p>
+      </div>
+    </div>
+
+    <div class="step-card">
+      <div class="step-num">3</div>
+      <div class="step-title">Set the Featured Image (Thumbnail)</div>
+      <div class="step-body">
+        <p>In the right sidebar, click <strong>Set featured image</strong> and upload your thumbnail. If you leave this empty, the theme will automatically cycle through the 4 default mockup images to keep the layout looking complete.</p>
+      </div>
+    </div>
+
+    <div class="step-card">
+      <div class="step-num">4</div>
+      <div class="step-title">Add Video Playback (Optional)</div>
+      <div class="step-body">
+        <p>For video works, scroll to the bottom of the editor page to find the Custom Fields box. Add a custom field named <code>video_url</code> and paste your direct MP4 video link (e.g., from your Media Library). The grid card will then play the video automatically on hover.</p>
+      </div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <!-- SECTION 5: TESTIMONIALS CPT -->
+    <h2 id="testimonials-cpt">5. Adding Dynamic Testimonials</h2>
+    <p>
+      Instead of using static text boxes, clients' reviews are managed dynamically using the custom <strong>Testimonials</strong> sidebar menu.
+    </p>
+
+    <div class="step-card">
+      <div class="step-num">1</div>
+      <div class="step-title">Go to the Testimonials Panel</div>
+      <div class="step-body">
+        <p>Click on the <strong>Testimonials</strong> menu item (speech bubble icon) in your WordPress left sidebar.</p>
+      </div>
+    </div>
+
+    <div class="step-card">
+      <div class="step-num">2</div>
+      <div class="step-title">Create a New Review</div>
+      <div class="step-body">
+        <p>Click <strong>Add New Testimonial</strong> and configure these fields:</p>
+        <ul>
+          <li><strong>Post Title</strong>: Enter the client's name (e.g. <code>Amara Vance</code>).</li>
+          <li><strong>Main Editor Content Box</strong>: Type the client's review text.</li>
+          <li><strong>Featured Image</strong>: Upload the client's profile picture or logo avatar.</li>
+          <li><strong>Client Details Box (Meta Box)</strong>: Enter their job description or brand (e.g. <code>Founder, NEO-GRID Tokyo</code>).</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="step-card">
+      <div class="step-num">3</div>
+      <div class="step-title">Publish and Auto-Scale</div>
+      <div class="step-body">
+        <p>Click <strong>Publish</strong>. The reviews slider on the homepage will immediately extend itself. If you delete all testimonials, the site gracefully falls back to displaying the customizer-configured testimonials.</p>
+      </div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <!-- SECTION 6: FLUENT FORMS -->
+    <h2 id="fluent-forms">6. Customizing and Connecting Fluent Forms</h2>
+    <p>
+      The contact form is built on <strong>Fluent Forms</strong>, integrated with custom AJAX scripts to maintain a sleek design.
+    </p>
+
+    <div class="step-card">
+      <div class="step-num">1</div>
+      <div class="step-title">Locate and Customize the Form fields</div>
+      <div class="step-body">
+        <p>In your WordPress left sidebar, click on <strong>Fluent Forms</strong>. You will see a form pre-created by the theme named <strong>Ronky Edits Portfolio Form</strong>. Click <strong>Edit</strong>.</p>
+        <p>You can add, edit, or rename fields. Ensure that the field name attributes match the form labels.</p>
+      </div>
+    </div>
+
+    <div class="step-card">
+      <div class="step-num">2</div>
+      <div class="step-title">Check the Form ID</div>
+      <div class="step-body">
+        <p>Note down the ID of the form from the list (e.g., <code>[fluentform id="1"]</code> means your ID is <code>1</code>).</p>
+      </div>
+    </div>
+
+    <div class="step-card">
+      <div class="step-num">3</div>
+      <div class="step-title">Connect the Form ID in WordPress Customizer</div>
+      <div class="step-body">
+        <p>Go to **Appearance > Customize > Contact Settings**. Under the **Fluent Form ID** text field, input your form ID (e.g., <code>1</code>) and click **Publish**. This connects the homepage form fields directly to your Fluent Forms database entries.</p>
+      </div>
+    </div>
+
+    <div class="alert">
+      <div class="alert-title">🔒 Submission Self-Healing Engine</div>
+      <p>
+        The theme features a built-in self-healing algorithm inside `functions.php`. If you configure a custom Fluent Form that has different field keys, the theme automatically runs name matching to capture the submission and map it correctly without returning validation errors to the visitors.
+      </p>
+    </div>
+
+    <div class="page-break"></div>
+
+    <!-- SECTION 7: ELEMENTOR -->
+    <h2 id="elementor">7. Working with Elementor Page Builder</h2>
+    <p>
+      You can add Elementor templates or edit your custom layout structures.
+    </p>
+
+    <div class="step-card">
+      <div class="step-num">1</div>
+      <div class="step-title">Enable Elementor Support</div>
+      <div class="step-body">
+        <p>Go to **Pages > Add New**, name your page, and click **Edit with Elementor**.</p>
+      </div>
+    </div>
+
+    <div class="step-card">
+      <div class="step-num">2</div>
+      <div class="step-title">The Auto-Populating Template</div>
+      <div class="step-body">
+        <p>The theme has an auto-population hook. When you create a new empty page in Elementor, it automatically loads our custom structured JSON layout template (`ronky-homepage-template.json`) containing our custom widgets. This lets you construct new custom layouts in seconds.</p>
+      </div>
+    </div>
+
+    <div class="step-card">
+      <div class="step-num">3</div>
+      <div class="step-title">Managing Page Templates</div>
+      <div class="step-body">
+        <p>If you build a page with Elementor and want it to display standard Elementor widgets, ensure the page template is set to **Elementor Full Width** in the page attributes sidebar.</p>
+      </div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <!-- SECTION 8: HOSTING & MIGRATION -->
+    <h2 id="hosting-migration">8. Step-by-Step Live Hosting & Migration Guide</h2>
+    <p>
+      When you are ready to migrate the site from your local XAMPP machine to a live host (such as Hostinger, Bluehost, or GoDaddy), follow these steps:
+    </p>
+
+    <h3>Part A: Migrating your WordPress Site (to Live PHP/MySQL Hosting)</h3>
+    
+    <div class="step-card">
+      <div class="step-num">1</div>
+      <div class="step-title">Install Migration Plugin Locally</div>
+      <div class="step-body">
+        <p>On your local site (<code>http://localhost/wordpress/wp-admin/</code>), go to <strong>Plugins > Add New</strong>. Search for <strong>All-in-One WP Migration</strong>. Install and activate it.</p>
+      </div>
+    </div>
+
+    <div class="step-card">
+      <div class="step-num">2</div>
+      <div class="step-title">Export the Local Database and Files</div>
+      <div class="step-body">
+        <p>Navigate to <strong>All-in-One WP Migration > Export</strong>. Select <strong>Export To > File</strong>. Wait for the plugin to pack your database, themes, plugins, and media. Download the resulting <code>.wpress</code> file to your computer.</p>
+      </div>
+    </div>
+
+    <div class="step-card">
+      <div class="step-num">3</div>
+      <div class="step-title">Set Up WordPress on Live Hosting</div>
+      <div class="step-body">
+        <p>Log in to your hosting panel (e.g. Hostinger hPanel). Use the **Auto Installer** to install a fresh copy of WordPress on your domain (e.g. <code>yourdomain.com</code>).</p>
+      </div>
+    </div>
+
+    <div class="step-card">
+      <div class="step-num">4</div>
+      <div class="step-title">Import your Local Site Live</div>
+      <div class="step-body">
+        <p>Log in to your new live site (<code>yourdomain.com/wp-admin/</code>). Go to Plugins, install and activate <strong>All-in-One WP Migration</strong>. Go to <strong>Import > Import From > File</strong>, select the downloaded <code>.wpress</code> file, and click upload. Once completed, your live site will have all your portfolio works, customizer layouts, form configurations, and active themes restored!</p>
+      </div>
+    </div>
+
+    <h3>Part B: Deploying your Static Web Site to Vercel (For static representation)</h3>
+    <p>If you want to update your static showcase on Vercel:</p>
+    <ol>
+      <li>Make your changes to the static code files under the <code>sandy/</code> folder.</li>
+      <li>Open your terminal in the project root: <code>C:\Users\manda\.gemini\antigravity\scratch\sandy\</code></li>
+      <li>Compile the build: <code>npm.cmd run build</code></li>
+      <li>Commit the changes:
+        <ul>
+          <li><code>git add .</code></li>
+          <li><code>git commit -m "Updated theme designs"</code></li>
+        </ul>
+      </li>
+      <li>Push to GitHub: <code>git push origin main</code></li>
+      <li>Vercel detects the push and deploys the new static site automatically.</li>
+    </ol>
   </body>
 </html>
