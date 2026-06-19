@@ -1982,6 +1982,82 @@ body.cursor-dark-hover #custom-cursor-ring {
   }
 }
 
+/* ==========================================================================
+   GALLERY PAGE CUSTOM STYLES
+   ========================================================================== */
+
+.gallery-page .main-header {
+  background: rgba(10, 10, 10, 0.85) !important;
+  backdrop-filter: blur(15px) !important;
+  -webkit-backdrop-filter: blur(15px) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+}
+
+.gallery-hero-section {
+  padding-top: 180px; /* Pushes content below the fixed header */
+  padding-bottom: 60px;
+  text-align: center;
+  position: relative;
+  z-index: 10;
+}
+
+.gallery-hero-content {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.gallery-title {
+  font-family: var(--font-display);
+  font-size: 5vw;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: -2px;
+  line-height: 1.0;
+  margin-bottom: 25px;
+  color: var(--text-primary);
+}
+
+.gallery-subtitle {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+@media (max-width: 1024px) {
+  .gallery-hero-section {
+    padding-top: 140px;
+    padding-bottom: 40px;
+  }
+  
+  .gallery-title {
+    font-size: 8vw;
+  }
+  
+  .gallery-subtitle {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 768px) {
+  .gallery-hero-section {
+    padding-top: 120px;
+    padding-bottom: 30px;
+  }
+  
+  .gallery-title {
+    font-size: 10vw;
+    letter-spacing: -1px;
+    margin-bottom: 15px;
+  }
+  
+  .gallery-subtitle {
+    font-size: 13px;
+  }
+}
+
 
 
 

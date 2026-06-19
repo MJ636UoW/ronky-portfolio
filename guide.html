@@ -1,0 +1,394 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>RONKY EDITS • User Guide & Technical Documentation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        --bg-primary: #0A0A0A;
+        --bg-secondary: #121212;
+        --accent: #B8FF00;
+        --text-primary: #FFFFFF;
+        --text-secondary: #888888;
+        --border-color: rgba(255, 255, 255, 0.08);
+      }
+      
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      
+      body {
+        background-color: var(--bg-primary);
+        color: var(--text-primary);
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        line-height: 1.6;
+        padding: 60px 80px;
+        max-width: 900px;
+        margin: 0 auto;
+      }
+
+      /* Print specific layouts */
+      @media print {
+        body {
+          padding: 30px;
+          background-color: #FFFFFF;
+          color: #000000;
+        }
+        .page-break {
+          page-break-before: always;
+        }
+        .no-print {
+          display: none;
+        }
+        h1, h2, h3, h4 {
+          color: #000000 !important;
+        }
+        a {
+          color: #0066cc !important;
+        }
+        .step-card {
+          border: 1px solid #DDDDDD !important;
+          background: #FAFAFA !important;
+        }
+        .alert {
+          border-left: 4px solid #333333 !important;
+          background: #F0F0F0 !important;
+          color: #000000 !important;
+        }
+      }
+
+      h1, h2, h3, h4 {
+        font-family: 'Syne', sans-serif;
+        font-weight: 800;
+        text-transform: uppercase;
+        color: var(--text-primary);
+      }
+
+      h1 {
+        font-size: 38px;
+        letter-spacing: -1px;
+        line-height: 1.1;
+        margin-bottom: 10px;
+        border-bottom: 2px solid var(--accent);
+        padding-bottom: 20px;
+      }
+
+      .subtitle {
+        font-size: 16px;
+        color: var(--accent);
+        font-weight: 700;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin-bottom: 40px;
+      }
+
+      h2 {
+        font-size: 22px;
+        margin-top: 40px;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 10px;
+      }
+
+      h3 {
+        font-size: 16px;
+        margin-top: 25px;
+        margin-bottom: 12px;
+        color: var(--accent);
+      }
+
+      p {
+        margin-bottom: 18px;
+        font-size: 15px;
+        color: #CCCCCC;
+      }
+
+      ol, ul {
+        margin-left: 24px;
+        margin-bottom: 20px;
+      }
+
+      li {
+        margin-bottom: 8px;
+        font-size: 14.5px;
+        color: #CCCCCC;
+      }
+
+      strong {
+        color: #FFFFFF;
+      }
+
+      a {
+        color: var(--accent);
+        text-decoration: none;
+      }
+
+      .alert {
+        background-color: var(--bg-secondary);
+        border-left: 4px solid var(--accent);
+        padding: 18px 24px;
+        border-radius: 4px;
+        margin: 25px 0;
+      }
+
+      .alert-title {
+        font-weight: 700;
+        font-size: 14px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 6px;
+        color: var(--text-primary);
+      }
+
+      .alert p {
+        margin-bottom: 0;
+        font-size: 14px;
+        color: #AAAAAA;
+      }
+
+      .step-card {
+        background-color: var(--bg-secondary);
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        padding: 24px;
+        margin-bottom: 20px;
+      }
+
+      .step-num {
+        background-color: var(--accent);
+        color: #000000;
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 13px;
+        margin-right: 10px;
+      }
+
+      .step-title {
+        font-size: 16px;
+        font-weight: 700;
+        display: inline-block;
+        vertical-align: middle;
+      }
+
+      .step-body {
+        margin-top: 15px;
+        margin-left: 38px;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 25px 0;
+      }
+
+      th, td {
+        padding: 12px 15px;
+        text-align: left;
+        border-bottom: 1px solid var(--border-color);
+      }
+
+      th {
+        font-family: 'Syne', sans-serif;
+        font-size: 13px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: var(--accent);
+        background-color: rgba(255, 255, 255, 0.02);
+      }
+
+      td {
+        font-size: 14px;
+        color: #CCCCCC;
+      }
+
+      code {
+        font-family: monospace;
+        background-color: rgba(255, 255, 255, 0.05);
+        padding: 2px 6px;
+        border-radius: 3px;
+        font-size: 13px;
+        color: var(--accent);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- COVER PAGE -->
+    <div style="min-height: 90vh; display: flex; flex-direction: column; justify-content: center;">
+      <h1 style="font-size: 48px; border-bottom: none; padding-bottom: 0; margin-bottom: 10px;">RONKY EDITS</h1>
+      <div class="subtitle">Complete User Guide & Technical Documentation</div>
+      <p style="font-size: 16px; max-width: 600px; color: #888888; margin-top: 20px;">
+        A comprehensive guide on managing, editing, and extending the Ronky Edits Gen-Z Portfolio Website. Learn how to configure dynamic testimonials, manage the auto-creating gallery archive, and deploy updates to both local environments (XAMPP) and live servers (Vercel).
+      </p>
+      <div style="margin-top: 80px; font-size: 13px; color: #555555; text-transform: uppercase; letter-spacing: 2px;">
+        Version 2.0 • June 2026
+      </div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <!-- SECTION 1: ARCHITECTURE -->
+    <h2>1. Understanding the Architecture</h2>
+    <p>
+      The Ronky Edits ecosystem consists of two separate structures to facilitate both dynamic backend management and fast static web serving:
+    </p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Feature</th>
+          <th>Local WordPress (XAMPP)</th>
+          <th>Live Site (Vercel)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Purpose</strong></td>
+          <td>Dynamic database administration & local testing.</td>
+          <td>Fast, globally distributed public showcase.</td>
+        </tr>
+        <tr>
+          <td><strong>Technology</strong></td>
+          <td>PHP & MySQL (Local Database).</td>
+          <td>Static HTML5, Vanilla CSS, and JavaScript.</td>
+        </tr>
+        <tr>
+          <td><strong>Link / URL</strong></td>
+          <td><code>http://localhost/wordpress/</code></td>
+          <td><code>https://ronky-portfolio.vercel.app/</code></td>
+        </tr>
+        <tr>
+          <td><strong>How Data Updates</strong></td>
+          <td>Saved inside your local database via Dashboard.</td>
+          <td>Code changes pushed to GitHub remote.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="alert">
+      <div class="alert-title">⚠️ Important Sync Rule</div>
+      <p>
+        Modifications made inside the local WordPress Customizer or Dashboard update your local machine's MySQL database. Because Vercel is a static host and has no database connection, <strong>local WordPress changes will not automatically push to Vercel</strong>. To update Vercel, you must edit the code files directly and push to GitHub, or migrate the theme to a dynamic WordPress host (like Hostinger).
+      </p>
+    </div>
+
+    <div class="page-break"></div>
+
+    <!-- SECTION 2: TESTIMONIALS -->
+    <h2>2. Dynamic Testimonials CPT</h2>
+    <p>
+      Testimonials are fully dynamic. You can add, edit, or delete an unlimited number of testimonials directly from your WordPress sidebar, replacing the old 3-slot Customizer limit.
+    </p>
+
+    <div class="step-card">
+      <div class="step-num">1</div>
+      <div class="step-title">Access the Testimonials Menu</div>
+      <div class="step-body">
+        <p>Log in to your WordPress dashboard (<code>http://localhost/wordpress/wp-admin/</code>). In the left sidebar, click on the new <strong>Testimonials</strong> menu item (distinguished by a speech bubble icon).</p>
+      </div>
+    </div>
+
+    <div class="step-card">
+      <div class="step-num">2</div>
+      <div class="step-title">Add a New Review</div>
+      <div class="step-body">
+        <p>Click on <strong>Add New Testimonial</strong>. Fill in the following fields:</p>
+        <ul>
+          <li><strong>Title</strong>: Enter the client's name (e.g. <code>Sofia Laurent</code>).</li>
+          <li><strong>Content Box</strong>: Enter their review text/quote.</li>
+          <li><strong>Featured Image</strong> (right panel): Upload the client's avatar image.</li>
+          <li><strong>Client Details</strong> (bottom box): Enter their role/designation (e.g. <code>Creative Lead, MAISON Agency</code>).</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="step-card">
+      <div class="step-num">3</div>
+      <div class="step-title">Publish and Render</div>
+      <div class="step-body">
+        <p>Click **Publish**. The review slider on the homepage will automatically expand and query your new testimonial. If no testimonial posts are created yet, the site gracefully falls back to displaying the three customizer-configured reviews.</p>
+      </div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <!-- SECTION 3: GALLERY & DYNAMIC BUTTONS -->
+    <h2>3. Gallery Page & Conditional "Explore More" Button</h2>
+    <p>
+      The Gallery Page operates dynamically to display your full archive, while the homepage adapts based on how many works are added.
+    </p>
+
+    <h3>A. The Gallery Page</h3>
+    <ul>
+      <li><strong>Automatic Page Creation</strong>: When you load the site, a page named "Portfolio Gallery" is automatically created in the database under the slug <code>/gallery/</code>.</li>
+      <li><strong>Template Assignment</strong>: The theme automatically maps the custom <code>page-gallery.php</code> template to it. This template renders a full-page grid of all works, category filters, lightboxes, and a "Back to Home" button.</li>
+      <li><strong>Customizer Logo Sync</strong>: The gallery header logo dynamically adapts to the brand name configured in the WordPress settings.</li>
+    </ul>
+
+    <h3>B. Conditional "Explore More" Button</h3>
+    <p>
+      The homepage limits the portfolio works to a maximum of <strong>6 items</strong> to maintain visual balance and layout spacing.
+    </p>
+    <ul>
+      <li><strong>Fewer than 6 items</strong>: If you have 6 or fewer published posts, all items will display on the homepage, and no CTA button will appear.</li>
+      <li><strong>More than 6 items</strong>: If you publish a 7th post, the theme will automatically slice the display to show the latest 6, and **instantly auto-create the "Explore More" button** underneath the grid.</li>
+      <li><strong>Connection</strong>: The button links dynamically to the Gallery Page (<code>http://localhost/wordpress/gallery/</code>), allowing visitors to browse the full archive.</li>
+    </ul>
+
+    <div class="page-break"></div>
+
+    <!-- SECTION 4: UPDATING & DEPLOYING -->
+    <h2>4. How to Update the Live Vercel Site</h2>
+    <p>
+      To synchronize updates with Vercel, use Git.
+    </p>
+
+    <div class="step-card">
+      <div class="step-num">1</div>
+      <div class="step-title">Open Terminal / PowerShell</div>
+      <div class="step-body">
+        <p>Navigate to the project root directory: <code>C:\Users\manda\.gemini\antigravity\scratch\sandy\</code></p>
+      </div>
+    </div>
+
+    <div class="step-card">
+      <div class="step-num">2</div>
+      <div class="step-title">Build Static Assets</div>
+      <div class="step-body">
+        <p>Compile the code to prepare multi-page bundle paths (index.html and gallery.html):</p>
+        <p><code>npm.cmd run build</code></p>
+      </div>
+    </div>
+
+    <div class="step-card">
+      <div class="step-num">3</div>
+      <div class="step-title">Stage and Commit Files</div>
+      <div class="step-body">
+        <p>Stage the changes and commit them to Git:</p>
+        <p><code>git add .</code></p>
+        <p><code>git commit -m "Your description of updates"</code></p>
+      </div>
+    </div>
+
+    <div class="step-card">
+      <div class="step-num">4</div>
+      <div class="step-title">Push to GitHub</div>
+      <div class="step-body">
+        <p>Pushing to GitHub automatically triggers a clean rebuild on Vercel:</p>
+        <p><code>git push origin main</code></p>
+      </div>
+    </div>
+  </body>
+</html>

@@ -267,12 +267,14 @@ if ( class_exists( '\Elementor\Plugin' ) ) {
               <div class="portfolio-grid" id="portfolio-grid">
                 
                 <?php
+                $homepage_limit = 6;
                 $args = array(
                     'post_type'      => 'post',
-                    'posts_per_page' => 12,
+                    'posts_per_page' => $homepage_limit,
                     'post_status'    => 'publish',
                 );
                 $portfolio_query = new WP_Query( $args );
+                $show_explore_button = ( $portfolio_query->found_posts > $homepage_limit );
                 if ( $portfolio_query->have_posts() ) :
                     while ( $portfolio_query->have_posts() ) : $portfolio_query->the_post();
                         $categories = get_the_category();
@@ -426,11 +428,13 @@ if ( class_exists( '\Elementor\Plugin' ) ) {
               </div>
 
               <!-- Explore More Button -->
+              <?php if ( isset( $show_explore_button ) && $show_explore_button ) : ?>
               <div class="portfolio-explore-more scroll-reveal" data-reveal="fade-up" style="text-align: center; margin-top: 50px;">
                 <a href="<?php echo esc_url( home_url( '/gallery/' ) ); ?>" class="btn-primary magnetic" data-magnetic-strength="0.3">
                   <span><?php esc_html_e( 'EXPLORE MORE', 'genz-portfolio-theme' ); ?></span>
                 </a>
               </div>
+              <?php endif; ?>
 
             </div>
           </section>
