@@ -1735,7 +1735,9 @@ body.cursor-dark-hover #custom-cursor-ring {
     grid-template-columns: 1fr;
   }
   .service-card {
-    height: 320px;
+    height: auto;
+    min-height: 360px;
+    padding: 35px 25px;
   }
   .portfolio-grid {
     grid-template-columns: 1fr;
