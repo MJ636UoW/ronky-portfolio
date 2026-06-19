@@ -202,7 +202,7 @@ function genz_portfolio_customize_register( $wp_customize ) {
     ) );
 
     // Testimonial 1
-    $wp_customize->add_setting( 'genz_testimonial1_quote', array( 'default' => 'Kai completely redefined our streetwear brand\'s campaign. The dynamic camera movements combined with acid green color grading gave us a distinct edge on our website. Absolutely next level.', 'sanitize_callback' => 'sanitize_textarea_field' ) );
+    $wp_customize->add_setting( 'genz_testimonial1_quote', array( 'default' => 'Ronky Edits completely redefined our streetwear brand\'s campaign. The dynamic camera movements combined with acid green color grading gave us a distinct edge on our website. Absolutely next level.', 'sanitize_callback' => 'sanitize_textarea_field' ) );
     $wp_customize->add_control( 'genz_testimonial1_quote', array( 'label' => 'Testimonial 1 Quote', 'section' => 'genz_testimonials_section', 'type' => 'textarea' ) );
     $wp_customize->add_setting( 'genz_testimonial1_name', array( 'default' => 'Amara Vance', 'sanitize_callback' => 'sanitize_text_field' ) );
     $wp_customize->add_control( 'genz_testimonial1_name', array( 'label' => 'Testimonial 1 Name', 'section' => 'genz_testimonials_section', 'type' => 'text' ) );
@@ -212,7 +212,7 @@ function genz_portfolio_customize_register( $wp_customize ) {
     $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'genz_testimonial1_avatar', array( 'label' => 'Testimonial 1 Avatar', 'section' => 'genz_testimonials_section', 'settings' => 'genz_testimonial1_avatar' ) ) );
 
     // Testimonial 2
-    $wp_customize->add_setting( 'genz_testimonial2_quote', array( 'default' => 'Working with Kai was seamless. The edits match exactly what modern Gen-Z visual design looks like: punchy, authentic, and cinematic. The custom website integrations are incredible.', 'sanitize_callback' => 'sanitize_textarea_field' ) );
+    $wp_customize->add_setting( 'genz_testimonial2_quote', array( 'default' => 'Working with Ronky Edits was seamless. The edits match exactly what modern Gen-Z visual design looks like: punchy, authentic, and cinematic. The custom website integrations are incredible.', 'sanitize_callback' => 'sanitize_textarea_field' ) );
     $wp_customize->add_control( 'genz_testimonial2_quote', array( 'label' => 'Testimonial 2 Quote', 'section' => 'genz_testimonials_section', 'type' => 'textarea' ) );
     $wp_customize->add_setting( 'genz_testimonial2_name', array( 'default' => 'Jaden Miller', 'sanitize_callback' => 'sanitize_text_field' ) );
     $wp_customize->add_control( 'genz_testimonial2_name', array( 'label' => 'Testimonial 2 Name', 'section' => 'genz_testimonials_section', 'type' => 'text' ) );
@@ -240,7 +240,7 @@ function genz_portfolio_customize_register( $wp_customize ) {
     ) );
 
     // Contact Email
-    $wp_customize->add_setting( 'genz_contact_email', array( 'default' => 'hello@kai.studio', 'sanitize_callback' => 'sanitize_email' ) );
+    $wp_customize->add_setting( 'genz_contact_email', array( 'default' => 'hello@ronkyedits.studio', 'sanitize_callback' => 'sanitize_email' ) );
     $wp_customize->add_control( 'genz_contact_email', array( 'label' => 'Email Address', 'section' => 'genz_contact_section', 'type' => 'text' ) );
 
     // Contact Whatsapp Link
@@ -248,7 +248,7 @@ function genz_portfolio_customize_register( $wp_customize ) {
     $wp_customize->add_control( 'genz_contact_whatsapp', array( 'label' => 'WhatsApp Number', 'section' => 'genz_contact_section', 'type' => 'text' ) );
 
     // Contact Instagram Username
-    $wp_customize->add_setting( 'genz_contact_instagram', array( 'default' => '@kai.visions', 'sanitize_callback' => 'sanitize_text_field' ) );
+    $wp_customize->add_setting( 'genz_contact_instagram', array( 'default' => '@ronky.edits', 'sanitize_callback' => 'sanitize_text_field' ) );
     $wp_customize->add_control( 'genz_contact_instagram', array( 'label' => 'Instagram Handle', 'section' => 'genz_contact_section', 'type' => 'text' ) );
 
     // Fluent Form ID

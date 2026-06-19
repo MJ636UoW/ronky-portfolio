@@ -46,7 +46,7 @@ class Elementor_GenZ_Testimonials_Widget extends \Elementor\Widget_Base {
 			[
 				'label' => esc_html__( 'Testimonial Quote', 'genz-portfolio-addon' ),
 				'type' => \Elementor\Controls_Manager::TEXTAREA,
-				'default' => esc_html__( '"Kai completely redefined our streetwear brand\'s campaign. The custom website integrations are incredible."', 'genz-portfolio-addon' ),
+				'default' => esc_html__( '"Ronky Edits completely redefined our streetwear brand\'s campaign. The custom website integrations are incredible."', 'genz-portfolio-addon' ),
 			]
 		);
 
@@ -86,8 +86,8 @@ class Elementor_GenZ_Testimonials_Widget extends \Elementor\Widget_Base {
 				'type' => \Elementor\Controls_Manager::REPEATER,
 				'fields' => $repeater->get_controls(),
 				'default' => [
-					[ 'client_name' => 'Amara Vance', 'client_role' => 'Founder, NEO-GRID Tokyo', 'client_quote' => '"Kai completely redefined our streetwear brand\'s campaign. The floating drone shots combined with acid green color grading gave us a distinct edge on our website. Absolutely next level."' ],
-					[ 'client_name' => 'Jaden Miller', 'client_role' => 'Director, SATELLITE Records', 'client_quote' => '"Working with Kai was seamless. The edits match exactly what modern Gen-Z visual design looks like: punchy, authentic, and cinematic."' ]
+					[ 'client_name' => 'Amara Vance', 'client_role' => 'Founder, NEO-GRID Tokyo', 'client_quote' => '"Ronky Edits completely redefined our streetwear brand\'s campaign. The floating drone shots combined with acid green color grading gave us a distinct edge on our website. Absolutely next level."' ],
+					[ 'client_name' => 'Jaden Miller', 'client_role' => 'Director, SATELLITE Records', 'client_quote' => '"Working with Ronky Edits was seamless. The edits match exactly what modern Gen-Z visual design looks like: punchy, authentic, and cinematic."' ]
 				],
 				'title_field' => '{{{ client_name }}} - {{{ client_role }}}',
 			]

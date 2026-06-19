@@ -84,7 +84,7 @@ class Elementor_GenZ_Contact_Widget extends \Elementor\Widget_Base {
 			[
 				'label' => esc_html__( 'Channel Display Value', 'genz-portfolio-addon' ),
 				'type' => \Elementor\Controls_Manager::TEXT,
-				'default' => 'hello@kai.studio',
+				'default' => 'hello@ronkyedits.studio',
 			]
 		);
 
@@ -113,9 +113,9 @@ class Elementor_GenZ_Contact_Widget extends \Elementor\Widget_Base {
 				'type' => \Elementor\Controls_Manager::REPEATER,
 				'fields' => $repeater->get_controls(),
 				'default' => [
-					[ 'channel_label' => 'EMAIL', 'channel_value' => 'hello@kai.studio', 'channel_icon_char' => '✉' ],
+					[ 'channel_label' => 'EMAIL', 'channel_value' => 'hello@ronkyedits.studio', 'channel_icon_char' => '✉' ],
 					[ 'channel_label' => 'WHATSAPP', 'channel_value' => '+1 (555) 019-2026', 'channel_icon_char' => '💬' ],
-					[ 'channel_label' => 'INSTAGRAM', 'channel_value' => '@kai.visions', 'channel_icon_char' => '📸' ]
+					[ 'channel_label' => 'INSTAGRAM', 'channel_value' => '@ronky.edits', 'channel_icon_char' => '📸' ]
 				],
 				'title_field' => '{{{ channel_label }}}: {{{ channel_value }}}',
 			]

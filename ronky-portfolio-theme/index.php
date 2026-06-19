@@ -197,7 +197,7 @@ if ( class_exists( '\Elementor\Plugin' ) ) {
                         $about_img = get_template_directory_uri() . '/assets/images/profile.png';
                     }
                     ?>
-                    <img src="<?php echo esc_url( $about_img ); ?>" alt="<?php esc_attr_e( 'Kai Portrait', 'genz-portfolio-theme' ); ?>" class="profile-img">
+                    <img src="<?php echo esc_url( $about_img ); ?>" alt="<?php esc_attr_e( 'Ronky Portrait', 'genz-portfolio-theme' ); ?>" class="profile-img">
                     <div class="glass-card-overlay"></div>
                   </div>
                   
@@ -535,7 +535,7 @@ if ( class_exists( '\Elementor\Plugin' ) ) {
                   
                   <!-- Slide 1 -->
                   <div class="testimonial-slide glass-card">
-                    <div class="testimonial-quote">"<?php echo esc_html( get_theme_mod( 'genz_testimonial1_quote', 'Kai completely redefined our streetwear brand\'s campaign. The dynamic camera movements combined with acid green color grading gave us a distinct edge on our website. Absolutely next level.' ) ); ?>"</div>
+                    <div class="testimonial-quote">"<?php echo esc_html( get_theme_mod( 'genz_testimonial1_quote', 'Ronky Edits completely redefined our streetwear brand\'s campaign. The dynamic camera movements combined with acid green color grading gave us a distinct edge on our website. Absolutely next level.' ) ); ?>"</div>
                     <div class="testimonial-client">
                       <div class="client-avatar">
                         <?php 
@@ -555,7 +555,7 @@ if ( class_exists( '\Elementor\Plugin' ) ) {
 
                   <!-- Slide 2 -->
                   <div class="testimonial-slide glass-card">
-                    <div class="testimonial-quote">"<?php echo esc_html( get_theme_mod( 'genz_testimonial2_quote', 'Working with Kai was seamless. The edits match exactly what modern Gen-Z visual design looks like: punchy, authentic, and cinematic. The custom website integrations are incredible.' ) ); ?>"</div>
+                    <div class="testimonial-quote">"<?php echo esc_html( get_theme_mod( 'genz_testimonial2_quote', 'Working with Ronky Edits was seamless. The edits match exactly what modern Gen-Z visual design looks like: punchy, authentic, and cinematic. The custom website integrations are incredible.' ) ); ?>"</div>
                     <div class="testimonial-client">
                       <div class="client-avatar">
                         <?php 
@@ -635,7 +635,7 @@ if ( class_exists( '\Elementor\Plugin' ) ) {
                   
                   <!-- Integration Links -->
                   <div class="contact-integrations">
-                    <?php $email = get_theme_mod( 'genz_contact_email', 'hello@kai.studio' ); ?>
+                    <?php $email = get_theme_mod( 'genz_contact_email', 'hello@ronkyedits.studio' ); ?>
                     <a href="mailto:<?php echo esc_attr( $email ); ?>" class="integration-item magnetic" data-magnetic-strength="0.3">
                       <span class="integration-icon">✉</span>
                       <div class="integration-text">
@@ -653,7 +653,7 @@ if ( class_exists( '\Elementor\Plugin' ) ) {
                       </div>
                     </a>
 
-                    <?php $instagram = get_theme_mod( 'genz_contact_instagram', '@kai.visions' ); ?>
+                    <?php $instagram = get_theme_mod( 'genz_contact_instagram', '@ronky.edits' ); ?>
                     <a href="https://instagram.com/<?php echo esc_attr( str_replace( '@', '', $instagram ) ); ?>" class="integration-item magnetic" data-magnetic-strength="0.3" target="_blank" rel="noopener">
                       <span class="integration-icon">📸</span>
                       <div class="integration-text">
