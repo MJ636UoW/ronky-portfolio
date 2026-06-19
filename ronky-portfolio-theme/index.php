@@ -58,7 +58,7 @@ if ( class_exists( '\Elementor\Plugin' ) ) {
     <header class="main-header">
       <div class="header-container">
         <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="logo magnetic" data-magnetic-strength="0.3">
-          <?php bloginfo( 'name' ); ?><span>•</span>STUDIO
+          RONKY<span>•</span>EDITS
         </a>
         <nav class="nav-links">
           <a href="<?php echo esc_url( home_url( '/#about' ) ); ?>" class="nav-link magnetic" data-magnetic-strength="0.4"><?php esc_html_e( 'About', 'genz-portfolio-theme' ); ?></a>
@@ -815,7 +815,7 @@ if ( class_exists( '\Elementor\Plugin' ) ) {
         <div class="sheet-handle"></div>
       </div>
       <div class="sheet-header">
-        <h5><?php bloginfo( 'name' ); ?> STUDIO • <?php esc_html_e( 'QUICK CONNECT', 'genz-portfolio-theme' ); ?></h5>
+        <h5>RONKY EDITS • <?php esc_html_e( 'QUICK CONNECT', 'genz-portfolio-theme' ); ?></h5>
       </div>
       <div class="sheet-content">
         <a href="tel:<?php echo esc_attr( preg_replace( '/[^0-9]/', '', $whatsapp ) ); ?>" class="sheet-btn">
